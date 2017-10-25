@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>框架样式1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style_info.css">
+        <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+        <script src="http://webapi.amap.com/maps?v=1.3&key=b2ebe352bdba412ae771d02de2ca577f"></script>
+        <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+        <script src="__PUBLIC__/js/echarts.min.js" ></script>
+         <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.0.js"></script>
+         <script type="text/javascript" src="__PUBLIC__/js/keyScreen.js"></script> 
+         <script type="text/javascript" src="__PUBLIC__/js/smallScreen.js"></script>
+    </head>
+
+<style type="text/css">
+   hgroup{width: 22%;height: 100%;display: inline-block;float: left;background-color: #d7edb5;border-right: 1px solid white;text-align: center;box-sizing:border-box;}
+    hgroup.current{background-color: #fffdef;}
+    .lists ul h3{height:10%;line-height: 42px;}
+    .title{height:10%;text-align: left;background-color: #97d334;color: #fff;}
+
+</style>
+    <body>
+        <div class="sy_content" id="main">
+        <div class="sy_left">
+             <div class="sy_left_header">
+                 <div class="sy_col_4 sy_full">
+                     {include file="../application/test/view/test/header1.html" /}
+                 </div>
+                 <div class="sy_col_4 sy_full" style="background: #009cda;">
+                     {include file="../application/test/view/test/header2.html" /}
+                 </div>
+                 <div class="sy_col_4 sy_full">
+                     {include file="./public/road_info" /}
+                 </div>
+             </div>
+            <div class="sy_left_main">
+               {include file="./public/road_map" /}
+               {include file="../application/test/view/test/map.html" /}
+            </div>
+            <div class="sy_left_footer">
+                 {include file="./public/air_scoller" /}
+            </div>
+        </div>
+        <div class="sy_right">
+            <div class="sy_right_weather">
+                {include file="./public/weather_time" /}
+            </div>
+             <div class="sy_right_market">
+                {include file="./public/market" /}
+            </div>
+             <div class="sy_right_info">
+                 {include file="./public/road_list" /}
+                 {include file="../application/test/view/test/lists.html" /}
+            </div>
+        </div>
+        </div>
+        <div id="testScreen"  style="display:none;">test</div>
+        <div id="testScreen_1"  style="display:none;">test</div>
+        <div id="alm" style="width: 125px;height: 395px;display:none; "></div>
+        <div id="delay_1" style="display:none;"></div>
+        <div id="delay_2" style="display:none;"></div>
+        <div id="delay_3" style="display:none;"></div>
+        <!-- 视频模块  -->
+        {include file="./public/video" /}
+        <!-- 图片模块  -->
+        {include file="./public/img" /}
+        <script>
+            $(document).ready(function() {
+               // $('.sy_road_info').css('background','#fff');
+            });
+        </script>
+        <script>
+            //黄历框数据
+             var almanac = '';
+             var almanacInfo = {$almanceInfo};
+             console.log(almanacInfo);
+             almanac += '<div class="sy_almanac"><div class="sy_almanac_calendar"><div class="sy_almanc_date_panel">';
+             almanac += '<div class="sy_almanac_date_bar"> '+almanacInfo['month']+'</div>';
+             almanac += '<div class="sy_almanac_date_day">'+almanacInfo['day']+'</div>';
+             almanac += '</div><div class="sy_almanac_dates">';
+             almanac += '<p>'+almanacInfo['weekday']+'</p>';
+             almanac += '<p>农历'+almanacInfo['days']+'</p>';
+             almanac += '<p>'+almanacInfo['lunar']+'</p>';
+             almanac += '</div></div><div class="sy_almanac_action"><div class="sy_almanac_half"> <h3>宜</h3>';
+             almanac += '<ul>';
+             for(var i in almanacInfo['suit']) {
+                 almanac += '<li>'+almanacInfo['suit'][i]+'</li>';
+             }
+             almanac += '</ul>';
+             almanac += '</div><div class="sy_almanac_half"><h3>忌</h3>';
+             almanac += '<ul>';
+             for(var i in almanacInfo['avoid']) {
+                 almanac += '<li>'+almanacInfo['avoid'][i]+'</li>';
+             }
+             almanac += '</ul>';
+             almanac += '</div></div></div>';
+            $(function(){
+                //调用keyScreen.js插件
+                $(document).keyScreen('main,video');
+                $('#testScreen').screen('<p>测试模块1</p>',{"width":"200px","height":"200px","left":"550px","background":"#fff","z-index":"10"});
+                $('#testScreen_1').screen('<p>测试模块2</p>',{"width":"200px","height":"200px","left":"850px","background":"#ea53d4","z-index":"10"});
+                $('#alm').screen(almanac,{'width':'127px','height':'395',"left":"62%","bottom":"25%","border":"none","background":"#fff","z-index":"10"});
+            });
+            
+            document.addEventListener("keydown",function(e){
+                var code = e.keyCode;
+                if(code == 13){
+                    mainOrVideo();
+                }
+
+              });
+             function mainOrVideo() {
+                var screen_switch = getCookie('screen_switch');
+                if(screen_switch == 'video') {
+                     var myVideo=document.getElementById("videoPlay");
+                    myVideo.pause();
+                    setCookie("vedio_to_list",0);
+                } else {
+                     $("#videoPlay").attr("src","__PUBLIC__/vedio/Cordis_Corporate Video_Jan2017_Bilingual_HD.mp4");
+                     setCookie("vedio_to_list",1);
+                }
+        }
+        //获取cookie
+	function getCookie(cname)
+	{
+	  var name = cname + "=";
+	  var ca = document.cookie.split(';');
+	  for(var i=0; i<ca.length; i++) 
+	  {
+		var c = ca[i].trim();
+		if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+	  }
+	  return "";
+	}
+	//设置cookie
+	function setCookie(name,value){
+		document.cookie =name+ "="+value+"; path=/;";
+	}
+        </script>
+        <script>
+            var tipCode = '';
+            var keyEvent = 0;
+            $(document).ready(function(){
+                document.addEventListener('keydown',function(e) {
+                    var code = e.keyCode;
+                    tipCode += String.fromCharCode(code);
+                    //组合键直接执行
+                    if(tipCode.length >1) {
+                        clearTimeout(keyEvent);
+                        codeToEvent(tipCode);
+                    } else {
+                        keyEvent = setTimeout('codeToEvent(tipCode)',1000);
+                         
+                    }
+//                    setCode(code);
+                });
+            });
+             //按键控制事件
+            function codeToEvent(code) {
+                if(code == ''){
+                    return false;
+                }
+                switch(tipCode) {
+                    case 'A':
+                        tipCode = '';
+                        $('#alm').screenMove();
+                        break;
+                    case 'Q':
+                        tipCode = '';
+                        $('#delay_1').screenMove();
+                        $('#delay_2').screenMove();
+                        $('#delay_3').screenMove();
+                        break;
+                    case 'AQ':
+                        tipCode = '';
+                        nextModul();
+                        break;
+                    case 'QA':
+                        tipCode = '';
+                         preModul();
+                        break;
+                    default:
+                        tipCode = '';
+                        break;
+                }
+            }
+            
+            //下个模块
+            function nextModul() {
+                var tip = getCurrentModul();
+                console.log('nexttip:'+tip);
+                switch(tip) {
+                    case 1:
+                        $('#main').css('display','none');
+                        $('#video').css('display','');
+                        playVideo();
+                        break;
+                    case 2:
+                        $('#video').css('display','none');
+                        $('#imgModul').css('display','');
+                        pauseVideo();
+                        break;
+                    case 3:
+                        $('#imgModul').css('display','none');
+                        $('#main').css('display','');
+                        break;
+                    default:
+                        $('#main').css('display','none');
+                        $('#video').css('display','');
+                        playVideo();
+                        break;
+                }
+            }
+            
+            //上个模块
+            function preModul() {
+                var tip = getCurrentModul();
+                 console.log('pretip:'+tip);
+                switch(tip) {
+                    case 1:
+                        $('#main').css('display','none');
+                        $('#imgModul').css('display','');
+                        break;
+                    case 2:
+                        $('#video').css('display','none');
+                        $('#main').css('display','');
+                        pauseVideo();
+                        break;
+                    case 3:
+                        $('#imgModul').css('display','none');
+                        $('#video').css('display','');
+                        playVideo();
+                        break;
+                    default:
+                        $('#main').css('display','none');
+                        $('#imgModul').css('display','');
+                        break;
+                }
+            }
+            
+            //当前显示模块
+            function getCurrentModul() {
+                if($('#main').css('display') != 'none') {
+                    return 1;
+                }
+                if($('#video').css('display') != 'none') {
+                    return 2 ;
+                }
+                 if($('#imgModul').css('display') != 'none') {
+                    return 3 ;
+                }
+                return 1 ;
+            }
+            
+            //播放视频
+            function playVideo() {
+                $("#videoPlay").attr("src","__PUBLIC__/vedio/Cordis_Corporate Video_Jan2017_Bilingual_HD.mp4");
+                setCookie("vedio_to_list",1);
+            }
+            
+            //停止视频播放
+            function pauseVideo() {
+                var myVideo=document.getElementById("videoPlay");
+                myVideo.pause();
+                setCookie("vedio_to_list",0);
+            }
+        </script>
+        <script>
+            var delay = '<div class="sy_popup"><div class="sy_popup_header"><div class="sy_popup_header_scroll"><div class="sy_popup_logo">';
+                delay += '<img src="__PUBLIC__/images/people1.png" alt="logo" />';
+                delay += '</div><div class="sy_popup_line">&nbsp;</div><div class="sy_popup_line_active" style="width: 50px;"></div>';
+                delay += '<div class="sy_popup_tip" style="left: 128px;">00:38</div>';
+                delay += '<div class="sy_popup_node_active"></div>';
+                delay += '<div class="sy_popup_node" style="left: 50%;"></div>';
+                delay += '<div class="sy_popup_node" style="left: 86%;"></div>';
+                delay += '<div class="sy_popup_node_time" style="left:19%;">10:00</div>';
+                delay += '<div class="sy_popup_node_tip" style="left:20%;">定制</div>';
+                delay += '<div class="sy_popup_node_time" style="left:49%;">11:00</div>';
+                delay += '<div class="sy_popup_node_tip" style="left:50%;">值机</div>';
+                delay += '<div class="sy_popup_node_time" style="left:85%;">11:30</div>';
+                delay += '<div class="sy_popup_node_tip" style="left:86%;">起飞</div>';
+                delay += '</div></div><div class="sy_popup_main"><div class="sy_col_6 sy_full"><div class="sy_popup_border_right">';
+                delay += '<h2>航班号：CA9568</h2>';
+                delay += '<p>始发地：上海虹桥T2航站楼</p>';
+                delay += '<p>计划起飞：2017-10-20 10:30</p>';
+                delay += '<p>目的地：成都双流机场</p>';
+                delay += '<p>计划到达：2017-10-20 10:30</p>';
+                delay += '<p>当前状态：<span class="sy_font_red">延误</span></p>';
+                delay += '</div></div><div class="sy_col_6 sy_full"><div id="air_delay" style="width: 207px;height:169px;text-align: center;"></div>';
+                delay += '<script type="text/javascript">';
+                delay += '$(document).ready(function() { ';
+                delay += 'var myChart = echarts.init(document.getElementById("air_delay"));';
+                delay += 'var option = { title: { text: "近5日延误时间", textStyle:{fontSize:"14"}, left:"center" }, tooltip: { trigger: "axis", position: ["50%", "50%"]},';
+                delay += 'grid: { bottom: "30", top: "40", left:"30", right:"30" },';
+                delay += 'xAxis:  { type: "category",  name:"", boundaryGap: false, data: ["周一","周二","周三","周四","周五"] },';
+                delay += 'yAxis: { type:  "value", name:"min", left:"10", nameGap:"5",';
+                delay += 'axisLabel: { formatter: "{value}" }  },';
+                delay += 'series: [ { name:"分钟", type:"line", itemStyle:{  normal:{  label:{position: "right",  show: true } } }, data:[11, 11, 15, 13, 12] }  ]';
+                delay += '};';
+                delay += ' myChart.setOption(option);});';
+                delay += '<\/script>';
+                delay += '</div></div></div>';
+                
+                var delay2 = '<div class="sy_popup"><div class="sy_popup_header"><div class="sy_popup_header_scroll"><div class="sy_popup_logo">';
+                delay2 += '<img src="__PUBLIC__/images/people2.png" alt="logo" />';
+                delay2 += '</div><div class="sy_popup_line">&nbsp;</div><div class="sy_popup_line_active" style="width: 50px;"></div>';
+                delay2 += '<div class="sy_popup_tip" style="left: 128px;">00:38</div>';
+                delay2 += '<div class="sy_popup_node_active"></div>';
+                delay2 += '<div class="sy_popup_node" style="left: 50%;"></div>';
+                delay2 += '<div class="sy_popup_node" style="left: 86%;"></div>';
+                delay2 += '<div class="sy_popup_node_time" style="left:19%;">10:00</div>';
+                delay2 += '<div class="sy_popup_node_tip" style="left:20%;">定制</div>';
+                delay2 += '<div class="sy_popup_node_time" style="left:49%;">11:00</div>';
+                delay2 += '<div class="sy_popup_node_tip" style="left:50%;">值机</div>';
+                delay2 += '<div class="sy_popup_node_time" style="left:85%;">11:30</div>';
+                delay2 += '<div class="sy_popup_node_tip" style="left:86%;">起飞</div>';
+                delay2 += '</div></div><div class="sy_popup_main"><div class="sy_col_6 sy_full"><div class="sy_popup_border_right">';
+                delay2 += '<h2>航班号：CA9568</h2>';
+                delay2 += '<p>始发地：上海虹桥T2航站楼</p>';
+                delay2 += '<p>计划起飞：2017-10-20 10:30</p>';
+                delay2 += '<p>目的地：成都双流机场</p>';
+                delay2 += '<p>计划到达：2017-10-20 10:30</p>';
+                delay2 += '<p>当前状态：<span class="sy_font_red">延误</span></p>';
+                delay2 += '</div></div><div class="sy_col_6 sy_full"><div id="air_delay_2" style="width: 207px;height:169px;text-align: center;"></div>';
+                delay2 += '<script type="text/javascript">';
+                delay2 += '$(document).ready(function() { ';
+                delay2 += 'var myChart = echarts.init(document.getElementById("air_delay_2"));';
+                delay2 += 'var option = { title: { text: "近5日延误时间", textStyle:{fontSize:"14"}, left:"center" }, tooltip: { trigger: "axis", position: ["50%", "50%"]},';
+                delay2 += 'grid: { bottom: "30", top: "40", left:"30", right:"30" },';
+                delay2 += 'xAxis:  { type: "category",  name:"", boundaryGap: false, data: ["周一","周二","周三","周四","周五"] },';
+                delay2 += 'yAxis: { type:  "value", name:"min", left:"10", nameGap:"5",';
+                delay2 += 'axisLabel: { formatter: "{value}" }  },';
+                delay2 += 'series: [ { name:"分钟", type:"line", itemStyle:{  normal:{  label:{position: "right",  show: true } } }, data:[11, 11, 15, 13, 12] }  ]';
+                delay2 += '};';
+                delay2 += ' myChart.setOption(option);});';
+                delay2 += '<\/script>';
+                delay2 += '</div></div></div>';
+                
+                var delay3 = '<div class="sy_popup"><div class="sy_popup_header"><div class="sy_popup_header_scroll"><div class="sy_popup_logo">';
+                delay3 += '<img src="__PUBLIC__/images/people3.png" alt="logo" />';
+                delay3 += '</div><div class="sy_popup_line">&nbsp;</div><div class="sy_popup_line_active" style="width: 50px;"></div>';
+                delay3 += '<div class="sy_popup_tip" style="left: 128px;">00:38</div>';
+                delay3 += '<div class="sy_popup_node_active"></div>';
+                delay3 += '<div class="sy_popup_node" style="left: 50%;"></div>';
+                delay3 += '<div class="sy_popup_node" style="left: 86%;"></div>';
+                delay3 += '<div class="sy_popup_node_time" style="left:19%;">10:00</div>';
+                delay3 += '<div class="sy_popup_node_tip" style="left:20%;">定制</div>';
+                delay3 += '<div class="sy_popup_node_time" style="left:49%;">11:00</div>';
+                delay3 += '<div class="sy_popup_node_tip" style="left:50%;">值机</div>';
+                delay3 += '<div class="sy_popup_node_time" style="left:85%;">11:30</div>';
+                delay3 += '<div class="sy_popup_node_tip" style="left:86%;">起飞</div>';
+                delay3 += '</div></div><div class="sy_popup_main"><div class="sy_col_6 sy_full"><div class="sy_popup_border_right">';
+                delay3 += '<h2>航班号：CA9568</h2>';
+                delay3 += '<p>始发地：上海虹桥T2航站楼</p>';
+                delay3 += '<p>计划起飞：2017-10-20 10:30</p>';
+                delay3 += '<p>目的地：成都双流机场</p>';
+                delay3 += '<p>计划到达：2017-10-20 10:30</p>';
+                delay3 += '<p>当前状态：<span class="sy_font_red">延误</span></p>';
+                delay3 += '</div></div><div class="sy_col_6 sy_full"><div id="air_delay_3" style="width: 207px;height:169px;text-align: center;"></div>';
+                delay3 += '<script type="text/javascript">';
+                delay3 += '$(document).ready(function() { ';
+                delay3 += 'var myChart = echarts.init(document.getElementById("air_delay_3"));';
+                delay3 += 'var option = { title: { text: "近5日延误时间", textStyle:{fontSize:"14"}, left:"center" }, tooltip: { trigger: "axis", position: ["50%", "50%"]},';
+                delay3 += 'grid: { bottom: "30", top: "40", left:"30", right:"30" },';
+                delay3 += 'xAxis:  { type: "category",  name:"", boundaryGap: false, data: ["周一","周二","周三","周四","周五"] },';
+                delay3 += 'yAxis: { type:  "value", name:"min", left:"10", nameGap:"5",';
+                delay3 += 'axisLabel: { formatter: "{value}" }  },';
+                delay3 += 'series: [ { name:"分钟", type:"line", itemStyle:{  normal:{  label:{position: "right",  show: true } } }, data:[11, 11, 15, 13, 12] }  ]';
+                delay3 += '};';
+                delay3 += ' myChart.setOption(option);});';
+                delay3 += '<\/script>';
+                delay3 += '</div></div></div>';
+                $(function(){
+                //调用keyScreen.js插件
+                $('#delay_1').screen(delay,{'width':'420px','height':'250px',"left":"0","bottom":"0","border":"none","background":"#fff","z-index":"200"});
+                $('#delay_2').screen(delay2,{'width':'420px','height':'250px',"left":"22%","bottom":"0","border":"none","background":"#fff","z-index":"10"});
+                $('#delay_3').screen(delay3,{'width':'420px','height':'250px',"left":"44%","bottom":"0","border":"none","background":"#fff","z-index":"10"});
+                
+            });
+        </script>
+
+<script src="__PUBLIC__/test/js/echarts/echarts.js"></script>
+<script src="__PUBLIC__/test/js/echarts/china.json"></script>
+<script src="__PUBLIC__/test/js/echarts/Statistics-pie.js"></script>
+<script src="__PUBLIC__/test/js/echarts-2.2.7/echarts.js"></script>
+<script src="__PUBLIC__/test/js/map.js"></script>
+<!--循环加载-->
+<script type="text/javascript" src="__PUBLIC__/test/js/public.js"></script>
+<script type="text/javascript" src="__PUBLIC__/test/js/ajax.js"></script>
+<script type="text/javascript" src="__PUBLIC__/test/js/index.js"></script>
+<script type="text/javascript">
+    //数据更新--航班统计
+     moredata.statis_air();
+     //数据更新--高铁统计
+     moredata.statis_train();
+
+     //数据更新--航班与地图
+     moredata.airmaplists();
+     //数据更新--高铁与地图
+     moredata.trainmaplists();
+
+    var page = 1;
+    var chagepage = setInterval(judge.refresh,5000);
+       
+        $('#container').css('display','none');
+        $('.sy_road_list').css('display','none');
+        $('.sy_road_info').css('background','#d7edb5');
+        $('.sy_road_info_header').css('background','#97d334');
+/* 道路合并 */
+var isroad = function()
+{
+    var type = getCookie('changetype');
+     if (type == 'road') 
+     {
+        setTimeout(function(){
+            $('#container').css('display','block');
+            $('.sy_road_list').css('display','block');
+            $('.sy_road_info').css('background-color','#fffdef');
+            var hgroup = document.getElementsByTagName('hgroup');
+            for (var i = 0; i < hgroup.length; i++) {
+                hgroup[i].classList.remove('current');
+            };
+            document.cookie="changetype=air";
+            document.cookie="isFromSha=1";
+        },5000);
+       // window.clearInterval(chagepage);
+     }else{
+        $('#container').css('display','none');
+        $('.sy_road_list').css('display','none');
+        $('.sy_road_info').css('background','#d7edb5');
+        $('.sy_road_info_header').css('background','#97d334');
+
+        // if(!chagepage){
+        //     var chagepage = setInterval(judge.refresh,5000);
+        // }
+        return false;
+     }
+}
+    var roads = setInterval(isroad,5000);
+
+   
+/*    (function(){
+    if(!window.localStorage) {
+        console.log('浏览器不支持localStorage');
+    }
+    var size = 0;
+    for(item in window.localStorage) {
+        if(window.localStorage.hasOwnProperty(item)) {
+            size += window.localStorage.getItem(item).length;
+        }
+    }
+    console.log('当前localStorage剩余容量为' + (size / 1024).toFixed(2) + 'KB');
+})()*/
+/*(function() {
+   if(!window.localStorage) {
+   console.log('当前浏览器不支持localStorage!')
+   }    var test = '0123456789';
+   var add = function(num) {
+     num += num;
+     if(num.length == 10240) {
+       test = num;
+       return;
+     }
+     add(num);
+   }
+   add(test);
+   var sum = test;
+   var show = setInterval(function(){
+      sum += test;
+      try {
+       window.localStorage.removeItem('test');
+       window.localStorage.setItem('test', sum);
+       console.log(sum.length / 1024 + 'KB');
+      } catch(e) {
+       console.log(sum.length / 1024 + 'KB超出最大限制');
+       clearInterval(show);
+      }
+   }, 0.1)
+ })()*/
+</script>
+    </body>
+</html>

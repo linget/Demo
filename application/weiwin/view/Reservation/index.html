@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>酒店房间预订系统</title>
+<!-- <link href="css/style.css" type="text/css" rel="stylesheet" />
+ -->
+<link href="__PUBLIC__/css/form.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/css/mobiscroll_date.css" rel="stylesheet" />
+<style type="text/css">
+#bottom_info {position: relative;top: -3.8em;margin: 0 0.5em;padding: .8em 0;text-align: center;background-color: #18c178;color: #ffffff;border: medium hidden;border-radius: 0.1em;box-sizing: border-box;display: none;}
+#bottom_info a {width: 100%;text-decoration: none;outline: none;}
+#bottom_jump {position: relative;top: -3em;margin: 0 0.5em;padding: .8em 0;text-align: center;background-color: #62A9E3;color: #ffffff;border: medium hidden;border-radius: 0.1em;box-sizing: border-box;display: none;}
+	.decrease,.increase{margin:0;padding:0;text-align:center;color: white;font-weight: 600;}
+</style>
+</head>
+<body>
+
+<div id="subjects">
+	<form id="main_form" action="{:url('Reservation/index')}" method="post"  accept-charset="utf-8" style="padding-bottom: 4em;">
+		<div class="form_ctrl page_head" id="1" title="订房" style="color: white; background-color: gray;"><h2>订房</h2></div>
+		<div class="form_ctrl page_text" id="2" title="">
+<!-- 			<p>自由灵活的酒店房间预订系统</p>
+		 -->		</div>
+		<div class="form_ctrl input_text" id="3" title="姓名">
+			<label class="ctrl_title">姓名</label>
+			<input type="text" name="input_name" onFocus="this.value=''" value="张天" placeholder="请输入姓名">
+		</div>
+		<div class="form_ctrl form_select" id="5" title="称呼">
+			<label class="ctrl_title">称呼</label>
+			<select name="input_sex" num="1" style="line-height:1em;">
+			<option value="1">先生</option>
+			<option value="0">小姐</option>
+			</select>
+		</div>
+		<div class="form_ctrl input_text" id="4" title="联系电话">
+			<label class="ctrl_title">联系电话</label>
+			<input type="text" name="input_phone" onFocus="this.value=''" value="15000290866" placeholder="请输入电话号码">
+		</div>
+		<div class="form_ctrl input_date" id="7" title="入住日期">
+			<label class="ctrl_title">入住日期</label>
+			<input type="text" name="input_date" class="choose-date"  readonly class="input" placeholder="请输入日期" onFocus="this.value=''" value="{$today}">
+		</div>
+		<div class="form_ctrl input_date" id="7" title="离店日期">
+			<label class="ctrl_title">离店日期</label>
+			<input type="text" name="endtime" class="choose-date"  readonly class="input" placeholder="请输入日期" onFocus="this.value=''" value="{$tomorrow}">
+		</div>
+
+		<div class="form_ctrl form_goods" id="6" title="房型">
+			<label class="ctrl_title">房型</label>
+			<div class="form_goods_items">
+
+				<div class="form_goods_item" id="6-2">
+					<div class="form_goods_box">
+					<a href="http://863eaec1d636.vt.iamh5.cn/v3/idea/b7hikJq5">
+						<div class="form_goods_image" style="background-image:url(/Demo/public/images/20150715_01.jpg);background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;"></div>
+						</a>
+						<div class="form_goods_title">标准单人房</div>
+						<div class="form_goods_panel">
+							<div class="form_goods_info">
+								<div class="form_goods_price">￥260</div>
+							</div>
+							<div class="form_goods_count">
+								<div class="decrease" >－</div>
+								<div class="increase" >＋</div>
+								<input class="form_goods_input" name="numb1" type="text" onFocus="this.value=''" value="1">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form_goods_item" id="6-1">
+					<div class="form_goods_box">
+						<a href="http://863eaec1d636.vt.iamh5.cn/v3/idea/b7hikJq5">
+						<div class="form_goods_image" style="background-image:url(/Demo/public/images/20150715_02.png);background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;"></div>
+						</a>
+						<div class="form_goods_title">标准双人房</div>
+							<div class="form_goods_panel">
+								<div class="form_goods_info">
+									<div class="form_goods_price">￥328</div>
+								</div>
+								<div class="form_goods_count">
+								<div class="decrease" >－</div>
+								<div class="increase" >＋</div>
+									<input class="form_goods_input" name="numb2" type="text" value="0" >
+								</div>
+							</div>
+					</div>
+				</div>
+				<div class="form_goods_item" id="6-4">
+					<div class="form_goods_box">
+						<a href="http://863eaec1d636.vt.iamh5.cn/v3/idea/wf6oqatT">
+						<div class="form_goods_image" style="background-image:url(/Demo/public/images/20150715_03.jpg);background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;"></div>
+						</a>
+						<div class="form_goods_title">大床房</div>
+						<div class="form_goods_panel">
+							<div class="form_goods_info">
+								<div class="form_goods_price">￥388</div>
+							</div>
+							<div class="form_goods_count">
+								<div class="decrease" >－</div>
+								<div class="increase" >＋</div>
+								<input class="form_goods_input" name="numb3" type="text" value="0" >
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form_goods_item" id="6-5">
+					<div class="form_goods_box">
+					<a href="http://863eaec1d636.vt.iamh5.cn/v3/idea/KhYHKPM7">
+						<div class="form_goods_image" style="background-image:url(/Demo/public/images/20150715_04.jpg);background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;"></div>
+						</a>
+						<div class="form_goods_title">商务房</div>
+						<div class="form_goods_panel">
+							<div class="form_goods_info">
+								<div class="form_goods_price">￥448</div>
+							</div>
+							<div class="form_goods_count">
+								<div class="decrease" >－</div>
+								<div class="increase" >＋</div>
+								<input class="form_goods_input" name="numb4" type="text" value="0" >
+							</div>
+						</div>
+					</div>
+				</div>						
+			</div>
+		</div>
+	
+
+	
+		<div class="form_ctrl form_submit" id="9" title="点击按钮预订房间">
+			<label class="ctrl_title">点击按钮预订房间</label>
+			<input type="submit" name="submit" value="提交" style="color: white; background-color: rgb(255, 108, 0);">
+			<!-- <input type="button" value="goBack" onclick="WeixinJSBridge.call('closeWindow');" /> -->
+		</div>
+		
+	</form>
+
+</div>
+
+
+<script src="__PUBLIC__/js/jquery.min.js"></script> 
+<script src="__PUBLIC__/js/mobiscroll_date.js" charset="gb2312"></script> 
+<script src="__PUBLIC__/js/mobiscroll.js"></script> 
+<script type="text/javascript">
+
+
+$(function () {
+	var currYear = (new Date()).getFullYear();	
+	var opt={};
+	opt.date = {preset : 'date'};
+	opt.datetime = {preset : 'datetime'};
+	opt.time = {preset : 'time'};
+	opt.default = {
+		theme: 'android-ics light', //皮肤样式
+		display: 'modal', //显示方式 
+		mode: 'scroller', //日期选择模式
+		dateFormat: 'yyyy-mm-dd',
+		lang: 'zh',
+		showNow: true,
+		nowText: "今天",
+		startYear: currYear - 50, //开始年份
+		endYear: currYear + 10 //结束年份
+	};
+
+	$(".choose-date").mobiscroll($.extend(opt['date'], opt['default']));
+
+});
+
+//
+// WeixinJSBridge.call('closeWindow');
+//订房数量加减
+
+$(function(){
+		$('.increase').click(function(){
+			var self = $(this);
+			var current_num = parseInt(self.siblings('input').val());
+			console.log(current_num);
+			current_num += 1;
+			/*if(current_num > 0){
+				self.siblings(".decrease").fadeIn();
+				self.siblings(".text_box").fadeIn();
+			}*/
+			self.siblings('input').val(current_num);
+			update_item(self.siblings('input').data('item-id'));
+		})		
+		$('.decrease').click(function(){
+			var self = $(this);
+			var current_num = parseInt(self.siblings('input').val());
+			if(current_num > 0){
+				current_num -= 1;
+               /* if(current_num < 1){
+	                self.fadeOut();
+					self.siblings(".text_box").fadeOut();
+                }*/
+				self.siblings('input').val(current_num);
+				update_item(self.siblings('input').data('item-id'));
+			}
+		})
+	})
+</script>
+</body>
+</html>

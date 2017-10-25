@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>快递添加</title>
+<link href="__PUBLIC__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/select.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/tuo.js"></script><!-- 图片预览 -->
+<style>.cla a{margin-left:380px;} .show img{width:300px;height:200px;} .tdaa img{cursor:pointer;} .fproduct_addFont{border: 1px solid red;height:109px;display: inline-block; }</style>   
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $(".select1").uedSelect({
+    width : 345       
+  });
+  $(".select2").uedSelect({
+    width : 167  
+  });
+  $(".select3").uedSelect({
+    width : 100
+  });
+});
+</script>
+</head>
+<body>
+
+  <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#" >仓库列表</a></li>
+    <li><a href="#" >{$title}</a></li>
+    </ul>
+    </div>
+     <style type="text/css">  
+            #bg{ display: none;position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;  background-color: black;  z-index:1001;  -moz-opacity: 0.7;  opacity:.70;  filter: alpha(opacity=70);}  
+            #show{display:none;  position: absolute;  top: 25%;  left: 30%;  width: 30%;  height: 25%;  padding: 8px;  border: 8px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;text-align: center;  }  
+            #show .liCass{margin-top:30px;}
+  </style>  
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div id="tab1" class="tabson">
+    <ul class="seachform"> 
+    <li style="float:right;"><a href="{:U('product_list')}"><input  type="button" name="Submit" class="scbtn"  value="返回"/></a></li>
+    </ul>
+    <ul class="forminfo">
+    <form action="__URL__/{$variable}"  method="post" enctype="multipart/form-data" >
+    
+     <li><label>产品编号<b>*</b></label><input name="c_products_model"  type="text" class="dfinput" value="{$info['c_products_model']}" /></li>
+     
+     <li><label>产品名称<b>*</b></label><input name="c_name"  type="text" class="dfinput" value="{$info['c_name']}" /></li>
+<!--      <li><label>产品单价<b>*</b></label><input name="c_price"  type="text" class="dfinput" value="{$info['c_products_price']}" /></li>    
+ -->     
+     <li><label>所属品牌</label>
+      <div class="vocation">
+       <select class="select1" name="cate_id1" id="barndNeam" onchange="classifyHandle(this);" >
+           <option value=""  >请选择</option>
+           <volist name="category" id="v">
+             <option value="{$v['id']}"  <if condition="$v['id'] eq $all_fy[0]['fid']">selected="selected"</if>>{$v['brand']}</option>
+           </volist>
+        </select>
+      </div>
+      <font color="red" style="font-size:24px;cursor:pointer" onclick="showdiv();">+</font>
+    </li>     
+     
+    
+    <li id="dfinput"  <if condition="$info['c_fid'] eq ''">style="display: none;"</if>><label>所属分类</label>
+          <div class="vocation" >
+          <select class="select1" name="fid" id="dfinputSelect" >
+             <volist name="all_fy" id="v5">
+                 <option value="{$v5['id']}" <if condition="$info['c_fid'] eq $v5['id']"> selected="selected"</if>>{$v5['brand']}</option>
+             </volist>
+         </select>
+      </div>
+       <font color="red" id="showID" style="font-size:24px;cursor:pointer" onclick="showdiv();">+</font>
+    </li>
+     
+   
+    <li><label>供应商</label>
+      <div class="vocation">
+       <select class="select1" name="c_supplier" id="barndNeam" onchange="classifyHandle(this);" >
+           <option value=""  >请选择</option>
+           <volist name="supplier_info" id="v">
+                <option value="{$v['c_num']}" <if condition="$v['c_num'] eq  $info['c_supplier']">selected="selected"</if>>{$v['c_pname']}</option>
+           </volist>
+        </select>
+      </div>
+    </li>
+    
+    <li><label>产品图片<b>*</b></label>
+          <div id="file_1" class="file_1 cla">
+                 <a href="javascript:;" id="tdd_1"  calss="span_1"   <if condition="$info['c_image'] neq ''">style="display:block;"<else/>style="display:none;"</if>  onclick="hideen(1)">X</a>
+                  <div class="show" id="show_1" >  
+                   <if condition="$info['c_image'] neq ''">
+                    <img src="{$info['c_image']}" />
+                   </if>
+                  </div> 
+              </div>
+             
+                <div  id="fileList_1" class="fileList1 tdaa" onclick="dianji(1)"  <if condition="$info['c_image'] neq ''">  style="display:none;"<else/>style="display:block;"</if>>
+                    <img src="__PUBLIC__/images/jian1.png" />
+                    <input type="file" name="c_image" id="fileElem_1" class="fileElem" style="display:none" onchange="handleFiles(this,1)"  multiple accept="image/* ">
+                    <input type="hidden" name="c_image1" id="tmimg_1"   value="{$info['c_image']}" />
+               </div>
+  
+    </li>
+
+     
+     
+     <li><label>&nbsp;</label>
+                           <input name="c_pid" type="hidden" value="{$info['c_pid']}"/>    
+                           <input name="" type="submit" class="btn" value="确定"/>
+                           <input name="" type="reset" class="btn" value="重置"/>
+     
+                           
+    </li>
+    
+    
+    
+    
+    </form>
+    </ul> 
+    </div>
+     
+  </div> 
+  <div id="bg" onclick="hidediv();"></div>  
+    <div id="show"> 
+        <li ><label id="labelT">添加品牌</label>&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:200px;" name="name"  type="text" class="dfinput" id="dfinputName" value="" /></li>
+        <li class="liCass"><label>&nbsp;</label>
+                           <input name="" type="button" id="dfinputButton" class="btn" onclick="dfinputName();" value="确定"/>
+                           <input name="" type="button" class="btn" onclick="hidediv();" value="取消"/>
+        </li>
+  </div>  
+  
+<script language="javascript" type="text/javascript">  
+    function (obj) {
+    	   if(obj != undefined){
+    		   var sr="添加分类";
+    		   $("#dfinputButton").attr('onclick','dfinputName('+obj+')');
+    	   }else{
+    		   $("#dfinputButton").attr('onclick','dfinputName()');
+    		   var sr="添加品牌";
+    	   }
+    	   $("#labelT").html(sr);
+                document.getElementById("bg").style.display ="block";  
+                document.getElementById("show").style.display ="block";  
+            }  
+    function hidediv() {  
+                document.getElementById("bg").style.display ='none';  
+                document.getElementById("show").style.display ='none';  
+            }  
+    
+    function dfinputName(obj){
+    	var  val=$("#dfinputName").val();
+    	var arr = '__URL__'.split('/');
+	    arr[4]="Express";
+        var  url=arr.join("/");
+    	if(val != ''){
+    		  $.ajax({
+    			  url:''+url+'/valueAdded',
+    			  type:'get',
+    			  data:{val:val,fid:obj},
+    			  success: function(data) {
+    				  var da=eval(data);
+		    		  if(da.remin == 2){
+		    			  alert(da.reminder);
+		    			  toLoad(obj);
+		    			  hidediv();
+		    		  }else{
+		    			  alert(da.reminder);
+		    		  }
+    			  } 
+    		  });
+    	}else{
+    		if(obj != ''){
+    			alert('品牌名不能为空');
+    		}else{
+    			alert('分类名不能为空');
+    		}
+    	}
+    }
+    
+    function toLoad(id){
+    	var arr = '__URL__'.split('/');
+	    arr[4]="Express";
+       var  url=arr.join("/");
+    	$.ajax({
+      		 url:''+url+'/valueList',
+      		 type:'get',
+      		 data:{id:id},
+      		 success:function(data){
+      			 var da=eval(data);
+      			 var srt='';
+      			    if(id != undefined){
+      			    	srt+='<option value="" >请选择分类</option>';
+      			    	var naemId="#dfinputSelect";
+      			    }else{
+      			    	srt+='<option value=""  >请选择品牌</option>';
+      			    	var naemId="#barndNeam";
+      			    }
+      			    if(da != null){
+      			    	$.each(da,function(i){
+      			    		if(id != undefined){
+      			    			srt+='<option value="'+da[i].id+'">'+da[i].brand+'</option>'; 
+      			    		}else{
+      			    			srt+='<option value="'+da[i].id+'" >'+da[i].brand+'</option>'; 
+      			    		}
+         			    	 
+      		    		}); 
+      			    }
+   		    	 $(naemId).html(srt);
+      		 }
+      	   }); 
+    }
+  
+   
+</script>  
+
+<script type="text/javascript">
+function classifyHandle(obj){
+	 id=$(obj).val();
+	 var arr = '__URL__'.split('/');
+	    arr[4]="Express";
+     var  url=arr.join("/");
+	 if(id != ''){
+		$.ajax({
+   		 url:''+url+'/valueList',
+   		 type:'post',
+   		 data:{id:id},
+         dataType: 'json',
+   		 success: function(data){
+   			 var da=eval(data);
+   			 var srt='';
+   			     srt+='<option value="" >请选择分类</option>';
+   			    if(da != null){
+   			    	$.each(da,function(i){
+      			    	 srt+='<option value="'+da[i].id+'" >'+da[i].brand+'</option>'; 
+   		    		}); 
+   			    }
+   				 $("#dfinput").show();
+		    	 $("#dfinputSelect").html(srt);
+		    	 $("#showID").attr('onclick','showdiv('+id+')');
+   		 }
+   	   }); 
+	 }else{
+		  var srt='';
+		  srt+='<option value="" >请选择分类</option>';
+		  $("#dfinputSelect").html(srt);
+		  $("#dfinput").hide();
+	 } 
+}
+</script>
+   
+    
+    </div>
+</body>
+</html>

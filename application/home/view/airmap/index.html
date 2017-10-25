@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>康得思酒店·航班实时提醒</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/map.css">
+<script type="text/javascript" language='javascript'>
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/jquery-1.8.0.js" charset="UTF-8"><' + '/script>');
+</script>
+</head>
+<body>
+<!--Step:1 Prepare a dom for ECharts which (must) has size (width & hight)--> 
+<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+<div class="header">
+		<div class="logo"><img src="#" /><h3>康得思酒店</h3></div>
+		<div class="center">
+		<p>
+		{if condition="$isFromSha eq 1"}
+			<img src="__PUBLIC__/images/flight_out.png" class="variable" />
+			<h3>SHA 出发
+		{else/}
+			<img src="__PUBLIC__/images/flight_arrive.png" class="variable" />
+			<h3>SHA 到达
+		{/if}
+		<br/>
+		<a href="#">上海虹桥国际机场</a>
+		</h3>
+		</p>
+		</div>
+		<!-- <div class="weath">{time}</div> -->
+</div>
+
+	<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+	<div class="code"></div>
+	<div id="mainMap"></div>
+
+
+
+<!--Step:2 Import echarts.js--> 
+<!--Step:2 引入echarts.js-->
+<script type="text/javascript" language='javascript'>
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/echarts.js" charset="UTF-8"><' + '/script>');
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/public.js"><' + '/script>');
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/mapmore.js"><' + '/script>');
+	
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/ajax.js"><' + '/script>');
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/map.js"><' + '/script>');
+</script>
+<script type="text/javascript">
+	/* 翻页 */
+	var language ="{$Think.cookie.language_index}";
+	var isFromSha ="{$Think.cookie.isFromSha_index}";
+	var name = "_index";
+
+	var current_Page = {$current_Page};
+	var countPage = {$count_Page};
+
+	//页面样式设置
+	var c_pagetime= {$temp['c_pagetime']};//IPS后台设置 -- 翻页时间
+	var c_language_type =  {$temp['c_language']};//IPS后台-- 设置语言
+	var c_isFromSha = {$temp['c_isfromsha']};//IPS后台-- 出发到达
+	var guideIntervel = setInterval(autoLoad,c_pagetime);//300000
+
+
+	var citys_data = {$citys};//态势图地点
+	var route_citys = {$route_citys};//态势图航线
+	var citys_effect = {$effect};//态势图特效
+	var loadMoreUrl = "{:url('Airmap/getMore')}";
+
+</script>
+
+
+<script type="text/javascript">
+	//var set_time = setInterval(window.settime,30000);//系统时间
+
+	var MoreUrl,round_Url;
+	$("#document").ready(function()
+	{
+		place = {};all_city(language);getEcharts();
+	 });
+
+</script>
+</body>
+</html>

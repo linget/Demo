@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <title>
+           {eq name="flag" value="1"}{$flightNo}
+           {else/}{$fromCity}-{$toCity}{/eq}
+      </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/weui.min.css" />
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/jquery-weui.css" />
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/myui.css" />
+        <style>
+        .weui_cells:before{border-top:0;}
+        .weui_cells:after{border-bottom:0;}
+        .weui_cell:before{border-top:0;}
+        .weui_cells_checkbox .weui_check:checked+.weui_icon_checked:before{color: #08A9F8;}
+        .weui_dialog{top:15%;}
+        </style>
+       <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" ></script>
+       <script>
+	function getcookie(val)
+       {
+          var cookarr=document.cookie.split(";");
+        var len=cookarr.length;
+        var strkind="";
+         for(var i=0;i<len;i++)
+         {
+             if(cookarr[i].indexOf(val)!=-1){
+                 strkind=cookarr[i];
+                 break;
+             }
+         }
+            var kind=strkind.split('=')[1];
+            return kind ;
+        }
+        wx.config({
+        debug: false,
+        appId: '{$jspackage["appid"]}',
+        nonceStr: '{$jspackage["nonceStr"]}',
+        timestamp:'{$jspackage["timestamp"]}',
+        signature: '{$jspackage["signature"]}',
+        jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+        ]
+      });
+      wx.ready(function(){
+          wx.hideOptionMenu();
+          $("#div_list").delegate(".myfx","click",function() {
+              wx.showOptionMenu();
+               //分享到朋友圈
+          wx.onMenuShareTimeline({
+            title: '我出行', // 分享标题
+            desc: '我的行程安排，帮我留意一下，必要时候可以提醒我。', // 分享描述
+            link: 'http://zhihuijingang.com/Demo/public/index.php/index/plane/planelist.html?fx='+getcookie('planekey'), // 分享链接
+            imgUrl: 'http://zhihuijingang.com__PUBLIC__/weiwin/images/fximg.png', // 分享图标
+         });
+         //分享给朋友
+    wx.onMenuShareAppMessage({
+    title: '我出行', // 分享标题
+    desc: '我的行程安排，帮我留意一下，必要时候可以提醒我。', // 分享描述
+    link: 'http://zhihuijingang.com/Demo/public/index.php/index/plane/planelist.html?fx='+getcookie('planekey'), // 分享链接
+    imgUrl: 'http://zhihuijingang.com__PUBLIC__/weiwin/images/fximg.png', // 分享图标
+    type: '', // 分享类型,music、video或link，不填默认为link
+    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+    });
+     //分享到QQ
+      wx.onMenuShareQQ({
+     title: '我出行', // 分享标题
+    desc: '我的行程安排，帮我留意一下，必要时候可以提醒我。', // 分享描述
+    link: 'http://zhihuijingang.com/Demo/public/index.php/index/plane/planelist.html?fx='+getcookie('planekey'), // 分享链接
+    imgUrl: 'http://zhihuijingang.com__PUBLIC__/weiwin/images/fximg.png', // 分享图标
+   });
+   //分享到腾讯微博
+   wx.onMenuShareWeibo({
+     title: '我出行', // 分享标题
+    desc: '我的行程安排，帮我留意一下，必要时候可以提醒我。', // 分享描述
+    link: 'http://zhihuijingang.com/Demo/public/index.php/index/plane/planelist.html?fx='+getcookie('planekey'), // 分享链接
+    imgUrl: 'http://zhihuijingang.com__PUBLIC__/weiwin/images/fximg.png', // 分享图标
+   });
+   //分享到QQ空间
+   wx.onMenuShareQZone({
+   title: '我出行', // 分享标题
+    desc: '我的行程安排，帮我留意一下，必要时候可以提醒我。', // 分享描述
+    link: 'http://zhihuijingang.com/Demo/public/index.php/index/plane/planelist.html?fx='+getcookie('planekey'), // 分享链接
+    imgUrl: 'http://zhihuijingang.com__PUBLIC__/weiwin/images/fximg.png', // 分享图标
+   });
+          });
+          
+          //判断当前客户端是否支持指定JS接口
+          wx.checkJsApi({
+          jsApiList: [
+            'getNetworkType',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ'
+          ]
+        });
+       
+   
+   });
+    wx.error(function(){
+         alert("验证失败请重试！"); 
+      });
+        </script>
+    </head>
+    <body>
+        <div class="weui-row weui-no-gutter myui-plane-hd">
+            <div class="weui-col-33" style="padding-top: 11px;">
+                <a href="{:url('plane/prenextdate','fdate=1')}">
+                <img src="__PUBLIC__/weiwin/images/left02.png" alt="前一天" />
+                <label class="myui-top-day">前一天</label>
+                </a>
+            </div>
+            <div class="weui-col-33" style="padding-top: 8px;">
+                {$fDate}
+            </div>
+            <div class="weui-col-33" style="padding-top: 11px;">
+                 <a href="{:url('plane/prenextdate','fdate=2')}">
+                <img src="__PUBLIC__/weiwin/images/right04.png" alt="后一天" />
+                 <label class="myui-top-day">后一天</label>
+                 </a>
+            </div>
+        </div>
+        <div id="div_list">
+<!--start-->
+
+        <!--end-->
+        {volist name="info" id="vo" empty="暂时没有数据"}
+          <div class="myui-plane-bd" >
+                <div style="width: 100%">
+                    <div style="width: 20%; float: left; text-align: center;">
+                        <img src="__PUBLIC__/weiwin/images/logo/{$vo.AIRLINE_IATA_EN}.png" alt="{$vo.AIRLINE_IATA}" style="width:25px;height:25px;" />
+                    </div>
+                    <div style="float: left; line-height: 25px;">
+                        {$vo.AIRLINE_IATA}&nbsp;&nbsp;{$vo.FLIGHT_NO}&nbsp;&nbsp;
+                        {if condition="$vo.REMARK_XML eq '延误'"}
+                        <pre style="color: #FFC125;white-space: pre-wrap;">{$vo.REMARK_XML}</pre>
+                        {elseif condition="$vo.REMARK_XML eq '取消'"}
+                        <pre style="color:red">{$vo.REMARK_XML}</pre>
+                        {else/}
+                         <pre style="color:green">{$vo.REMARK_XML}</pre>
+                         {/if}
+                    </div>
+                </div>
+            <div class="myui-clear"></div>
+                <div class="weui-row weui-no-gutter" style="text-align: center;">
+                <div class="weui-col-40">
+                    <div class="myui-col-city-nm" style="font-size: 22px;">
+                        {$vo.STARTTIME}
+                    </div>
+                    <div class="myui-col-city-td"  >
+                        {$vo.FROMCITY}
+                    </div>
+                </div>
+                <div class="weui-col-20">
+                    <img src="__PUBLIC__/weiwin/images/feiji.png" style=" width: 80px; height: 60px;" alt="logo" />
+                </div>
+                <div class="weui-col-40">
+                    <div class="myui-col-city-nm" style="font-size: 22px;">
+                        {$vo.ENDTIME}
+                    </div>
+                    <div class="myui-col-city-td" >
+                        {$vo.TOCITY}
+                    </div>
+                </div>
+            </div>
+               <div class="weui-row weui-no-gutter" style="text-align: center;">
+                <div class="weui-col-40">
+                   <a href="javascript:void(0);" data-key="{$vo.FLIGHT_NO}_{$fDate}_{$vo.FROMCITY}_{$vo.TOCITY}" onclick="notice(this)">
+                    <img src="__PUBLIC__/weiwin/images/dingzhi02.png" alt="定制提醒" />
+                    <label class="myui-fx-dz">定制提醒</label>
+                   </a>
+                </div>
+
+                <div class="weui-col-20">
+                </div>
+                <div class="weui-col-40">
+                    <a href="javascript:;" class="myfx" data-key="{$vo.FLIGHT_NO}_{$fDate}_{$vo.FROMCITY}_{$vo.TOCITY}" onclick="share(this)">
+                     <img src="__PUBLIC__/weiwin/images/fenxiang02.png" alt="分享" />
+                     <label class="myui-fx-dz">分享</label>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {/volist}
+        </div>
+        <div class="weui_mask weui_mask_visible" id="mask" style="visibility:  hidden;">   
+        </div>
+        <div id="mask_fx" style="visibility:  hidden;">
+        <div class="myui-mask-tip" >
+            <img src="__PUBLIC__/weiwin/images/fenxiang_logo1.png" alt="logo" />  
+        </div>
+            <div class="myui-mask-jt">
+            <img src="__PUBLIC__/weiwin/images/fenxiang_logo2.png" alt="logo" />  
+        </div>
+        </div>
+        <div class="weui_dialog weui_dialog_visible" id="mask_dz" style="visibility:  hidden;">
+            <div class="weui_dialog_hd">
+                <h3 class="weui_dialog_title myui-font">航班提醒</h3>
+            </div>
+            <div class="weui_dialog_bd">
+               <div class="weui_cells weui_cells_checkbox">
+        <label class="weui_cell weui_check_label" for="message_dp">
+          <div class="weui_cell_hd" style="padding-left: 20%;">
+            <input type="checkbox" class="weui_check" name="checkbox1" id="message_dp" checked="true"  onclick="qiehuan()">
+            <i class="weui_icon_checked " ></i>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary" style=" text-align: left;">
+              <p>&nbsp;&nbsp;大屏提醒 </p>
+          </div>
+        </label>
+          <label class="weui_cell weui_check_label" for="message_wx">
+          <div class="weui_cell_hd" style="padding-left: 20%;">
+            <input type="checkbox" class="weui_check" name="message_wx" id="message_wx" checked="true" onclick="qiehuan()">
+            <i class="weui_icon_checked"></i>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary" style=" text-align: left;">
+              <p>&nbsp;&nbsp;微信提醒 </p>
+          </div>
+        </label>
+           <label class="weui_cell weui_check_label" for="message_dx">
+          <div class="weui_cell_hd" style="padding-left: 20%;">
+              <input type="checkbox" class="weui_check" name="message_dx" id="message_dx"  onclick="qiehuan()">
+              <i class="weui_icon_checked"></i>
+          </div>
+          <div class="weui_cell_bd weui_cell_primary" style=" text-align: left;">
+              <p>&nbsp;&nbsp;短信提醒 </p>
+          </div>
+        </label>
+        </div>
+                <div id="message_msg" style=" display: none;">
+                  <div class="myui-message-tip" style="display:none;">
+                      <i class="weui_icon_warn"></i> <span id="tips">手机号码有误！</span>
+                 </div>
+                <div class="myui-message-way">
+                    <div class="myui-message-phone">
+                        <input type="tel" id="message_phone" maxlength="11" style="width: 98%; border: 0; height: 23px;" placeholder="请输入手机号码" />
+                    </div>
+                    <div class="myui-message-yzm">
+                        <a  id="setyzm" style="color: #BDBDBD;" onclick="settime(this)" >发送验证码</a>
+                    </div>
+                    <div class=" myui-clear"></div>
+                </div>
+                    <div class="myui-message-in">
+                        <input type="tel" id="message_yzm"  maxlength="5" style="width: 98%; border: 0;height: 23px;" placeholder="请输入验证码"/>
+                </div>
+            </div>
+            </div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:;" onclick="noticecancel()" class="weui_btn_dialog" style=" color: #08A9F8;">取消</a>
+                <a href="javascript:;" id="setup" class="weui_btn_dialog" style=" color: #08A9F8;">确认</a>
+            </div>
+        </div>
+        <script src="__PUBLIC__/weiwin/js/jquery-2.1.4.js"></script>
+        <script src="__PUBLIC__/weiwin/js/jquery-weui.js"></script>
+        <script src="__PUBLIC__/weiwin/js/planelist.js"></script>
+        <script>
+      $(document).ready(function(){
+           var arrkie=document.cookie.split(";");
+           var len=arrkie.length;
+           for(var i=0;i<len;i++){
+               if(arrkie[i].indexOf('dzkind')!=-1){
+                   document.cookie="dzkind=;expires=Thu, 10 Dec 2000 12:00:00 GMT;path=/Demo";
+               }
+               if(arrkie[i].indexOf('planekey')!=-1){
+                   document.cookie="planekey=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/Demo";
+               }
+           }
+          
+      });
+      $(document).on("click","#setyzm",function(){
+           var phone=$("#message_phone").val();
+           $.ajax({type:'post',url:"{:url('plane/setyzm')}",data:{'phone':phone},success:function(data) {
+                if(data !='1'){
+                    $(".myui-message-tip").show();
+                    $("#tips").html("手机号码输入有误！");
+          }
+          }});  
+      });
+      $(document).on("click","#setup",function() {
+          var dp='0';
+          var wx='0';
+          var dx='0';
+          if($("#message_dp").attr("checked")){
+              dp='1';
+          }
+          if($("#message_wx").attr("checked")){
+              wx='1';
+          }
+          if($("#message_dx").attr("checked")){
+              dx='1';
+          } 
+        var  dzkind=dp+'_'+wx+'_'+dx;
+        document.cookie="dzkind="+dzkind+";path=/Demo";
+        if(dx=='1'){
+            var phone=$("#message_phone").val();
+            var yzm=$("#message_yzm").val();
+            $.ajax({type:'post',url:"{:url('plane/checkyzm')}",data:{'phone':phone,'yzm':yzm},success:function(data) {
+                if(data==1){
+                    window.location.href="{:url('plane/message')}";
+                }else{
+                    $(".myui-message-tip").show();
+                    $("#tips").html("验证码有误,或手机号码变动！");
+                }
+            }});
+        }else{
+             window.location.href="{:url('plane/message')}";
+        }
+      });  
+        </script>
+      
+    </body>
+</html>

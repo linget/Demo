@@ -1,0 +1,52 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>跳转提示</title>
+        <style type="text/css">
+        *{ padding: 0; margin: 0; }
+        body{ background: #fff; font-family: '微软雅黑'; color: #333; font-size: 18px; }
+        .message{width: 500px;height: 220px;margin:auto;border:1px solid #1B8F24;margin-top: 30px;}
+        .head{width: 100%;height: 30px;background: rgb(222,245,194);text-align: center;padding-top: 5px;}
+        .content{height: 120px;width: 100%;}
+        .top{width:100%;height:100px;display:inline-block;line-height:50px;}
+        .success ,.error{margin-left:50px;margin-right:50px;}
+        .success img,.error img{float:left;height:100px;}
+        .success font,.error font{width:100%;display: block;text-align: center;WORD-BREAK: break-all; WORD-WRAP: break-word;color:#F77C83;font-size: 20px; }
+        .jump{text-align: center;margin-top: 20px;}
+        #href{font-size:16px;color:#499ED1;}
+        </style>
+        </head>
+        <body>
+        <div class="message">
+        <div class="head"><span>提示信息:</span></div>
+        <div class="content">
+        <div class="top">
+        <?php if(isset($message)) {?>
+        <p class="success"><img src="__ADMIN__/images/win.png"/> <font><?php echo($message); ?></font></p>
+        <?php }else{?>
+        <p class="error"><img src="__ADMIN__/images/Failure.png"/><font><?php echo($error); ?></font></p>
+        <?php }?>
+        </div>
+        <p class="detail"></p>
+        <p class="jump">
+        <a id="href" href="<?php echo($jumpUrl); ?>">跳转，请点击这里...</a>
+        <br />
+        等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+        </p>
+        </div>
+        </div>
+        <script type="text/javascript">
+        (function(){
+        var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+        var time = --wait.innerHTML;
+        if(time <= 0) {
+        location.href = href;
+        clearInterval(interval);
+        };
+        }, 1000);
+        })();
+        </script>
+        </body>
+        </html>

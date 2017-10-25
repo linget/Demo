@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>查询</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/weui.min.css" />
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/jquery-weui.css" />
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/myui.css" />
+        <script src="__PUBLIC__/weiwin/js/jquery.min.js" ></script>
+        <style>
+            .weui_cell:before{ border-top: 0; }
+        </style>
+    </head>
+    <body>
+        <div id="div_traffic">
+        <div class="weui-row weui-no-gutter myui-col-default" id="div_plane">
+            <div class="weui-col-33">
+                
+            </div>
+            <div class="weui-col-33 myui-col-hd myui-col-font ">
+                航班查询
+            </div>
+            <div class="weui-col-33">
+                 <div class="weui_navbar myui-col-nav" >
+                    <div class="weui_navbar_item myui-nav-btn-yes" >
+                    航班
+                    </div>
+                     <div class="weui_navbar_item myui-nav-btn-no" onclick="train()">
+                    火车
+                </div>   
+            </div>
+            </div>
+        </div>
+            <div class="weui-row weui-no-gutter myui-col-default" id="div_train" style="display: none">
+            <div class="weui-col-33">
+                
+            </div>
+            <div class="weui-col-33 myui-col-hd myui-col-font ">
+                火车查询
+            </div>
+            <div class="weui-col-33">
+                 <div class="weui_navbar myui-col-nav" >
+                     <div class="weui_navbar_item myui-nav-btn-no" onclick="plane()">
+                    航班
+                    </div>
+                 <div class="weui_navbar_item myui-nav-btn-yes" >
+                    火车
+                </div>   
+            </div>
+            </div>
+        </div>
+        <!--start plane city -->
+        <div class="weui_tab" id="div_plane_city" >
+            <form method="post" action="{:url('plane/planelist')}" >
+            <div class="weui_navbar">
+                 <div class="weui_navbar_item weui_bar_item_on myui-bar-item-on ">
+                   城市
+                </div>
+                <div class="weui_navbar_item "  onclick="plane_code()">
+                    航班号
+                </div>
+            </div>
+            <div class="weui_tab_bd">&nbsp;
+            </div>
+            <div class="weui-row weui-no-gutter" style=" margin-top: 50px; text-align: center;">
+                <div class="weui-col-40">
+                    <div class="myui-col-city-td" >
+                        出发城市
+                    </div>
+                    <div class="myui-col-city-nm"  >
+                        <a href="javascript:void(0);" class="select-city" id="plane_kai" style="display:none;"  data-jump="CitySelect" data-selected="0" data-code="Shanghai Hongqiao" data-kind="plane">上海虹桥</a>
+                        <input type="hidden" id="plane_city_kai" name="plane_city_kai" value="上海虹桥" />
+                        <span id="plane_kaikai">上海虹桥</span>
+                    </div>
+                </div>
+                <div class="weui-col-20">
+                    <a href="javascript:void(0);" class="change-city" data-code="plane" >
+                    <img src="__PUBLIC__/weiwin/images/plane03.png" alt="logo" /></a>
+                </div>
+                <div class="weui-col-40">
+                    <div class="myui-col-city-td" >
+                        到达城市
+                    </div>
+                    <div class="myui-col-city-nm" >
+                        <a href="javascript:void(0);" class="select-city" id="plane_dao"  data-selected="1" data-jump="CitySelect" data-code="Beijing Capital" data-default="请选择" data-kind="plane">北京首都</a>
+                        <input type="hidden" id="plane_city_dao" name="plane_city_dao" value="北京首都" />
+                        <span id="plane_daodao" style="display:none;">北京首都</span>
+                    </div>
+                </div>
+            </div>
+            <div class="weui_cell myui-cell-cd" >
+                <div class="weui_cell_hd" style="width: 30%; ">
+                    出发日期
+                </div>
+                <div class="weui_cell_bd myui-cal-icol">
+                    <input class="weui_input" id="date1" name="new_date" type="text" value="">
+                </div>
+            </div>
+                 <button type="submit" class="weui_btn weui_btn_primary" style=" margin-top: 30px; width: 83%; background-color: #08A9F8;" >航班查询</button>
+            </form>
+        </div>
+        <!--end plane city -->
+        <!--start plane code   -->
+        <div class="weui_tab" id="div_plane_code" style="display: none" onsubmit="return checkplaneON()">
+             <form method="post" action="{:url('plane/planelist')}" >
+            <div class="weui_navbar" >
+                <div class="weui_navbar_item " onclick="plane_city()">
+                   城市
+                </div> 
+                <div class="weui_navbar_item weui_bar_item_on myui-bar-item-on" >
+                    航班号
+                </div>
+            </div>
+            <div class="weui_tab_bd" >&nbsp;
+            </div>
+            <div class="myui-cell">
+                <div class="myui-cell-hd">
+                    航班号
+                </div>
+                <div class="myui-cell-bd">
+                    <input class="weui_input" type="text" name="plane_no" id="plane_no" placeholder="请输入正确航班号" />
+                </div>
+            </div>
+             <div class="weui_cell myui-cell-cd" >
+                <div class="weui_cell_hd" style="width: 30%; ">
+                    出发日期
+                </div>
+                <div class="weui_cell_bd myui-cal-icol">
+                    <input class="weui_input" id="date2" name="new_date" type="text" value="">
+                </div>
+            </div>
+                 <button type="submit" class="weui_btn weui_btn_primary"  style=" margin-top: 30px; width: 83%;background-color: #08A9F8;" >航班查询</button>
+            </form>
+        </div>
+        <!-- end plane code   -->
+        <!-- start train city -->
+        <div class="weui_tab" id="div_train_city" style="display: none">
+            <form method="post" action="{:url('train/trainlist')}" >
+            <div class="weui_navbar">
+                 <div class="weui_navbar_item weui_bar_item_on myui-bar-item-on ">
+                   城市
+                </div>
+                <div class="weui_navbar_item " onclick="train_code()">
+                    车次
+                </div>
+            </div>
+            <div class="weui_tab_bd">&nbsp;
+            </div>
+            <div class="weui-row weui-no-gutter" style=" margin-top: 50px; text-align: center;">
+                <div class="weui-col-40">
+                    <div class="myui-col-city-td" >
+                        出发城市
+                    </div>
+                    <div class="myui-col-city-nm"  >
+                        <a href="javascript:void(0);" class="select-city" id="train_kai" style="display:none;"  data-jump="CitySelect" data-selected="0" data-code="Shanghai Hongqiao" data-kind="train">上海虹桥</a>
+                        <input type="hidden" id="train_city_kai" name="train_city_kai" value="上海虹桥" />
+                        <span id="train_kaikai">上海虹桥</span> 
+                    </div>
+                </div>
+                <div class="weui-col-20">
+                    <a href="javascript:void(0);" class="change-city" data-code="train" >
+                    <img src="__PUBLIC__/weiwin/images/train03.png" alt="logo" /></a>
+                </div>
+                <div class="weui-col-40">
+                    <div class="myui-col-city-td" >
+                        到达城市
+                    </div>
+                    <div class="myui-col-city-nm" >
+                        <a href="javascript:void(0);" class="select-city" id="train_dao"  data-selected="1" data-jump="CitySelect" data-code="Beijing Capital" data-default="请选择" data-kind="train">北京</a>
+                        <input type="hidden" id="train_city_dao" name="train_city_dao" value="北京" />
+                        <span id="train_daodao" style="display:none;">北京</span>  
+                    </div>
+                </div>
+            </div>
+             <div class="weui_cell myui-cell-cd" >
+                <div class="weui_cell_hd" style="width: 30%; ">
+                    出发日期
+                </div>
+                <div class="weui_cell_bd myui-cal-icol">
+                    <input class="weui_input" id="date3" name="new_date" type="text" value="">
+                </div>
+            </div>
+            <button type="submit" class="weui_btn weui_btn_primary" style=" margin-top: 30px; width: 83%;background-color: #08A9F8;" >火车查询</button>
+            </form>
+        </div>
+        <!-- end train city -->
+        <!-- start train code -->
+         <div class="weui_tab" id="div_train_code" style=" display: none;">
+             <form method="post" action="{:url('train/trainlist')}" onsubmit="return checktrainON()" >
+            <div class="weui_navbar" >
+                <div class="weui_navbar_item  " onclick="train_city()" >
+                   城市
+                </div> 
+                <div class="weui_navbar_item weui_bar_item_on myui-bar-item-on" >
+                    车次
+                </div>
+            </div>
+            <div class="weui_tab_bd" >&nbsp;
+            </div>
+            <div class="myui-cell">
+                <div class="myui-cell-hd">
+                    车次
+                </div>
+                <div class="myui-cell-bd">
+                    <input class="weui_input" type="text" name="train_no" id="train_no" placeholder="请输入正确车次号" />
+                </div>
+            </div>
+             <div class="weui_cell myui-cell-cd" >
+                <div class="weui_cell_hd" style="width: 30%; ">
+                    出发日期
+                </div>
+                <div class="weui_cell_bd myui-cal-icol">
+                    <input class="weui_input" id="date4" name="new_date" type="text" value="">
+                </div>
+            </div>
+              <button type="submit" class="weui_btn weui_btn_primary" style=" margin-top: 30px; width: 83%;background-color: #08A9F8;" >火车查询</button>
+            </form>
+        </div>
+      </div>
+        <!-- end train code -->
+        <!-- 城市列表选择页面 start-->
+  <!-- 城市列表选择页面 start-->
+  <div id="CitySelect" class="page-item" style="display: none;">
+    <!-- 顶部搜索框 start-->
+    <section class="mod-search-city">
+        <i class="weui_icon_search" style="padding-left: 20px;"></i>
+      <input type="text" class="ipt-txt-nobor" placeholder="可以输入拼音、字母、中文">
+    </section>
+    <ul class="mod-tabs size-s" id="in_out">
+        <li class="curr item"><a href="javascript:void(0);"  data-key="inland">国内</a></li>
+      <li class="item"><a href="javascript:void(0);" data-key="outland">国际</a></li>
+    </ul>
+    <!-- 顶部搜索框 end-->
+    <!-- 城市列表 start-->
+    <section class="mod-cities-list" id="AllCities">
+      <dl class="category" id="HotCities">
+        <dt class="category-name" >热门</dt>
+        <dd class="city-name"><a href="javascript:void(0);">北京</a></dd>
+        <dd class="city-name"><a href="javascript:void(0);">上海</a></dd>
+        <dd class="city-name"><a href="javascript:void(0);">北京</a></dd>
+        <dd class="city-name"><a href="javascript:void(0);">上海</a></dd>
+      </dl>
+      <dl class="category">
+        <dt class="category-name">C</dt>
+        <dd class="city-name"><a href="javascript:void(0);">北京</a></dd>
+        <dd class="city-name"><a href="javascript:void(0);">上海</a></dd>
+        <dd class="city-name"><a href="javascript:void(0);">北京</a></dd>
+        <dd class="city-name"><a href="javascript:void(0);">上海</a></dd>
+      </dl>  
+    </section>
+    <!-- 城市列表 end-->
+    <!-- 快速查找 start-->
+    <ul class="mod-cities-helper" id="a_2_z">
+      <!-- <li>定位</li> -->
+      <li>热门</li>
+      <li>全部</li>
+      <li>A</li>
+      <li>B</li>
+      <li>C</li>
+      <li>D</li>
+      <li>E</li>
+      <li>F</li>
+      <li>G</li>
+      <li>H</li>
+      <li>I</li>
+      <li>J</li>
+      <li>K</li>
+      <li>L</li>
+      <li>M</li>
+      <li>N</li>
+      <li>O</li>
+      <li>P</li>
+      <li>Q</li>
+      <li>R</li>
+      <li>S</li>
+      <li>T</li>
+      <li>U</li>
+      <li>V</li>
+      <li>W</li>
+      <li>X</li>
+      <li>Y</li>
+      <li>Z</li>
+    </ul>
+    <!-- 快速查找 end-->
+  </div>
+  <!-- 页面JS中的模板移至此处 -->
+  <textarea id="CityListTmpl" style="display:none;">
+    {{#data}}<dl class="category">
+      {{#hasTitle}}<dt class="category-name">{{character}}</dt>{{/hasTitle}}
+      {{#cities}}<dd class="city-name">
+                  <a class="city-item" href="javascript:void(0);" data-code="{{code}}">{{name}}</a>
+                </dd>{{/cities}}
+    </dl>{{/data}}
+  </textarea>
+   <textarea id="CityListTmpl_out" style="display:none;">
+    {{#data}}<dl class="category">
+      {{#hasTitle}}<dt class="category-name">{{character}}</dt>{{/hasTitle}}
+      {{#cities_out}}<dd class="city-name">
+                  <a class="city-item" href="javascript:void(0);" data-code="{{code}}">{{name}}</a>
+                </dd>{{/cities_out}}
+    </dl>{{/data}}
+  </textarea>
+  <textarea id="DateTmpl" style="display:none;">
+    {{#data}}
+      {{#empty}}<li class="empty"></li>{{/empty}}
+      {{#normal}} <li>{{date}}</li> {{/normal}}
+      {{#weekend}} <li class="weekend">{{date}}</li> {{/weekend}}
+      {{#yestoday}} <li><a href="javascript:void(0);" data-key="yestoday">{{date}}</a></li> {{/yestoday}}
+      {{#today}} <li class="selected"><a href="javascript:void(0);" data-key="today">今天</a></li> {{/today}}
+      {{#tomorrow}} <li><a href="javascript:void(0);" data-key="tomorrow">{{date}}</a></li> {{/tomorrow}}
+      {{#festival}} <li class="weekend">{{desc}}</li> {{/festival}}
+    {{/data}}'
+  </textarea>
+    <!-- 城市列表选择页面 end-->
+    <!-- 城市列表选择页面 end-->
+        <script src="__PUBLIC__/weiwin/js/plane.js"></script>
+        <script src="__PUBLIC__/weiwin/js/fastclick.js"></script>
+        <script src="__PUBLIC__/weiwin/js/hang_city.js"></script>
+          
+        <script>
+        $(function() {
+          FastClick.attach(document.body);
+              var d = new Date();
+            var wk=d.getDay();
+            var year= d.getFullYear();
+            var month=d.getMonth() + 1;
+            var day=d.getDate();
+            var date = year + "-" + 
+                 month + "-" +
+                 day;
+              $("#date1").val(date);
+              $("#date2").val(date);
+              $("#date3").val(date);
+              $("#date4").val(date);
+        });
+      </script>
+      <script src="__PUBLIC__/weiwin/js/jquery-weui.js"></script>
+      <script> 
+        $("#date1").calendar({
+       dateFormat: 'yyyy-mm-dd' 
+        });
+        $("#date2").calendar({
+       dateFormat: 'yyyy-mm-dd' 
+        });
+        $("#date3").calendar({
+       dateFormat: 'yyyy-mm-dd' 
+        });
+        $("#date4").calendar({
+       dateFormat: 'yyyy-mm-dd' 
+        });
+      </script>
+      <script src="__PUBLIC__/weiwin/js/mustache.min.js" ></script>
+      <script src="__PUBLIC__/weiwin/js/hang_city.js" ></script>
+      <script src="__PUBLIC__/weiwin/js/gaotie_city.js" ></script>
+      <script src="__PUBLIC__/weiwin/js/data.js" ></script>
+       <script src="__PUBLIC__/weiwin/js/mustache.min.js" ></script>
+       <script src="__PUBLIC__/weiwin/js/search.js" ></script>
+    </body>
+</html>

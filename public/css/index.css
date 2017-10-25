@@ -1,0 +1,75 @@
+/*全局样式*/
+*{padding:0;margin:0;}
+
+body{font-family:"Microsoft Yahei";width: 100%;height:100%;background:#1B1B1B;position: relative;w}
+html{overflow-x: hidden;overflow-y: hidden;height: 100%;}
+
+table{width: 100%;height: 100%;letter-spacing: 1px;text-align: center;background: none repeat scroll 0% 0% rgb(255, 250, 240);border:none;border-collapse:collapse;border-spacing:0;overflow: hidden;}
+
+
+tr{border-bottom:1px solid #6F7175;height: 6%;background: none repeat scroll 0% 0% #1b1b1b;color: #fff;}
+tr:last-child{border: 0;}
+
+tr p{text-align: left;}
+
+
+th{width: 24%;height: 58px;line-height: 58px;color: #FEDB00;letter-spacing: 3px;font-size: 18px;vertical-align:middle;}
+th.first{width: 20%;text-indent: 10%;}
+th.trainno{width: 20%;text-indent: -5%;}
+
+td{height: 48px;width: 24%;text-indent: 10px;line-height: 7%;overflow: hidden;font-size: 16px;}
+
+td div{ height:48px; overflow:hidden;}
+td div ul li{height: 48px;width: 100%;line-height:48px;display: inline;}
+td div ul li img{height: 26px;width: auto;padding-right: 2.5%;vertical-align:middle;}
+.toolen{line-height: 26px;}
+
+.header{width: 70%;height:18%;z-index: 9;color: #fff;position: absolute;letter-spacing: 2px;}
+.content{width: 100%;height: 92%;}
+.footer{width: 100%;height: 7%;position: absolute;bottom: 0;}
+
+/* 顶部 */
+.logo{width: 25%;height: 100%;float: left;background-color: #1B1B1B;}
+.logo img{height: 77px;width: auto;float: left;padding-top:3%;padding-left:7%;}
+.logo h3{line-height: 150px;color: #FFF;font-size: 20px}
+
+.center{width: 55%;height: 50%;float: left;float: left;text-align: center;background-color: none;}
+
+/*.center img{width: 25%;height:auto;display: inline-block;float: left;padding-top: 2%;padding-right: 1%;padding-left: 10%;} */
+.center h3{width:98%; padding-top: 2%;font-size: 36px;font-weight: 500;padding-left: 1%;}
+.center .hen{font-size: 30px;font-family: Georgia; }
+.center a{width:98%; color: white;text-decoration: none;font-size: 14px;font-weight: 400;line-height: 45px;}
+.center .aen{font-size: 16px; }
+#time{width: 20%;line-height: 100px;float: left;text-align: center;font-size:30px;text-indent: 5%;color: #fff;}
+
+/* 态势图及列表 */
+#mainMap{width: 68%;height:100%;display: block;float: left;}
+.list{width: 32%;height: 100%;float: right;display: block;}
+
+.train-first{width:20%;text-indent: -5%;}
+
+/* 走马灯 */
+.footer div.custom{width: 100%;height: 100%;line-height: 10%;line-height: 60px;background:black;float: left;color:#FEDB00;letter-spacing: 1px;font-size: 18px;overflow: hidden;}
+.footer div.custom ul{ width: 100%;}
+.footer div.custom ul li{width: 1200px;height: 100%;float: left;text-align: center;list-style-type:none;/*background: url('/langhong/public/images/guanggao.jpg') 20px no-repeat;*/} 
+.footer div.custom ul li p{max-width: 100%;}
+
+/* 二维码 */
+.code{width: 120px;height: 45%;display: inline-block;position: absolute;background-color: #1B1B1B;left: 0;bottom: 7%;z-index: 9;text-align: center;}
+.code img{width: 100px;padding-top: 120px}
+.code p{color: white;font-size: 14px;letter-spacing: 1px; text-align: center;line-height: 22px}
+
+/* 颜色渲染 */
+.reds{color: red;}
+.greens{color: #4BEF05;}
+.yellows{color: #FEDB00;}
+
+/* wx定制 */
+#showwx{width: 480px;height: 200px;z-index:99;position: absolute;left: 6%;bottom: 7%;}
+#showwx ul{width: 100%;height: 100%;}
+#showwx ul li{width: 40px;height: 40px;border-radius: 50%;display: inline-block;float: left;margin: auto 5px;}
+#showwx ul li img{display: inline-block;width: 40px;height: 40px;border-radius: 50%; }
+#showwx ul li.green{border: 2.5px solid green;}
+#showwx ul li.yellow{border: 2.5px solid yellow;}
+#showwx ul li.red{border: 2.5px solid red;}
+#showwx ul li.white{border: 2.5px solid #ececec;}

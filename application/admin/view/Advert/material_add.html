@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>快递添加</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+
+<style>
+#imghead{height: 60px;width: auto;line-height: 60px;}
+#up_btn{position: relative;overflow: hidden;margin-right: 4px;display:inline-block;*display:inline;padding:4px 10px 4px;font-size:14px;line-height:18px;*line-height:20px;color:#fff;text-align:center;vertical-align:middle;cursor:pointer;background-color:#5bb75b;border:1px solid #cccccc;border-color:#e6e6e6 #e6e6e6 #bfbfbf;border-bottom-color:#b3b3b3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
+#up_btn input {position: absolute;top: 0; right: 0;margin: 0;border: solid transparent;opacity: 0;filter:alpha(opacity=0); cursor: pointer;}
+</style>   
+
+</head>
+<body>
+
+  <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">广告管理</a></li>
+    <li><a href="#" >素材列表</a></li>
+    <li><a href="#" >{$title}</a></li>
+    </ul>
+    </div>
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div id="tab1" class="tabson">
+    <ul class="seachform"> 
+    <li style="float:right;"><a href="{:url('material_list')}"><input  type="button" name="Submit" class="scbtn"  value="返回"/></a></li>
+    </ul>
+    <ul class="forminfo">
+    <form  action="{:url($variable)}"  method="post" enctype="multipart/form-data" >
+    
+     <li><label>素材编号<b>*</b></label><input name="c_number"  type="text" class="dfinput" 
+    {if condition="$variable eq 'material_edit'"}
+    value="{$info['c_number']}" 
+    {else/}
+       value="{$c_number}"
+    {/if}
+     readOnly="true" /></li>
+     
+     <li><label>素材名称<b>*</b></label><input name="c_title"  type="text" class="dfinput" value="{$info['c_title']}" /></li>
+
+    
+    <li><label>素材图片<b>*</b>
+    </label>
+              <!--进度条-->
+              <div id="up_status" style="display:none"><img src="loader.gif" alt="uploading"/></div>
+             <!--上传-->
+              <div id="up_btn">
+                <span>添加图片</span>
+                <div  id="imageform">
+               <input type="file" onchange="previewImage(this)" name="photoimg" value="{$info['c_url']}"/>
+                </div>
+              </div>
+              <b>支持jpg，gif，png格式。</b>
+              <!--预览-->
+              
+    </li>
+ <li><label>&nbsp;</label>
+ <div id="preview"><img id="imghead" src="{$info['c_url']}" /></div></li>
+     
+     <li><label>&nbsp;</label>
+                           <input name="" type="submit" class="btn" value="确定"/>
+                           <input name="" type="reset" class="btn" value="重置"/>
+     
+                           
+    </li>
+    </form>
+    </ul> 
+    </div>
+     
+  </div> 
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 260; 
+          var MAXHEIGHT = 180;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead>';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                //img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight )
+            {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                 
+                if( rateWidth > rateHeight )
+                {
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else
+                {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+             
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+
+</script>
+

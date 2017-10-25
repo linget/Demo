@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Type" content="text/html; charset=utf-8" />
+<title>角色添加</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/distriMethod.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<style>.cla a{margin-left:380px;} .show img{width:300px;height:200px;} .tdaa img{cursor:pointer;}</style> 
+     <style type="text/css">  
+            #bg{ display: none;position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;  background-color: black;  z-index:1001;  -moz-opacity: 0.7;  opacity:.70;  filter: alpha(opacity=70);}  
+            #savename,#show{display:none;  position: absolute;  top: 20%;  left: 20%;  width: 55%;  height: 46%;  padding: 8px;  border: 8px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: hidden;text-align: center;  }  
+            #show li{margin:5px auto;height: 48px;line-height: 48px;}
+            #show li.whr{width: 100%;height: 36px;border-bottom:1px solid #ececec;text-align: left;padding-bottom: 5px;}
+            #show li.whr b.close{position: absolute;right: 20px;top: 2px;font-size: 24px;color: #dfdfdf;cursor: pointer;}
+            #show li.liCass{position:absolute;bottom: 10px;left: 32%;}
+            #content p{width: 160px;height: 36px;display: inline-block;text-align: left;line-height: 32px;}
+            #choosefile{width: 120px;height: 36px;display: inline-block;background-color: #ececec;color: block;border: 1px solid black;line-height: 36px;text-align: center;cursor: pointer;}
+            #forminfo li{margin: 10px auto;}
+            #savename li{margin-top: 40px;}
+            label.emptys{width: 80px;display: inline-block;}
+            #imgPreview img{height: 60px;}
+  </style>  
+</head>
+<body>
+	<div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">发布管理</a></li>
+  	<li><a href="#">发布详情</a></li>
+    </ul>
+    </div>
+ <form id="smit" method="post" enctype="multipart/form-data">
+   <div id="savename">
+       <li><label> 名称<b>:</b></label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="c_name" value="" class="dfinput" placeholder="请输入节目单名称"  /></li>
+       <li class="liCass"><label>&nbsp;</label>
+       <input  class="btn" style="width:80px;margin:auto 25px;border-radius:5px;" type="button" id="sub" value="确定"/>
+       <input name="" type="button" class="btn" onclick="hidediv();" style="width:80px;margin:auto 25px;border-radius:5px;" value="取消"/>
+       </li>
+  </div>
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+  	<div id="tab1" class="tabson">
+    <li style="float:right;"><input  type="button"  name="new" class="scbtn" onclick="javascript:showdiv();"  value="新增"/></a></li>
+
+    <ul id="forminfo"></ul> 
+    </div>
+    </div> 
+
+    </div>
+    <li style="position:absolute;right:1.2%;bottom:5%;"><input id="play_details"  type="button"  name="Submit" class="scbtn"  value="保存"/></li>
+</form>
+
+  <div id="bg" onclick="hidediv();"></div>  
+  
+  <div id="show"> 
+  <li class="whr">发布列表 > 新增发布内容: <b class="close" onclick="hidediv();">×</b></li>
+    <li><label>发布类型<b>:</b></label>&nbsp;&nbsp;&nbsp;&nbsp;<select  name="c_type" class="dfinput" style="opacity:1;width:160px;" id="cype"><option value="1">静态资源</option><option value="2">交通信息</option></select></li>
+
+  
+  <li><div  id="content" >
+  <label>上传图片<b>:</b></label>&nbsp;&nbsp;&nbsp;&nbsp;
+  <p><a id="choosefile">选择文件</a> </p>
+  <input type="file"  name="files" onchange='PreviewImage(this)' style="opacity:1;width:160px;display:none;" />
+  <div id="imgPreview" ><img id="img1" src="__PUBLIC__/images/1.png" width="60" height="50" /></div>
+</div></li> 
+
+
+  <li class="liCass"><label>&nbsp;</label><input  class="btn" style="width:80px;margin:auto 25px;border-radius:5px;" type="button" id="dfinputButton" value="确定"/><input name="" type="button" class="btn" onclick="hidediv();" style="width:80px;margin:auto 25px;border-radius:5px;" value="取消"/></li>
+  </div>
+
+</body>
+  <script type="text/javascript">
+  var filextension;
+  $(document).on('click','#choosefile',function(){
+      $("input[type='file']").click();
+      //document.getElementById('uploadsimg').click();
+  })
+
+   $("#play_details").click(function(){
+    document.getElementById("bg").style.display ="block";
+    document.getElementById("savename").style.display ="block";
+  })
+
+  $("#sub").click(function(){
+    $("#smit").submit();
+  })
+
+  $(document).on('click','#dfinputButton',function(){
+    var selteced_value = $("select[name='c_type']").val();
+    var air = [],train=[];
+     // air = $("input[name='air[]']").val();
+     // train = $("input[name='air[]']").val();
+      createDiv(selteced_value);
+      hidediv();
+  })
+
+    //添加发布内容
+    function createDiv(numb)
+    {
+      var ul = document.getElementById('forminfo');
+      var html = '';
+      if (numb == 1) 
+      {
+          //var is_file = $("input[name='c_file[img]']").val();
+          // var is_img = $("input[name=datatype]:checked").attr("id");
+          // console.log(filextension);
+            if (filextension == '.mp4') {
+            html +='<li><div class="content"><p> 内容：<input type="text" name="c_file[vedio]" class="dfinput" value="http://www.baidu.com/public/vedio/20170804.mp4" /><b class="nu"> &nbsp;</b>轮播时间：<input type="text" name="c_time[vedio]" class="dfinput" style="width:45px;" onFocus="this.value=\'\'" value="10" /> <b class="nu"> &nbsp;</b>操作：<a id="del" style="cursor:pointer">删除</a></p></div></li>';
+          }else{
+            html +='<li><div class="content"><p> 内容：<input type="text" name="c_file[img]" class="dfinput" value="http://www.baidu.com/public/img/20070724.png" /><b class="nu"> &nbsp;</b>轮播时间：<input type="text" name="c_time[img]" class="dfinput" style="width:45px;" onFocus="this.value=\'\'" value="10" /> <b class="nu"> &nbsp;</b>操作：<a id="del" style="cursor:pointer">删除</a></p></div></li>';
+          }
+
+      }else{
+         // var is_air = $("input[name='c_url[air]']").val();
+          var is_type = $("input[name=datatype]:checked").attr("id");
+          if (is_type != "air") {
+            html +='<li><div class="content"><p> 内容：<input type="text" name="c_url[train]" class="dfinput" value="列车交通数据" /><b class="nu"> &nbsp;</b>轮播时间：<input type="text" name="c_time[train]"  onFocus="this.value=\'\'" disabled="true" value="默认" class="dfinput" style="width:45px;" /> <b class="nu"> &nbsp;</b>操作：<a id="del" style="cursor:pointer">删除</a></p></div></li>';
+          }else{
+             html +='<li><div class="content"><p> 内容：<input type="text" name="c_url[air]" class="dfinput" value="航班交通数据" /><b class="nu"> &nbsp;</b>轮播时间：<input type="text" name="c_time[air]"  onFocus="this.value=\'\'" disabled="true" value="默认" class="dfinput" style="width:45px;" /> <b class="nu"> &nbsp;</b>操作：<a id="del" style="cursor:pointer">删除</a></p></div></li>';
+          }
+        
+      }
+
+      $('#forminfo').append(html);
+    }
+
+      $(document).on('click','input[type="checkbox"]',function(){
+         if(this.checked==true){ this.value=1;}
+              else{ this.checked=false}
+            
+  }) 
+
+      //新增弹窗
+      function showdiv(obj) {
+
+         if(obj != undefined){
+           var sr="添加分类";
+         //  $("#dfinputButton").attr('onclick','dfinputName('+obj+')');
+         }else{
+          // $("#dfinputButton").attr('onclick','dfinputName()');
+           var sr="添加品牌";
+         }
+         $("#labelT").html(sr);
+          document.getElementById("bg").style.display ="block";  
+          document.getElementById("show").style.display ="block";  
+      }  
+
+      
+    $(document).on('click','#del',function()
+    {
+        $(this).parent('li').remove();
+    })
+    //隐藏
+    function hidediv() 
+    {  
+      document.getElementById("bg").style.display ='none';  
+      document.getElementById("show").style.display ='none';
+      document.getElementById("savename").style.display ='none';  
+    }  
+    //资源类型选择
+    $("select[name='c_type']").change(function() {
+        var selteced_value = $(this).val();
+        var html = '';
+            if(selteced_value == '1')
+            {
+                html += '<label>上传图片<b>:</b></label>&nbsp;&nbsp;&nbsp;&nbsp; <p><a id="choosefile">选择文件</a> </p><input type="file"  name="files" onchange="PreviewImage(this)" style="opacity:1;width:160px;display:none;" /><li><div id="imgPreview" style="width:auto; height:40px;"><img id="img1" src="__PUBLIC__/images/1.png" width="60" height="50" /></div></li>';
+            }else if(selteced_value == '2')
+            {
+                html += '<label class="emptys"></label><p>航班:<input name="datatype" id="air" maxlength="60" type="radio" value="" checked="checked" />高铁:<input id="trian"  name="datatype" maxlength="60" type="radio"  value="" /></p><br/><label class="emptys"></label><p> 出发:<input name="sendtype" class="leave"  maxlength="60" type="radio" checked="checked"  value="" />到达:<input name="sendtype" maxlength="60" type="radio" class="arrive" value="" /></p><br /><label class="emptys"></label><p>中文:<input name="language"  class="zh"  checked="checked" maxlength="60" type="radio"  value="" />英文:<input name="language"  maxlength="60"  class="en[]"  type="radio"  value="" /></p>';
+            }
+            document.getElementById('content').innerHTML = html;
+      })
+
+        //图片预览
+      function PreviewImage(imgFile)
+      {
+          filextension=imgFile.value.substring(imgFile.value.lastIndexOf("."),imgFile.value.length);
+          filextension=filextension.toLowerCase();
+
+          
+
+          if ((filextension!='.jpg')&&(filextension!='.gif')&&(filextension!='.jpeg')&&(filextension!='.png')&&(filextension!='.bmp')&&(filextension!='.mp4'))
+          {
+              alert("对不起，系统仅支持标准格式的照片视频，请您调整格式后重新上传，谢谢 !");
+              imgFile.focus();
+          } 
+          else
+          {
+              var path;
+              if(document.all)//IE
+              {
+                  imgFile.select();
+                  path = document.selection.createRange().text;
+                  document.getElementById("imgPreview").innerHTML="";
+                  document.getElementById("imgPreview").style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='scale',src=\"" + path + "\")";//使用滤镜效果      
+              }
+              else//FF
+              {
+                  path=window.URL.createObjectURL(imgFile.files[0]);// FF 7.0以上
+                  if(filextension=='.mp4'){
+                      path = '/Demo/public/images/default.png';
+                  }
+                  //path = imgFile.files[0].getAsDataURL();// FF 3.0
+                  //document.getElementById("imgPreview").innerHTML = "<img id='img1' width='120px' height='100px' src='"+path+"'/>";
+                  document.getElementById("img1").src = path;
+              }
+          }
+      }
+  </script>
+</html>

@@ -1,0 +1,26 @@
+<script type="text/javascript">
+var languages ="{$Think.cookie.language_trainindex}";
+var isFromSha ="{$Think.cookie.isFromSha_trainindex}";
+</script>
+<thead class="theader">
+	<tr>
+	<th class="trainno"><script>document.write(systemConfig[languages]['trainNo']);</script></th>
+	<th><script>
+	if(isFromSha ==='1'){
+		document.write(systemConfig[languages]['scheduledTime']);
+	}else{
+		document.write(systemConfig[languages]['actualTime']);
+	}</script>
+	</th>
+	<th>
+	<script>
+	if(isFromSha =='1'){
+		document.write(systemConfig[languages]['arrivalStation']);
+	}else{
+		document.write(systemConfig[languages]['OfDeparture']);
+	}</script>
+	</th>
+	<th>
+	<script>document.write(systemConfig[languages]['state']);</script>
+	</th>
+</tr></thead>

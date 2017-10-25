@@ -1,0 +1,57 @@
+﻿<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Map</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+<!--Step:1 Prepare a dom for ECharts which (must) has size (width & hight)--> 
+<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+<div class="header">
+		<div class="logo"></div>
+		<div class="weath"></div>
+</div>
+<div class="content">
+	<div id="mainMap"></div>
+		<div class="list">
+			<table cellpadding="0" cellspacing="0">
+<thead class="theader">
+	<tr><th>航班号</th><th>出发时间</th><th>状态</th></tr>
+</thead>
+
+<tbody class="main">
+{volist name="info" key="ke" id="vo"}
+	<tr>
+	<td>
+	<div class="lunbo{$ke}">
+		<ul>
+		{foreach name="vo.flight_info" item="v" key="k"}
+			<li><p><img src=".{$v.flight_logo}" />&nbsp;{$v.flight_no}</p></li>
+		{/foreach}
+		</ul>
+	</div>
+	</td>
+	
+	<td>{$vo.STARTTIME}</td>
+	<td>zhuan</td>
+	
+	</tr>
+{/volist}
+</tbody>
+			</table>
+		</div>
+</div>
+<div class="footer">
+		<div class="custom"></div>
+		<div class="ad"></div>
+</div>
+
+			
+
+
+
+
+
+</body>
+</html>

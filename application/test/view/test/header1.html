@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>新界面</title>
+	<script src="__PUBLIC__/js/jquery-1.8.0.js"></script>
+</head>
+<style type="text/css">
+/* 	*{margin: 0;padding:0;font-family: 'microsoft Yahei';font-size: 18px;font-size: 1.2rem;}
+html,body{width: 100%;height: 100%;display: inline-block;background-color: #fffdef;} */
+	header{width: 100%;height: 100%;overflow: hidden;display: inline-block;}
+	
+	hgroup{width: 100%;height: 100%;display: inline-block;float: left;background-color: #d7edb5;border-right: 1px solid white;text-align: center;box-sizing:border-box;}
+	hgroup.current{background-color: #fffdef;}
+	
+	hgroup h1{width: 100%;height:10%;display: inline-block;background-color: #97d334;color: #fff;letter-spacing: 0.2rem;font-size: 1rem;}
+
+	hgroup dl{width: 100%;height: 8%;float: left;display: inline-block;font-size: 1rem;}
+	hgroup dl dt{width: 40%;height: 100%;display: inline-block;float: left;text-align: left;padding-left: 10%;}
+
+    #echarts-pie,#echarts-rose{width: 100%;height: 55%;}
+
+</style>
+<body>
+<header>  
+<hgroup class="current">
+	<h1>航班</h1>
+	<div id="echarts-pie"></div>
+	
+	{volist name="statis_air" key="ko" id="vo"}
+	<dl><dt>{$vo.name}</dt><dd>{$vo.value}</dd></dl>
+	{/volist}
+
+    </hgroup>
+</header>
+<script src="__PUBLIC__/test/js/echarts/echarts.js"></script>
+<script src="__PUBLIC__/test/js/echarts/Statistics-pie.js"></script>
+<script type="text/javascript">
+	/* 参数初始化 */
+	var statis_airjson= {};
+    //统计数据
+	statis_airjson = {$statis_airjson};
+
+
+    var myChart1 = echarts.init(document.getElementById('echarts-pie'));
+    myChart1.setOption(getEcharts_pie(statis_airjson));
+</script>
+</body>
+</html>

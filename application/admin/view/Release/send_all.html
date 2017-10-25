@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Type" content="text/html; charset=utf-8" />
+<title>角色添加</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/distriMethod.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<style>.cla a{margin-left:380px;} .show img{width:300px;height:200px;} .tdaa img{cursor:pointer;}</style> 
+     <style type="text/css">
+            textarea{font-size: 16px;resize: none;}
+            pre{font-size: 16px;width: 10%;float: left;}
+            #forminfo{width: 60%;height: 400px;margin: 3% auto;}
+            #forminfo li{width: 100%;height: 48px;display: inline-block;float: left;margin: 1% auto;}
+            #forminfo li.title{width:100%;height: 48px;display: inline-block;}
+            #forminfo li.title span{width: 120px;height: 100%;text-align: center;line-height: 48px;display: inline-block;float: left;border: 1px solid #707070;}
+            #forminfo li.title span a{font-size:16px;}
+            #forminfo li.title span:nth-child(1){background-color: #ececec;}
+            #forminfo li.content{width: 100%;height: 300px;display: inline-block;margin-top: 5%;}
+            #forminfo li.content textarea{border: 1px solid #707070;}
+
+  </style>  
+</head>
+<body>
+	<div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">全向发布</a></li>
+  	<li><a href="#">文本发布</a></li>
+    </ul>
+    </div>
+
+ <form id="smit" method="post" enctype="multipart/form-data">   
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+       <div class="itab">
+    <ul> 
+    <li><a href="#tab1" class="selected">文本</a></li>
+
+ <span style="float:left;line-height:33px;padding:1px 0 0 25px ;position:static;">
+    <a href="#" class="tablelink" style="font-weight:bold;">图片</a></span>
+     <span style="float:left;line-height:33px;padding:1px 0 0 25px ;position:static;">
+    <a href="#" class="tablelink" style="font-weight:bold;">视频</a></span>
+<span style="float:left;line-height:33px;padding:1px 0 0 25px ;position:static;">
+    <a href="#" class="tablelink" style="font-weight:bold;">音频</a></span>
+    </ul>
+    </div>
+
+  	<div id="tab1" class="tabson">
+
+    <ul id="forminfo">
+     <!--    <li class="title">
+     <span><a href="#">文本</a></span>
+     <span><a href="#">图片</a></span>
+     <span><a href="#">视屏</a></span>
+     <span><a href="#">音频</a></span>
+     </li> -->
+        <li class="content">
+            <textarea name="content" rows="15" cols="100" placeholder="请输入需要发送的消息..." ></textarea>
+        </li>
+        <li>
+        <pre><input type="checkbox" name="radio" value="" />广播</pre>
+        <pre><input type="checkbox" name="weixin" value="" checked="checked"/>微信</pre>
+        <pre><input type="checkbox" name="screen" value="" checked="checked" />屏幕</pre>
+        <pre><input type="checkbox" name="tv" value=""  />有线电视</pre>
+        </li>
+        <li><input type="Submit" class="btn"  value="发布" /></li>
+    </ul> 
+    </div>
+    </div> 
+
+    </div>
+</form>
+  <script type="text/javascript">
+      if ($("input[type='checkbox']").is(':checked')) {
+        $(this).val(1);
+      }else{
+        $(this).val(0);
+      }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理员列表</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/fenyue.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__ADMIN__/css/jquery.editable-select.min.css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/laydate.js"></script>
+<style type="text/css">
+    .box{width: 360px;height: 160px;background-color: #dfdfdf;position: fixed;top: 20%;left: 25%;display: none;border:1px solid #a9a9a9;font-size: 20px}
+    .box ul li{width: 100%;height: 36px;display: inline-block;margin:20% auto;text-align: center;letter-spacing: 2px;}
+    .box ul li a{color: red}
+</style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="place"><span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span><ul class="placeul"><li><a href="#">系统管理</a></li><li><a href="#">用户列表</a></li></ul><!-- <span style="float:right; margin:0 20px 0 0;"><a href="{:url('User/user_list')}">刷新</a></span> --></div>
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div class="itab">
+    <ul> 
+    <li><a href="#tab1" class="selected">基本信息</a></li>
+    
+    <span><a href="{:url('User/user_add')}" class="tablelink" style="font-weight:bold;"><img src="__ADMIN__/images/adds.jpg" /></a></span>
+
+
+    </ul>
+    </div>
+    <div id="tab2" class="tabson">
+         <ul class="seachform">
+        <form action="{:url('User/user_list')}" method="post">
+        <li><label></label><input type="text" name="c_username" size="18" value="{$c_username}" placeholder="用户编号" class="scinput"/></li>
+        <li><label></label><input type="text" name="c_fullname" size="18" value="{$c_fullname}" placeholder="用户姓名" class="scinput"/></li>
+<!--          <li><label></label>
+    <select name="c_genre" class="scinput" style="opacity:1">
+           <option value="0">--等级选择--</option>
+           <option value="1"{if condition="$post['c_genre'] eq 1"}selected="selected"{/if}>超级管理员</option>
+           <option value="2"{if condition="$post['c_genre'] eq 2"}selected{/if}>管理员</option>
+    </select>
+</li> -->
+         <li><label></label><input type="text" name="stime" size="18" value="{$post.stime}" placeholder="更新起始查询时间" class="scinput" style="width: 135px;" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></li>
+    <li><label></label><input type="text" name="otime" size="18" value="{$post.otime}" placeholder="更新结束查询时间" class="scinput" style="width: 135px;" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></li>
+        <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
+        </form>
+        </ul>
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th width="35px;"><input name="" type="checkbox" checked="checked"/></th>
+            <th>姓名</th>
+            <th>编号<i class="sort"><img src="__ADMIN__/images/px.gif" /></i></th>          
+            <th>电话号码</th>
+            <th>所在地区</th>
+
+            <th>管理员角色</th>
+            <th>登录权限</th>
+            <th>注册时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {volist name="data" id="vo"}
+        <tr>
+            <td>{$i}</td>
+            <td>{$vo.c_fullname}</td>
+            <td>{$vo.c_username}</td>    
+            <td>{$vo.c_phone}</td>
+            <td>{$vo.c_address}</td>
+            <td>{$vo.rolename}</td>
+            <td><a href="#"><font style="cursor:pointer;" onclick="state({$vo['c_id']},{$vo['c_state']})">
+            {if condition="$vo.c_state eq 1"}允许登录{else/}禁止登录{/if}</font></a></td>
+            <td>{$vo.c_addtime}</td> 
+            <td width="80px;" colspan="2">
+           <!--  <a href="__URL__/role_change/Id/{$vo.c_id}" title="角色修改"><img src="__ADMIN__/images/settings.png" border="0" height="18" width="18" /></a>&nbsp; -->
+            <a href="{:url('user_edit',['c_id'=>$vo.c_id])}" title="信息修改">
+            <img src="__ADMIN__/images/t02.png" border="0" height="18" width="18" /></a>&nbsp; 
+
+            <a title="密码重置" id="password_change" style="cursor:pointer"><img src="__ADMIN__/images/icon_pass.gif" onclick="resetpass({$vo['c_id']})" border="0" height="18" width="18" /></a>&nbsp;&nbsp;
+            
+            <a href="{:url('user_del',['c_id'=>$vo.c_id])}" title="移除" onclick="return confirm('确定删除吗，此操作不可恢复');"><img src="__ADMIN__/images/trash.gif" border="0" height="17" width="17" /></a>&nbsp;
+            <!-- <a href="admin_add.html" title="用户添加"><img src="__ADMIN__/images/icon_add.gif" border="0" height="18" width="18" /></a>&nbsp; --> 
+            <input type="hidden" id="user_id" value="{$vo.c_id}">
+            </td>
+           
+        </tr> 
+        {/volist}
+        </tbody>
+    </table>
+    </div>  
+    </div> 
+    <div class="pages">
+            {$page}
+    </div>
+    </div>
+    <script type='text/javascript' src='__ADMIN__/js/jquery-1.8.3.min.js'></script>
+    <script type="text/javascript">
+        //密码重置
+        function resetpass(obj)
+        {
+            var user_id=obj;
+            $.ajax({
+                dataType:'json',
+                type:'post',
+                data:{id:user_id},
+                url:"{:url('User/password_change')}",
+                success:function(data){
+                    var html = '';
+                    //res = eval("("+data+")");
+                   // data = JSON.parse(data);
+                   // data = JSON.stringify(data);
+                    if (data != false) {
+                        html +='<ul><li><label>请保存您的新密码：</label><a>'+data+'</a><br />10秒钟后关闭弹窗</li></ul>';
+                        $(".box").html(html);
+                        $(".box").show(500);
+                        setTimeout(function(){
+                            $(".box").hide();
+                        },10000);
+                    }
+                }
+            });
+        }
+
+        //修改登录状态
+        function state(c_id,state)
+        {  
+         $.ajax({
+          type:'get',
+          url:"{:url('User/commodityTake')}",
+          data:{c_id:c_id,c_state:state},
+          success:function(data){
+              var infod=eval("("+data+")");
+
+              if(infod.error == '1000'){
+                  window.location.reload();
+              }else{
+                  alert('失败');
+              }
+          }
+       });    
+   }
+    </script>
+</body>
+</html>

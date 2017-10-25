@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body onload="closeWindow();">
+<h1>预约成功</h1>
+<div id="show">  
+  将倒计时10秒后关闭当前窗口，返回微信公众号窗口
+</div>
+<script type="text/javascript">
+var time=5;  
+function closeWindow(){  
+	window.setTimeout('closeWindow()',1000);  
+	if(time>0)
+	{  
+		document.getElementById("show").innerHTML=" 将倒计时<font color=red>"+time+"</font>秒后关闭当前窗口,返回微信公众号窗口";  
+		time--;  
+	}else{  
+		WeixinJSBridge.call('closeWindow');
+		//this.window.opener=null; //关闭窗口时不出现提示窗口  
+		//window.close();  
+	}
+}
+</script>
+</body>
+</html>

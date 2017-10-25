@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>角色列表</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/fenyue.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="place"><span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span><ul class="placeul"><li><a href="#">系统管理</a></li><li><a href="#">菜单列表</a></li></ul><span style="cursor:pointer;float:right;margin:auto 25px;"><a id="back" >返回</a></span></div>
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div class="itab">
+    <ul> 
+    <li><a href="#tab1" class="selected">基本信息</a></li> 
+    <span style="float:left;width:80px;height: 30px;line-height:33px;padding:1px 0 0 25px ;"><a href="{:url('child_add',['c_pid'=>$id])}" class="tablelink" style="font-weight:bold;">添加子菜单</a></span>
+    </ul>
+    </div>
+    <div id="tab2" class="tabson">
+
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th width="35px;"><input name="" type="checkbox" value="" checked="checked"/></th>
+            <th>菜单名称<i class="sort"><img src="__ADMIN__/images/px.gif" /></i></th>
+            <th>菜单地址</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {volist name="info" id="vo" }
+        <tr style="text-align: center;  ">
+            <td align="center" width="50px">{$i}</td>
+            <td align="center">{$vo.c_mname}</td>
+            <td>{$vo.c_murl}</td>    
+            <td align="center" >
+
+            <a href="{:url('menu_edit',['id'=>$vo.c_id])}" title="编辑"><img src="__ADMIN__/images/icon_edit.gif" border="0" height="20" width="20" /></a>
+
+            <a href="{:url('menu_del',['id'=>$vo.c_id])}" title="移除" onclick="return confirm('确定删除吗，此操作不可恢复');"><img src="__ADMIN__/images/icon_drop.gif" border="0" height="20" width="20" /></a>
+                    
+            </td>     
+        </tr>  
+        {/volist}
+        </tbody>
+    </table>
+    </div>  
+    </div> 
+    
+    <div class="pages">
+            {$page}
+    </div>
+    
+    <script type="text/javascript"> 
+      $("#usual1 ul").idTabs(); 
+    </script>
+    <script type="text/javascript">
+    $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+        <script type="text/javascript">
+    $("#back").click(function(){
+            history.back(-1);
+    });
+</script>
+    </div>
+</body>
+</html>

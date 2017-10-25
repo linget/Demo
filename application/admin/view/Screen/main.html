@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>角色添加</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/tuo.js"></script><!-- 图片预览 -->
+<style>.cla a{margin-left:380px;} .show img{width:300px;height:200px;} .tdaa img{cursor:pointer;}</style> 
+<script type="text/javascript">
+    KE.show({
+        id : 'content7',
+        cssPath : './index.css'
+    });
+  </script>
+  
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $(".select1").uedSelect({
+    width : 345       
+  });
+  $(".select2").uedSelect({
+    width : 167  
+  });
+  $(".select3").uedSelect({
+    width : 100
+  });
+});
+</script>
+</head>
+<body>
+  <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">IPS管理</a></li>
+    <li><a href="#" >主页设置</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div id="tab1" class="tabson">
+    <ul class="seachform"> 
+    </ul>
+    
+    <ul class="forminfo">
+    <form action="{:url('main')}"  method="post" enctype="multipart/form-data" >
+
+    {volist name="info" id="vo"}
+        <li><label><b></b></label>
+        {$c_type[$vo.c_type]}:<input name="c_screenid[]" maxlength="10" type="checkbox" value="{$vo.c_type}" 
+        {volist name='olds_info' id='de'}
+            {if condition="$vo['c_type'] eq $de['c_screenid']"}
+            checked="checked" 
+        {/if}
+        {/volist}
+        /> 
+        </li> 
+    {/volist}
+
+    <li><label>&nbsp;</label>
+    <input name="" type="submit" class="btn" value="确定"/>
+    <input name="" type="reset" class="btn" value="重置"/>
+     </li>
+    </form>
+    </ul> 
+    </div>
+     
+  </div> 
+  
+    </div>
+</body>
+</html>

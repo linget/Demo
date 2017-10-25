@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>.管理员列表</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/fenyue.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__ADMIN__/css/jquery.editable-select.min.css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/laydate.js"></script>
+<style type="text/css">
+    .box{width: 360px;height: 160px;background-color: #dfdfdf;position: fixed;top: 20%;left: 25%;display: none;border:1px solid #a9a9a9;font-size: 20px}
+    .box ul li{width: 100%;height: 36px;display: inline-block;margin:20% auto;text-align: center;letter-spacing: 2px;}
+    .box ul li a{color: red}
+</style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="place"><span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span><ul class="placeul"><li><a href="#">旅客管理</a></li><li><a href="#">旅客列表</a></li></ul><span style="float:right; margin:0 20px 0 0;"><a href="{:url('Passenger/index')}">刷新</a></span></div>
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div class="itab">
+    <ul> 
+
+    
+    <span style="float:left;width:80px;height: 30px;line-height:33px;padding:1px 0 0 25px ;">
+    <a href="index.html" class="tablelink" style="font-weight:bold;">基本信息</a></span>
+    <li><a href="#tab1" class="selected">历史记录</a></li>
+    </ul>
+    </div>
+    <div id="tab2" class="tabson">
+         <ul class="seachform">
+        <form action="{:url('Passenger/old_user')}" method="post">
+         <li><label></label><input type="text" name="c_number" size="18" value="{$post.c_number}" placeholder="编号" class="scinput"/></li>
+         <li><label></label><input type="text" name="stime" size="18" value="{$post.stime}" placeholder="起始查询时间" class="scinput" style="width: 135px;" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></li>
+    <li><label></label><input type="text" name="otime" size="18" value="{$post.otime}" placeholder="结束查询时间" class="scinput" style="width: 135px;" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></li>
+        <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
+        </form>
+         <form  method="post" id="transmit" enctype="multipart/form-data">
+        <li><label>&nbsp;</label><input type="button" class="scbtn" style=" width: 40px" value="导出" onclick="derive()"/></li>
+        </form>
+        </ul>
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th width="35px;"><input name="" type="checkbox" checked="checked"/></th>
+            <th>类型</th>
+            <th>编号<i class="sort"><img src="__ADMIN__/images/px.gif" /></i></th>          
+            
+            <th>提醒时间</th>
+            <th>添加时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {volist name="data" id="vo"}
+        <tr>
+            <td>{$i}</td>
+            <td>{if condition="$vo.c_type eq '1'"}航班{else/}列车{/if}</td>
+            <td>{$vo.c_number}</td>    
+            <td>{$vo.c_time}</td>
+            <td>{$vo.c_addtime}</td>
+            <td width="80px;" colspan="2">
+
+            <a href="{:url('screen_edit',['c_id'=>$vo.c_id])}" title="编辑">
+            <img src="__ADMIN__/images/t02.png" border="0" height="18" width="18" /></a>&nbsp; 
+
+            
+            <a href="{:url('screen_del',['c_id'=>$vo.c_id])}" title="删除" onclick="return confirm('确定删除吗，此操作不可恢复');"><img src="__ADMIN__/images/trash.gif" border="0" height="17" width="17" /></a>
+            <input type="hidden" id="user_id" value="{$vo.c_id}">
+            </td>
+           
+        </tr> 
+        {/volist}
+        </tbody>
+    </table>
+    </div>  
+    </div> 
+    <div class="pages">
+            {$page}
+    </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+function derive(){
+            $("#transmit").attr('action',"{:url('export')}");
+            $("#transmit").submit();
+
+}
+</script>

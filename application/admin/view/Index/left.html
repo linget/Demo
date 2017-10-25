@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title>无标题文档</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="background:#121824;color:#fff;">
+  	<div class="lefttop"><span></span>后台功能列表</div>
+    <dl class="leftmenu">
+	   
+
+<!--  style="background:#f0f9fd;" <dd>
+  <div class="title">
+  <span><img src="__ADMIN__/images/leftico02.png" /></span>系统管理
+  </div>
+    <ul class="menuson">
+    <li><cite></cite><a href="{:url('Menu/menu_list')}" target="rightFrame">菜单列表</a><i></i></li>
+          <li><cite></cite><a href="{:url('Admin/function_list')}" target="rightFrame">功能管理</a><i></i></li>
+          <li><cite></cite><a href="{:url('Userole/role_list')}" target="rightFrame">角色管理</a><i></i></li> 
+          <li><cite></cite><a href="{:url('User/user_list')}" target="rightFrame">用户管理</a><i></i></li> 
+    </ul>    
+  </dd>  -->
+
+
+     {volist name="list" id="vo" key="k"}    
+    <dd>
+    <div class="title">
+    <span><img src="__ADMIN__/images/leftico02.png" /></span>{$vo.c_mname}
+    </div>
+      <ul class="menuson">
+      {volist name="vo.child" id="vo1" key="k1"}
+        <li><cite></cite><a href="{:url($vo1.c_murl)}" target="rightFrame">{$vo1.c_mname}</a><i></i></li>
+      {/volist} 
+      </ul>    
+    </dd>  
+    {/volist} 
+<script language="JavaScript" src="__ADMIN__/js/jquery.js"></script>
+<script type="text/javascript">
+$(function(){ 
+  //导航切换
+  $(".menuson li").click(function(){
+    $(".menuson li.active").removeClass("active")
+    $(this).addClass("active");
+  });
+  
+  $('.title').click(function(){
+    var $ul = $(this).next('ul');
+    $('dd').find('ul').slideUp();
+    if($ul.is(':visible')){
+      $(this).next('ul').slideUp();
+    }else{
+      $(this).next('ul').slideDown();
+    }
+  });
+})  
+</script>
+</body>
+</html>

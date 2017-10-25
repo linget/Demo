@@ -1,0 +1,47 @@
+﻿<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>主页</title>
+<script type="text/javascript" src="__PUBLIC__/js/ajax.js"></script>
+<script type="text/javascript" language="javascript" src="__PUBLIC__/js/jquery-1.8.0.js"></script>
+<script type="text/javascript" language="javascript" src='__PUBLIC__/js/config.js'></script>
+<script type="text/javascript" language="javascript" src='__PUBLIC__/js/main.js'></script>
+<script type="text/javascript" language="javascript" src='__PUBLIC__/js/public.js'></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/list.css">
+
+</head>
+
+<body>
+ <div id="main"></div>
+</body>
+<script type="text/javascript">
+	var data = [],language,isFromSha,type;
+	//初始化数据
+	data = {$info};
+
+	type = "trainlist";
+	language ="{$Think.cookie.language}";
+ 	isFromSha ="{$Think.cookie.isFromSha}";
+
+  	var current_Page = 1;
+	var countPage = {$count_Page};
+
+	var c_pagetime= 10000;// 翻页时间
+	var c_language_type =  3;// 设置语言
+	var c_isFromSha = 2;// 出发到达
+	var auto_type = 0;//是否切换内容
+
+	var MoreUrl = "{:url('index/morelist')}";
+	//初始化界面
+	train.loadhtml(language,isFromSha,data);
+
+	train.initdata(language,isFromSha);
+	//自动翻页
+	var guideIntervel = setInterval(moredata,c_pagetime);//列表数据加载
+	//系统时间
+	var TimeUrl = "{:url('Index/nowtime')}";
+	initimes = "{$time}";
+	systime.timesuccess(initimes);
+	var autotime = setInterval(systime.getime,55000);
+</script>
+</html>

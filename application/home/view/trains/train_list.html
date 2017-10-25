@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>康得思酒店·列车实时提醒</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/list.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.0.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/config.js"></script> 
+</head>
+
+<body>
+<!--Step:1 Prepare a dom for ECharts which (must) has size (width & hight)--> 
+<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+<div class="header">
+		<div class="logo"><!--<img src="__PUBLIC__/images/logo.png" />--></div>
+		<div class="center">
+		{if condition="$language eq 'zh_cn'"}
+                     <p>
+                     {if condition="$isFromSha eq 1"}
+                    <h3>虹桥火车站始发车次</h3>
+                    <a>Hongqiao Train Station Starting Trip</a>
+                    {else/}
+                    <h3>虹桥火车站到达车次</h3>
+                    <a>Hongqiao Train Station Arrival Trip</a>
+                    {/if}
+                    </p>
+                 {else/}
+                     <p>
+                     {if condition="$isFromSha eq 1"}
+                     <h3 class="hen">Hongqiao Train Station Starting Trip</h3>
+                     <a class="aen">虹桥火车站始发车次</a>
+                    {else/}
+                    <h3 class="hen">Hongqiao Train Station Arrival Trip</h3>
+                    <a class="aen">虹桥火车站到达车次</a>
+                    {/if}
+                    </p>
+                 {/if}
+		</div>
+		<div class="weath" id="time"></div>
+		<div style="clear: both;"></div>
+</div>
+{include file="./public/train_top" /}
+<div class="content">
+		<ul class="test">
+			{volist name="info" key="ke" id="vo"}
+			<li class="variable">
+			<label>{$vo.FLIGHT_NO}</label>
+			
+			
+				<!--判断出发/到达-->
+	{if condition="$isFromSha eq '1'"}
+		<label>{$vo.TOCITY}</label><label>{$vo.STARTTIME}</label>
+	{else/}
+		<label>{$vo.FROMCITY}</label><label>{$vo.ENDTIME}</label>
+	{/if}
+	<!--判断结束-->
+            {if condition="stristr($vo['REMARK'],'late') neq '' or stristr($vo['REMARK'],'晚点') neq ''"}
+                <label class="state{$ke} yellows">{$vo.REMARK}</label>
+            {else}
+                <label class="state{$ke} greens">{$vo.REMARK}</label>
+            {/if}
+
+			</li>
+			{/volist}
+		</ul>
+		
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/public.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/ajax.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/airlist.js"></script> 
+
+<script type="text/javascript">
+	/* 翻页 */
+	var language ="{$Think.cookie.language_trainlist}";
+	var isFromSha ="{$Think.cookie.isFromSha_trainlist}";
+	var name = "_trainlist";
+
+	var current_Page = {$current_Page};
+	var countPage = {$count_Page};
+
+	var c_pagetime= {$temp['c_pagetime']};//IPS后台设置 -- 翻页时间
+	var c_roltime = {$temp['c_roltime']};//IPS后台设置-- 滚动速度
+	var c_language_type =  {$temp['c_language']};//IPS后台-- 设置语言
+	var c_isFromSha = {$temp['c_isfromsha']};//IPS后台-- 出发到达
+
+
+	var guideIntervel = setInterval(autoLoad,c_pagetime);//列表数据加载
+	var MoreUrl = "{:url('Trains/morelist')}";
+	var loadMoreUrl,roundUrl;
+	
+</script>
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		nowtime();
+	 });
+</script>
+</body>
+</html>

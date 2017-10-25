@@ -1,0 +1,33 @@
+/*全局样式*/
+*{padding:0;margin:0;}
+div,dl,dt,dd,form,h1,h2,h3,h4,h5,h6,img,ol,ul,li,table,th,td,p,span,a{border:none;}
+img,input{border:none;vertical-align:middle;}
+body{font-family:"Microsoft Yahei";width: 100%;height:100%;font-size:12px;background:#1B1B1B;position: relative;width: 100%;height: 100%;}
+html{overflow-y:scroll;height: 100%}
+ul,ol{list-style-type:none;}
+h3{font-size:20px;}
+
+html{overflow-x: hidden;overflow-y: hidden;}
+
+
+
+.header{width: 100%;height:20%;z-index: 9;color: #fff;position: absolute;letter-spacing: 2px;}
+
+/* 顶部 */
+.logo{width: 35%;height: 100%;float: left;background-color: #1B1B1B;z-index: 9;}
+.logo img{height: 100px;width: auto;float: left;padding-top:3%;padding-left:5%;}
+.logo h3{line-height: 150px;color: #FFF;font-size: 32px}
+
+.center{width: 50%;height: 60%;background-color: #1B1B1B;float: left;}
+
+.center img.train{width: 25%;height:auto;display: inline-block;float: left;padding-top: 2%;padding-right: 1%;padding-left: 10%;}
+
+.center img.variable{width: 12%;height:auto;display: inline-block;float: left;padding-top: 1%;padding-right: 1%;padding-left: 10%;}
+
+.center h3{width: 50%;color: #FEDB00;font-size: 24px;padding-top: 6%;}
+.center h3 a{color: white;text-decoration: none;font-size: 16px;font-weight: 400;}
+.weath{width: 15%;line-height: 158px;float: left;text-align: center;font-size:30px;text-indent: 10%;color: #fff;}
+
+/* 态势图及列表 */
+#mainMap{width: 100%;height:80%;background-color:#1B1B1B;float: left;padding-top: 6%;}
+.code{width: 20%;height:50%;background-color: #1B1B1B;display: inline-block;position: absolute;left: 0;bottom: 0;z-index: 99;}

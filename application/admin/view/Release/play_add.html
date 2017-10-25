@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>发布列表</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/tuo.js"></script><!-- 图片预览 -->
+<style>
+.cla a{margin-left:380px;} 
+.show img{width:300px;height:200px;} 
+.tdaa img{cursor:pointer;}
+</style> 
+
+  
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $(".select1").uedSelect({
+    width : 345       
+  });
+  $(".select2").uedSelect({
+    width : 167  
+  });
+  $(".select3").uedSelect({
+    width : 100
+  });
+});
+</script>
+</head>
+<body>
+  <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">发布管理</a></li>
+    <li><a href="#" >添加播放内容</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div id="tab1" class="tabson">
+    <ul class="seachform"> 
+    <li style="float:right;"><a href="{:url('Release/index')}"><input  type="button" name="Submit" class="scbtn"  value="返回"/></a></li>
+    </ul>
+    
+    <ul class="forminfo">
+    <form action="{:url($variable)}"  method="post" enctype="multipart/form-data" >
+    <li><label>编号<b>*</b></label><input name="c_sn"  type="text" class="dfinput" value="{$sn}" readonly="true" /></li>
+    <li><label>名称<b>*</b></label><input name="c_title"  type="text" class="dfinput" value="" /></li>
+    <li>
+    <label>发布类型<b>*</b></label>
+    <select name="c_type" class="dfinput" style="opacity:1" id="cype">
+        <option value="1">静态资源</option>
+        <option value="2">交通信息</option>
+    </select>
+
+    <div id="content"><input type="file"  name="files"  onchange='PreviewImage(this)' /></div>
+    <div id="imgPreview" style='width:auto; height:100px;'><img id="img1" src="__PUBLIC__/images/1.png`" width="120" height="100" /></div>
+    </li>
+    <li><label>&nbsp;</label>
+    <input name="" type="submit" class="btn" value="确定"/>
+    <input name="" type="reset" class="btn" value="重置"/>
+     </li>
+    </form>
+    </ul> 
+    </div>
+     
+  </div> 
+</div>
+<script type="text/javascript">
+  $("select[name='c_type']").change(function() {
+        var selteced_value = $(this).val();
+        var html = '';
+            if(selteced_value == '1')
+            {
+                html += '<input type="file" name="files" />';
+            }else if(selteced_value == '2')
+            {
+                    html += '航班:<input name="c_content[air]" maxlength="60" type="checkbox" value="" />高铁:<input name="c_content[trian]" maxlength="60" type="checkbox"  value="" /><br /> 出发:<input name="c_content[leave]" maxlength="60" type="checkbox"  value="" />到达:<input name="c_content[arrive]" maxlength="60" type="checkbox"  value="" /><br />中文:<input name="c_content[zh_cn]" maxlength="60" type="checkbox"  value="" />英文:<input name="c_content[en]" maxlength="60" type="checkbox"  value="" />';
+            }
+            document.getElementById('content').innerHTML = html;
+      })
+
+function PreviewImage(imgFile)
+{
+    var filextension=imgFile.value.substring(imgFile.value.lastIndexOf("."),imgFile.value.length);
+    filextension=filextension.toLowerCase();
+    if ((filextension!='.jpg')&&(filextension!='.gif')&&(filextension!='.jpeg')&&(filextension!='.png')&&(filextension!='.bmp'))
+    {
+        alert("对不起，系统仅支持标准格式的照片，请您调整格式后重新上传，谢谢 !");
+        imgFile.focus();
+    }
+    else
+    {
+        var path;
+        if(document.all)//IE
+        {
+            imgFile.select();
+            path = document.selection.createRange().text;
+            document.getElementById("imgPreview").innerHTML="";
+            document.getElementById("imgPreview").style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='scale',src=\"" + path + "\")";//使用滤镜效果      
+        }
+        else//FF
+        {
+            path=window.URL.createObjectURL(imgFile.files[0]);// FF 7.0以上
+            //path = imgFile.files[0].getAsDataURL();// FF 3.0
+            //document.getElementById("imgPreview").innerHTML = "<img id='img1' width='120px' height='100px' src='"+path+"'/>";
+            document.getElementById("img1").src = path;
+        }
+    }
+}
+</script>
+</body>
+</html>

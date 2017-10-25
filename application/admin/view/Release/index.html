@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理员列表</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/fenyue.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__ADMIN__/css/jquery.editable-select.min.css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/laydate.js"></script>
+<style type="text/css">
+    .box{width: 360px;height: 160px;background-color: #dfdfdf;position: fixed;top: 20%;left: 25%;display: none;border:1px solid #a9a9a9;font-size: 20px}
+    .box ul li{width: 100%;height: 36px;display: inline-block;margin:20% auto;text-align: center;letter-spacing: 2px;}
+    .box ul li a{color: red}
+</style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="place"><span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span><ul class="placeul"><li><a href="#">发布管理</a></li><li><a href="#">发布列表</a></li></ul><!-- <span style="float:right; margin:0 20px 0 0;"><a href="{:url('User/user_list')}">刷新</a></span> --></div>
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div class="itab">
+    <ul> 
+    <li><a href="#tab1" class="selected">基本信息</a></li>
+<!--     <span style="float:left;width:80px;height: 30px;line-height:33px;padding:1px 0 0 25px ;">
+<a href="play_details.html" class="tablelink" style="font-weight:bold;">添加</a></span>
+ -->
+        <span><a href="{:url('Release/play_details')}" class="tablelink" style="font-weight:bold;"><img src="__ADMIN__/images/adds.jpg" /></a></span>
+    </ul>
+    </div>
+    <div id="tab2" class="tabson">
+         <ul class="seachform">
+        <form action="{:url('Release/index')}" method="post">
+
+<!--          <li><label></label>
+    <select name="c_genre" class="scinput" style="opacity:1">
+           <option value="0">--等级选择--</option>
+           <option value="1"{if condition="$post['c_genre'] eq 1"}selected="selected"{/if}>超级管理员</option>
+           <option value="2"{if condition="$post['c_genre'] eq 2"}selected{/if}>管理员</option>
+    </select>
+</li> -->
+         <li><label></label><input type="text" name="stime" size="18" value="{$post.stime}" placeholder="起始查询时间" class="scinput" style="width: 135px;" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></li>
+    <li><label></label><input type="text" name="otime" size="18" value="{$post.otime}" placeholder="结束查询时间" class="scinput" style="width: 135px;" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></li>
+        <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
+        </form>
+        </ul>
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th width="35px;"><input name="" type="checkbox" checked="checked"/></th>
+            <th>名称<i class="sort"><img src="__ADMIN__/images/px.gif" /></i></th>
+            <th>地址</th>
+            <th>内容</th>
+            <th>新增时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {volist name="info" id="vo"}
+        <tr>
+            <td>{$i}</td>
+            <td>{$vo.c_name}</td>
+            <td><a target= _blank href="{$vo.c_url}">{$vo.c_url}</a></td>    
+            <td>{$vo.c_content}</td>
+            <td>{$vo.c_addtime}</td>
+            <td width="80px;" colspan="2">
+            <a href="{:url('edit_details',['c_id'=>$vo.c_id])}" title="信息修改">
+            <img src="__ADMIN__/images/t02.png" border="0" height="18" width="18" /></a>&nbsp; 
+            
+            <a href="{:url('user_del',['c_id'=>$vo.c_id])}" title="移除" onclick="return confirm('确定删除吗，此操作不可恢复');"><img src="__ADMIN__/images/trash.gif" border="0" height="17" width="17" /></a>&nbsp;
+            <input type="hidden" id="user_id" value="{$vo.c_id}">
+            </td>
+           
+        </tr> 
+        {/volist}
+        </tbody>
+    </table>
+    </div>  
+    </div> 
+    <div class="pages">
+            {$page}
+    </div>
+    </div>
+
+</body>
+</html>

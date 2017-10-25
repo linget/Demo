@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理员列表</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/fenyue.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__ADMIN__/css/jquery.editable-select.min.css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/laydate.js"></script>
+<style type="text/css">
+    .box{width: 360px;height: 160px;background-color: #dfdfdf;position: fixed;top: 20%;left: 25%;display: none;border:1px solid #a9a9a9;font-size: 20px}
+    .box ul li{width: 100%;height: 36px;display: inline-block;margin:20% auto;text-align: center;letter-spacing: 2px;}
+    .box ul li a{color: red}
+    #bg{ display: none; position: fixed; top: 0%; left: 0%;width: 100%;height: 100%; background-color: black; z-index:104; -moz-opacity: 0.5; opacity:.50; filter: alpha(opacity=50);}
+    .remarks{width: 500px;height: auto;border: 1px solid #dfdfdf;background-color: white;position:fixed;left: 25%;top: 10%;z-index: 166;display: none;}
+    .remarks ul li{width: 100%;height: auto;}
+    .remarks ul li.end,.type{text-align: center;}
+    .remarks ul li.end input{margin: 2% 10%}
+    .remarks ul li.type input{margin-left:5%;margin-top:1%;}
+    .remarks textarea{width: 80%;height: 40%;display: inline-;margin-left: 10%;border:1px solid #ececec;}
+   
+</style>
+    <script type="text/javascript">
+        $("document").ready(function(){
+        $("#select").click(function(){
+          var inputs=$("input[name='response[]']");
+           if(this.checked){  
+             $(inputs).each(function(){this.checked=true;});
+           }else{  
+             $(inputs).each(function(){this.checked=false;});  
+            }  
+           });
+      });
+
+        function Showremarks()
+        {
+            var data = {$msginfo};
+            var html = '<ul><li class="type"><b>&nbsp;</b></li><li class="type"><b>消息模板选择：&nbsp;</b><select name="temp_id" class="scinput" style="opacity:1"><option value="0">清选择模板</option>';
+
+            $.each(data,function(k,v){
+                html += '<option value="'+v.c_id+'" >'+v.c_title+'</option>';
+            })
+            html += '</select></li><li class="type"><b>&nbsp;</b></li><li class="end"><a><input name="confirms" type="button" class="scbtn" value="发送" onclick="allocationGet();"/></a><a id ="close"><input name="close" type="button" class="scbtn" value="取消"  onclick="hideQuxiao();" /></a><div id="end_other"></div> </li></ul>';
+            $(".remarks").html(html);
+            $(".remarks").fadeIn();
+            $("#bg").fadeIn();
+        }
+         function allocationGet(){
+                    document.getElementById("confirms").submit();
+              }
+
+        //隐藏
+        function hideQuxiao(){
+            $(".remarks").hide();
+             $("#bg").fadeOut();
+         }
+
+    </script>
+</head>
+<body>
+    <div id="bg"></div>
+    <div class="box"></div>
+    <div class="place"><span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span><ul class="placeul"><li><a href="#">订房管理</a></li><li><a href="#">用户列表</a></li></ul><span style="float:right; margin:0 20px 0 0;"><a href="{:url('Wxuser/index')}"><!-- 刷新 --></a></span></div>
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div class="itab">
+    <ul> 
+    <li><a href="#tab1" class="selected">基本信息</a></li>
+    <span style="float:left;width:80px;height: 30px;line-height:33px;padding:1px 0 0 25px ;">
+   </ul>
+    </div>
+    <div id="tab2" class="tabson">
+         <ul class="seachform">
+        <form action="{:url('Wxuser/index')}" method="post">
+        <li><label></label><input type="text" name="c_openid" size="18" value="{$c_openid}" placeholder="编号" class="scinput"/></li>
+        <li><label></label><input type="text" name="c_nickname" size="18" value="{$c_nickname}" placeholder="昵称" class="scinput"/></li>
+、
+         <li><label></label><input type="text" name="stime" size="18" value="{$post.stime}" placeholder="更新起始查询时间" class="scinput" style="width: 135px;" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></li>
+    <li><label></label><input type="text" name="otime" size="18" value="{$post.otime}" placeholder="更新结束查询时间" class="scinput" style="width: 135px;" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" /></li>
+        <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
+        </form>
+        </ul>
+<form action="{:url('Wxuser/send_business')}" method="post" id="confirms">
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th width="35px;"><input class="response" type="checkbox" id="select"/></th>
+            <th>编号<i class="sort"><img src="__ADMIN__/images/px.gif" /></i></th>
+            <th>昵称</th>          
+            <th>性别</th>
+            <th>地址</th>
+            <th>头像</th>
+
+            <th>类型</th>
+            <th>航班号/列车号</th>
+            <th>状态</th>
+            
+            <th>添加时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="info" id="vo"}
+        <tr>
+            <td><input name="response[]" type="checkbox" value="{$vo['c_openid']}" /></td>
+            <td>{$vo.c_openid}</td>
+            <td>{$vo.c_nickname}</td>    
+            <td>{if condition="$vo.c_sex eq 1"}男{else/}女{/if}</td>
+            <td>{$vo.c_country}{$vo.c_province}{$vo.c_city}</td>
+            <td><img src="{$vo.c_headimgurl}" style="width: 40px;"/></td>
+
+            <td>{if condition="$vo.kind_id eq 2"}航班{elseif condition="$vo.kind_id eq 1"}高铁{else /} {/if}</td>
+            <td>{$vo.code_name}</td>
+            <td>{$vo.statu}</td>
+
+            <td>{$vo.c_addtime}</td> 
+            <td width="80px;" colspan="2">
+
+            <a href="{:url('wxuser_edit',['c_id'=>$vo.c_id])}" title="信息修改">
+            <img src="__ADMIN__/images/t02.png" border="0" height="18" width="18" /></a>&nbsp; 
+            <a href="{:url('wxuser_del',['c_id'=>$vo.c_id])}" title="移除" onclick="return confirm('确定删除吗，此操作不可恢复');"><img src="__ADMIN__/images/trash.gif" border="0" height="17" width="17" /></a>&nbsp;
+            <input type="hidden" id="wxuser_id" value="{$vo.c_id}">
+            <a href="{:url('wxuser_sendlate',['c_id'=>$vo.c_id])}" title="延误推送">
+            <img src="__ADMIN__/images/sendwx.png" border="0" height="18" width="18" /></a>&nbsp; 
+
+            </td>
+        </tr> 
+        {/volist}
+         </tr>
+             <tr>
+                 <td colspan="11" style="text-align:center">
+                 <div>
+                 <li>
+                 <p>
+                 <input type="button"  class="btn" value="选择模板"  onclick="Showremarks()"/>
+                 <a  style="margin-left:25px;" /></a>
+                 </p>
+                </li>
+                </div>
+             </td>
+             </tr>
+        </tbody>
+    </table>
+    <div class="remarks"></div>
+</form>
+    </div>  
+    </div> 
+    <div class="pages">
+            {$page}
+    </div>
+    </div>
+
+</body>
+</html>

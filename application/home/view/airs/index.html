@@ -1,0 +1,253 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>康得思酒店·航班实时提醒</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/index.css">
+<script type="text/javascript" language='javascript'>
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/jquery-1.8.0.js" charset="UTF-8"><' + '/script>');
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/config.js"><' + '/script>');
+</script>
+</head>
+<style type="text/css">
+	header{width: 100%;height: 100%;padding:1%;
+	/*颜色渐变*/
+	/* background-image:linear-gradient(to top,white,gray); */font-size:14px;}
+	hgroup{height:100%;width:30%;display: inline-block;float: left;}
+	hgroup img{display: inline-block;vertical-align:middle;}
+	hgroup h2{width: 100%;height: auto;text-align: center;color: #009ACD;line-height: 46px;}
+
+	nav{width: 60%;height: 100%;float: right;padding-top: 10px;}
+	a{text-decoration: none;}
+ 	nav ul li{list-style: none;width: 100%;height:  25%;line-height: 38px;text-align: center;color: #009ACD;font-size: 16px;text-align: left;}
+ 
+/*	hgroup h2{width: 100%;height: auto;text-align: center;color: #009ACD;}
+	hgroup h2 a{font-size: 14px;width: 100%;height: 25px;display: inline-block;} 
+	nav ul li{list-style: none;width: 100%;height:  10%;line-height: 26px;text-align: center;color: #009ACD;text-align: left;} */
+</style>
+<body>
+<!--Step:1 Prepare a dom for ECharts which (must) has size (width & hight)--> 
+<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+<div class="header">
+		<div class="logo"><!-- <img src="__PUBLIC__/images/logo.png" />--> 
+
+<!--天气-nowapi-->
+<header>  
+    <hgroup>  
+    <img src="__PUBLIC__/weather/{$weather.icon}" /> 
+    <h2>{$weather.weather}</h2>
+    </hgroup>  
+    <nav>  
+        <ul>  
+            <li>{$weather.tmp_min}℃ ~ {$weather.tmp_max}℃</li>  
+        	<li>{$weather.windrect} {$weather.windpower}</li>
+        	<li>{$weather.week}</li> 
+        </ul>  
+    </nav>  
+</header>
+<!--天气-ali-->
+<!-- <header>  
+    <hgroup>  
+    <img src="__PUBLIC__/weather/{$weather.icon}" /> 
+    <h2>{$weather.weather} <a>{$weather.week}</a></h2>
+    </hgroup>  
+    <nav>  
+        <ul>  
+            <li>气温:{$weather.tmp_min}℃ ~ {$weather.tmp_max}℃</li>
+            <li>湿度: {$weather.humidity}</li>
+            <li>气压: {$weather.pressure}</li>
+            <li>PM2.5: {$weather.pm2_5}</li>       	
+        	<li>空气质量: {$weather.quality}</li> 
+        </ul>  
+    </nav>  
+</header> -->
+
+
+</div>
+		<div class="center">
+		{if condition="$language eq 'zh_cn'"}
+                    <p>
+		{if condition="$isFromSha eq 1"}
+                    <h3>虹桥机场离港航班</h3>
+                        <a href="#">HongQiao Airport Departure Flight</a>
+		{else/}
+			<h3>虹桥机场到港航班</h3>
+                        <a href="#">HongQiao Airport Arrival Flight</a>
+		{/if}
+                </p>
+                  {else/}
+                    <p>
+		{if condition="$isFromSha eq 1"}
+			<h3 class="hen">HongQiao Airport Departure Flight</h3>
+                        <a href="#" class="aen">虹桥机场离港航班</a>
+		{else/}
+			<h3 class="hen">HongQiao Airport Arrival Flight</h3>
+                        <a href="#" class="aen">虹桥机场到港航班</a>
+		{/if}
+                </p>
+                  {/if}
+		</div>
+		<div class="weath" id="time"></div>
+</div>
+
+<div class="content">
+<div class="code">
+	<img src="__PUBLIC__/images/1500603322.png" />
+	<p>扫一扫<br/>查看更多</p>
+</div>
+	<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+	<div id="mainMap"></div>
+
+
+		<div class="list">
+			<table cellspacing="0" cellpadding="0">
+{include file="./public/air_header"/}
+<tbody class="main">
+{volist name="info" key="ke" id="vo"}
+	<tr>
+	<td>
+	<div class="lunbo{$ke}">
+		<ul class="scroll">
+		{foreach name="vo.flight_info" item="v" key="k"}
+			<li><p><img src="__PUBLIC__{$v.flight_logo}" />&nbsp;{$v.flight_no}</p></li>
+		{/foreach}
+		</ul>
+	</div>
+	</td>
+	
+	
+	<!--判断出发/到达-->
+	{if condition="$isFromSha eq '1'"}
+		<td><?php echo isset($vo['STARTTIME'])?$vo['STARTTIME']:'';?></td>
+		<?php if(isset($vo['TOCITY'])&&mb_strlen($vo['FROMCITY']) >= '13'){?>
+		<td class="toolen">
+		<?php }else{?>
+		<td>
+		<?php }?>
+		<?php echo isset($vo['TOCITY'])?$vo['TOCITY']:'';?></td>
+	{else/}
+		<td>{$vo.ENDTIME}</td>
+
+		<?php if($vo['FROMCITY'] = isset($vo['FROMCITY'])?$vo['FROMCITY']:''&&mb_strlen($vo['TOCITY']) >= '13'){?>
+		<td class="toolen">
+		<?php }else{?>
+		<td>
+		<?php }?>
+		{$vo.FROMCITY}</td>
+	{/if}
+	<!--判断结束-->
+	{if condition="$vo['REMARK_XML'] eq '正常' or $vo['REMARK_XML'] eq 'Normal'"}
+		<td class="state{$ke} greens">正常
+	{elseif condition="stristr($vo['REMARK_XML'],'延误') neq '' or stristr($vo['REMARK_XML'],'Delayed') neq ''"}
+		<td class="state{$ke} yellows">延误
+	<?php  echo isset($vo['E_STARTTIME'])?$vo['E_STARTTIME']:'';?>
+	{else/}
+		<td class="state{$ke} reds"><?php echo isset($vo['REMARK_XML'])?$vo['REMARK_XML']:'';?>
+	{/if}		
+	</td>
+	<input type="hidden" class="onece" value="{$vo['REMARK_XML']}" />
+	</tr>
+{/volist}
+</tbody>
+			</table>
+		</div>
+
+<nav id="showwx">
+	<ul>
+		<?php if(!empty($wx_info)){ ?>
+		{volist name="wx_info" key="ko" id= "vo"}
+			<li class="{$vo.class}">
+			<img src="{$vo.headimgurl}" />
+			<input type="hidden" id="r{$ko}" value="{$vo.number}" />
+			<canvas id="c{$ko}"></canvas>
+			</li>
+		{/volist}
+		<?php }?>
+	</ul>
+</nav>
+</div>
+
+
+{include file="./public/air_footer"/}
+
+<!--Step:2 Import echarts.js--> 
+<!--Step:2 引入echarts.js-->
+<script type="text/javascript" language='javascript'>
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/echarts.js" charset="UTF-8"><' + '/script>');
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/public.js"><' + '/script>');
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/getMore.js"><' + '/script>');
+	document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/foot.js"><' + '/script>');
+</script>
+<script type="text/javascript">
+	/* 翻页 */
+	var language ="{$Think.cookie.language_index}";
+	var isFromSha ="{$Think.cookie.isFromSha_index}";
+	
+	var name = "_index";
+
+	var current_Page = {$current_Page};
+	var countPage = {$count_Page};
+
+		// var dk = $(window.parent.document).find("#frame").attr("src"); 
+		// if(dk){
+		// 	var lan = dk.split("language_index/");
+		// 	language = lan[1];
+		// 	var isF = dk.split("isFromSha_index/");
+		// 	isF = isF[1].split('/language_index/')
+		// 	isFromSha = isF[0];
+		// }
+	//页面样式设置
+	var c_pagetime= {$temp['c_pagetime']};//IPS后台设置 -- 翻页时间
+	var c_roltime = {$temp['c_roltime']};//IPS后台设置-- 滚动速度
+	var c_language_type =  {$temp['c_language']};//IPS后台-- 设置语言
+	var c_isFromSha = {$temp['c_isfromsha']};//IPS后台-- 出发到达
+
+	var guideIntervel = setInterval(autoLoad,5000);//300000
+
+	/* 走马灯数据 */
+	var round_page =  {$round_page};
+	var round_Page_count= {$round_Page_count};
+	var roundUrl = "{:url('Airs/round_more')}";
+	
+	var loadMoreUrl = "{:url('Airs/getMore')}";
+
+</script>
+<script type="text/javascript">
+		document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/more-round.js"><' + '/script>');
+		document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/ajax.js"><' + '/script>');
+		document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/map.js"><' + '/script>');
+		document.write('<script type="text/javascript" language="javascript"' +
+           ' src="__PUBLIC__/js/scroll.js"><' + '/script>');
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/wx-header.js"></script>
+<script type="text/javascript">
+	var rowHeight = 48;/*滚动高度*/
+	var roundIntervel = setInterval(window.autoround,600000);/* 走马灯数据翻页 */
+	var round_footer = setInterval(window.foot_auto,12000);//走马灯滚动效果加载
+
+	var citys_data = {$citys};//态势图地点
+	var route_citys = {$route_citys};//态势图航线
+
+	var MoreUrl,round_Url;
+	place = {};
+	$("#document").ready(function()
+	{
+		all_city(language);getEcharts(null,citys_data,route_citys);autorun();foot_auto();
+		nowtime();
+	 });
+
+	releasemsg();
+	var wx = setInterval(window.monitor,3000);//微信头像加载
+</script>
+</body>
+</html>

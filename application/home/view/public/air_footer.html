@@ -1,0 +1,97 @@
+<script type="text/javascript">
+	if(isFromSha ==='1')
+	{
+		if (languages=='zh_cn') {
+			$(".runtype").text("出发");
+		}else{
+			$(".runtype").text("Set out");
+		}	
+	}else{
+		if (languages=='zh_cn') {
+			$(".runtype").text("到达");
+		}else{
+			$(".runtype").text("Arrive");
+		}
+	}
+</script>
+<div class="footer">
+		<div class="custom">
+			<!-- <marquee direction="left" scrollamount="5" loop="-1" scrolldelay="100"> -->
+
+			{if condition="$round_info eq ''&& $language eq 'zh_cn'"}
+			<ul>
+			<div class="run1">
+			<li>暂无延误取消航班班次</li>
+			<li>暂无延误取消航班班次</li>
+			<li>暂无延误取消航班班次</li>
+			<li>暂无延误取消航班班次</li>
+			</div>
+			</ul>
+			{elseif condition="$round_info eq ''&& $language eq 'en'"}
+			<ul>
+			<div class="run1">
+			<li>No delay in flight data</li>
+			<li>No delay in flight data</li>
+			<li>No delay in flight data</li>
+			<li>No delay in flight data</li>
+			</div>
+			</ul>
+			{elseif condition="$language eq 'zh_cn'"}
+			<ul>
+	<div class="run1">
+			{volist name="round_info" id="vv"}
+					<li>
+					{if condition="$vv['REMARK_XML'] neq '正常'  && $vv['REMARK_XML'] neq 'Normal'"}
+
+					前往 {$vv.TOCITY}的 {$vv['flight_info']['0']['flight_no']}次航班由于航空公司计划的原因 {$vv.REMARK_XML},请广大旅客及时了解留意航班变动情况,以免影响正常出行。
+					{else/}
+
+					前往 {$vv.TOCITY}的 {$vv['flight_info'][0]['flight_no']}次航班将于 {$vv.STARTTIME}正常<a class="runtype"></a>,
+					
+					请广大旅客及时了解留意航班变动情况,以免影响正常出行。
+					{/if}
+				</li>
+				{/volist}
+	</div>
+			</ul>
+			{else/}
+			<ul>
+	<div class="run1">
+			{volist name="round_info" id="vv"}
+
+				<li>
+						{if condition="$vv['REMARK_XML'] neq '正常'  && $vv['REMARK_XML'] neq 'Normal'"}
+					
+					{$vv['flight_info']['0']['flight_no']} flight to {$vv.TOCITY}  due to airline company {$vv.REMARK_XML},Please timely attention to the vast number of passengers flying changes,So as not to affect the normal travel.
+					{else/}
+					
+					{$vv['flight_info']['0']['flight_no']} flight to{$vv.TOCITY}will take off on {$vv.STARTTIME}
+					
+					<a class="runtype"></a>,
+					
+					Please timely attention to the vast number of passengers flying changes,
+					So as not to affect the normal travel.
+					{/if}
+				</li>
+				{/volist}
+	</div>
+			</ul>
+			{/if}
+		<!-- </marquee> -->
+		</div>
+
+<!-- 
+		<div class="ad">
+			<ul>
+				<li>
+					<img src="__PUBLIC__/images/guanggao.jpg">
+				</li>
+				<li>
+					<img src="__PUBLIC__/images/guanggao_02.jpg">
+				</li>
+				<li>
+					<img src="__PUBLIC__/images/guanggao_03.jpg">
+				</li>
+			</ul>
+		</div> -->
+</div>

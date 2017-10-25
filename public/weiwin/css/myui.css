@@ -1,0 +1,276 @@
+/**************plane.index*****************/
+.myui-col-default {
+    background-color: #08A9F8;
+}
+.myui-col-hd {
+	text-align: center; 
+	line-height: 50px;
+}
+.myui-col-font {
+    color: white;
+}
+.myui-col-nav {
+    width: 27%; 
+    height: 28px;
+    margin-top: 10px;
+    border-radius:5px ; 
+}
+.myui-nav-btn-no {
+   padding-top: 3px; 
+   color: #08A9F8; 
+   border: white 1px solid; 
+   border-radius: 5px;
+}
+.myui-nav-btn-yes {
+    padding-top: 3px; 
+    color: white; 
+    background-color: #08A9F8;
+    border: white 1px solid; 
+    border-radius: 5px;
+}
+.weui_navbar_item.myui-bar-item-on {
+    color: #08A9F8;
+    border-bottom: 2px #08A9F8 solid;
+}
+.myui-col-city-td {
+    color: #888;
+    font-size: 14px; 
+    margin-top: 2px;
+}
+.myui-col-city-nm {
+    color: #222;
+    font-size: 16px;
+    margin-top: 2px;
+}
+.myui-col-city-nm a {
+    text-decoration: none;
+    color: #222;
+}
+.myui-cell-cd {
+    margin-top: 20px;
+    border-bottom: 1px #CCC solid;
+    border-top: 1px #CCC solid;
+}
+.myui-cell {
+     width: 100%;
+     margin-top: 40px; 
+     float: left;
+     margin-bottom: 20px;
+}
+.myui-cell-hd {
+    margin-left: 20px;
+    float: left;
+}
+.myui-cell-bd {
+    margin-left: 10px; 
+    float: left;
+}
+.myui-cal-icol {
+    width: 69%;
+    background-image:url(../../index/images/right01.png);
+    background-repeat: no-repeat;
+    background-position:  right;
+}
+
+/**************plane.planelist*****************/
+.myui-plane-hd {
+    text-align: center;
+    background-color: #DBDBDB;
+}
+.myui-plane-bd {
+    margin-top: 12px; 
+    padding-bottom: 5px;
+    width: 100%;
+    border-bottom: 1px #BBB solid;
+}
+.myui-clear {
+    clear: both;
+}
+.myui-mask-tip {
+    position: fixed;
+    left: 7.5%;
+    top:45%;
+    z-index: 100;
+}
+.myui-mask-jt{
+	position:fixed;
+	right: 2%;
+	top: 1%;
+	z-index: 101;
+}
+.myui-font {
+    color: #08A9F8;
+}
+.myui-cell1 {
+    font-size: 16px;
+}
+.myui-cell1 :before {
+    top:0;
+    border-top:1px solid red;
+    -webkit-transform-origin:0 0;
+    transform-origin:0 0
+}
+.myui-message-tip {
+    margin:0 auto;
+    width: 69%;
+    text-align: left; 
+    color: red; 
+    font-size: 12px;
+}
+.myui-message-way {
+    margin:0 auto; 
+    width: 71%;
+    height: 28px;
+    line-height: 28px; 
+}
+.myui-message-phone {
+    width: 60%;
+    border: 1px #BDBDBD solid;
+    float: left;
+    height: 28px; 
+    border-radius: 3px 0 0 3px;
+}
+.myui-message-yzm {
+    width: 37%;
+    border: 1px #BDBDBD solid;
+    float: left;
+    height: 28px; 
+    font-size: 10px; 
+    border-radius: 0 3px 3px 0;
+}
+.myui-message-in {
+    margin:0 auto ;
+    width: 70%; 
+    border: 1px #BDBDBD solid; 
+    border-radius: 3px; 
+    margin-top: 8px;
+    height: 28px;
+    line-height: 28px;
+}
+
+/************************** choose city *******************/
+/* 城市搜索 ---------------- */
+.mod-search-city {
+  padding: 5px 5%;
+    border-bottom: 1px #BDBDBD solid;
+}
+.mod-search-city:before {
+  content: "";
+  position: absolute;
+  left: 3%;
+  display: inline-block;
+  height: 28px;
+
+}
+.mod-search-city .ipt-txt-nobor {
+  padding: 0 5% 0 10%;
+  width: 70%;
+  height: 32px;
+  line-height: 32px;
+  font-size: 13px;
+  border: none;
+}
+/* 转换标签 ---------------- */
+.mod-tabs {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -webkit-flex;
+  -webkit-justify-content: space-between;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  text-align: center;
+  color: #666;
+  background-color: #fff;
+  border-bottom: 1px solid #d5d5d5;
+}
+.mod-tabs .item {
+  width: 50%;
+  -webkit-flex: 1;
+}
+.mod-tabs .item.curr {
+  height: 49px;
+  border-bottom: 2px solid #08A9F8;
+}
+.mod-tabs a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #666;
+}
+.mod-tabs .curr a {
+  color: #08A9F8;
+}
+.mod-tabs.size-s {
+  position: relative;
+  height: 43px;
+  line-height: 43px;
+  border-bottom: 1px solid #dbdbdc;
+}
+.mod-tabs.size-s:before {
+  content: "|";
+  position: absolute;
+  left: 50%;
+  margin-left: -5px;
+  width: 10px;
+  text-align: center;
+  color: #eee;
+}
+.mod-tabs.size-s .item.curr {
+  height: 42px;
+  border-bottom: 2px solid #08A9F8;
+}
+/* 搜索城市列表 ---------------- */
+.mod-cities-list .category-name {
+  padding: 0 5%;
+  height: 28px;
+  line-height: 25px;
+  color: #999;
+  background-color: #EEE;
+  font-size: 12px;
+}
+.mod-cities-list .city-name {
+  height: 28px;
+  line-height: 28px;
+  font-size: 18px;
+  border-bottom:  1px #BDBDBD solid ;
+}
+.mod-cities-list .city-name a {
+  padding: 0 5%;
+  display: block;
+  width: 90%;
+  height: 100%;
+  color: #000;
+}
+.mod-cities-list .city-name:last-of-type {
+  border-bottom: none;
+}
+/* 城市列表快捷导航 ---------------- */
+.mod-cities-helper {
+  position: fixed;
+  top: 108px;
+  right: 15px;
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  line-height: 1.4em;
+}
+ul,li {
+  list-style: none;
+  color:#08A9F8;
+  height:16px;
+}
+.myui-top-day {
+	 position: relative;
+	 left: 8px;
+	 bottom: 6px;
+	 color: #08A9F8; 
+	 font-weight:  bold;
+}
+.myui-fx-dz {
+	 position: relative;
+	 left: 3px;
+	 bottom: 4px;
+	 color: #08A9F8; 
+	 font-size:14px;
+}

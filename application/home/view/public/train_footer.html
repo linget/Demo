@@ -1,0 +1,90 @@
+<script type="text/javascript" src="__PUBLIC__/js/public.js"></script> 
+<script type="text/javascript">
+	if(isFromSha ==='1')
+	{
+		if (languages=='zh_cn') {
+			$(".runtype").text("出发");
+		}else{
+			$(".runtype").text("Set out");
+		}	
+	}else{
+		if (languages=='zh_cn') {
+			$(".runtype").text("到达");
+		}else{
+			$(".runtype").text("Arrive");
+		}
+	}
+</script>
+<div class="footer">
+		<div class="custom">
+			
+			{if condition="$round_info eq ''&&$language eq 'zh_cn'"}
+			<ul>
+			<div class="run1">
+			<li><p>暂无延误取消高铁班次</p></li>
+			<li><p>暂无延误取消高铁班次</p></li>
+			<li><p>暂无延误取消高铁班次</p></li>
+			<li><p>暂无延误取消高铁班次</p></li>
+			</div></ul>
+			
+			{elseif condition="$round_info eq ''&& $language eq 'en'"}
+			<ul>
+			<div class="run1">
+			<li>No delay in train data</li>
+			<li>No delay in train data</li>
+			<li>No delay in train data</li>
+			<li>No delay in train data</li>
+			</div>
+			</ul>
+
+			{elseif condition="$language eq 'zh_cn'"}
+			<ul>			<div class="run1">
+			{volist name="round_info" id="vv"}
+				<li>
+					{if condition="$vv['REMARK'] neq '正点'  && $vv['REMARK'] neq 'on time'"}
+					<p>
+					前往{$vv.TOCITY}的{$vv.FLIGHT_NO}次列车由于公司计划的原因{$vv.REMARK},请广大旅客及时了解留意列车变动情况,以免影响正常出行。</p>
+					{else/}
+					<p>
+					前往{$vv.TOCITY}的{$vv.FLIGHT_NO}次列车将于{$vv.STARTTIME}正常<a class="runtype"></a>,
+					
+					请广大旅客及时了解留意列车变动情况,以免影响正常出行。</p>
+					{/if}
+				</li>
+				{/volist}
+			</div></ul>
+			{else/}
+			<ul><div class="run1">
+			{volist name="round_info" id="vv"}
+				<li>
+					{if condition="$vv['REMARK'] neq '正点'  && $vv['REMARK'] neq 'on time'"}
+					<p>
+					{$vv.FLIGHT_NO} flight to {$vv.TOCITY}  due to company {$vv.REMARK},Passengers please pay attention to timely understanding of train changes, so as not to affect the travel time.</p>
+					{else/}
+					<p>
+					{$vv.FLIGHT_NO} flight to {$vv.TOCITY}will take off on{$vv.STARTTIME}
+					<a class="runtype"></a>,
+					
+					Passengers please pay attention to timely understanding of train changes, so as not to affect the travel time.</p>
+					{/if}
+				</li>
+				{/volist}
+			</div></ul>
+			{/if}
+		</div>
+<!-- 
+		<div class="ad">
+			<ul>
+				<li>
+					<img src="__PUBLIC__/images/guanggao.jpg">
+				</li>
+				<li>
+					<img src="__PUBLIC__/images/guanggao_02.jpg">
+				</li>
+				<li>
+					<img src="__PUBLIC__/images/guanggao_03.jpg">
+				</li>
+			</ul>
+		</div> -->
+</div>
+

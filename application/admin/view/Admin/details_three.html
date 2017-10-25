@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>沃源OA.功能管理列表</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/fenyue.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">系统管理</a></li>
+    <li><a href="{:url('Admin/function_list')}">功能列表</a></li>
+    <li><a href="#">三级功能查看</a></li>
+    </ul><!-- <span style="cursor:pointer;float:right;margin:auto 25px;"><a id="back" >返回</a></span> --></div>
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div class="itab">
+    <ul> 
+    <li><a href="#tab1" class="selected">基本信息</a></li> 
+    <span style="float:left;width:80px;height: 30px;line-height:33px;padding:1px 0 0 25px ;"><a href="{:url('Admin/function_details',array('Id'=>$menu_id))}" class="tablelink" style="font-weight:bold;">返回上级</a></span>
+    </ul>
+    </div>
+    <div id="tab2" class="tabson">
+
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th width="35px;"><input name="" type="checkbox" value="" checked="checked"/></th>
+            <th width="200px;">三级功能<i class="sort"><img src="__ADMIN__/images/px.gif" /></i></th>
+            <th width="200px;">功能地址</th>            
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {volist name="data" id="vo"}
+        <tr>
+            <td>{$i}</td>
+            <td>{$vo.c_functionname}</td>
+            <td>{$vo.c_functionkey}</td>
+            <td width="180px;">
+          
+            <a href="{:url('function_edit',['c_id'=>$vo.c_id,'c_menuid'=>$vo['c_menuid']])}" class="tablelink">编辑</a> &nbsp;
+            <a href="{:url('function_del',['c_id'=>$vo.c_id,'c_menuid'=>$vo['c_menuid']])}" onclick="return confirm('确定删除吗，此操作不可恢复');" class="tablelink"> 删除</a></td>
+        </tr> 
+        {/volist}
+        </tbody>
+    </table>
+    </div>  
+    </div> 
+      <div class="pages">
+            {$page}
+    </div>
+   </div>
+</body>
+</html>

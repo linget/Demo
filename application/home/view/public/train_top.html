@@ -1,0 +1,67 @@
+<script type="text/javascript">
+		var languages ="{$Think.cookie.language_trainlist}";
+		var isFromSha ="{$Think.cookie.isFromSha_trainlist}";
+</script>
+<div class="top">
+<ul>
+	<li class='variable'>
+	<h3><script>document.write(systemConfig[languages]['trainNo']);</script></h3>
+	<h3><script>
+	if(isFromSha ==='1')
+	{
+		document.write(systemConfig[languages]['arrivalStation']);
+	}else{
+		document.write(systemConfig[languages]['OfDeparture']);
+	}
+	</script></h3>
+	
+	<h3>
+	<script>
+	if(isFromSha ==='1')
+	{
+		document.write(systemConfig[languages]['scheduledTime']);
+	}else{
+		document.write(systemConfig[languages]['actualTime']);
+	}
+	</script></h3>
+
+	<h3><script>document.write(systemConfig[languages]['state']);</script></h3>
+	</li>
+	<li class='variable'>
+	<h3><script>document.write(systemConfig[languages]['trainNo']);</script></h3>
+	<h3><script>
+	if(isFromSha ==='1')
+	{
+		document.write(systemConfig[languages]['arrivalStation']);
+	}else{
+		document.write(systemConfig[languages]['OfDeparture']);
+	}</script></h3>
+	<h3><script>
+	if(isFromSha ==='1'){
+		document.write(systemConfig[languages]['scheduledTime']);
+	}else{
+		document.write(systemConfig[languages]['actualTime']);
+	}
+	</script></h3>
+	<h3><script>document.write(systemConfig[languages]['state']);</script></h3>
+	</li>
+	<li class='variable'>
+	<h3><script>document.write(systemConfig[languages]['trainNo']);</script></h3>
+	<h3><script>
+	if(isFromSha ==='1')
+	{
+		document.write(systemConfig[languages]['arrivalStation']);
+	}else{
+		document.write(systemConfig[languages]['OfDeparture']);
+	}</script></h3>
+	<h3><script>
+	if(isFromSha ==='1'){
+		document.write(systemConfig[languages]['scheduledTime']);
+	}else{
+		document.write(systemConfig[languages]['actualTime']);
+	}
+	</script></h3>
+	<h3><script>document.write(systemConfig[languages]['state']);</script></h3>
+	</li>
+</ul>
+</div>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>新界面</title>
+</head>
+<style type="text/css">
+	*{margin: 0;padding:0;font-family: 'microsoft Yahei';font-size: 18px;}
+	html,body{width: 100%;height: 100%;display: block;background-color: #fffdef;}
+
+
+	aside{width: 100%;height: 100%;background-color: #fffdef;float: right;}
+	
+	aside nav{width: 100%;height:100%;display: inline-block;box-sizing:border-box;}
+
+
+	aside h3{width: 100%;height: 10%;text-align: left;}
+	aside nav ul{width: 100%;height: 100%;border-left: 1px solid #97d334;}
+	aside nav ul li{width: 100%;height: 10%;display: inline-block;list-style: none;}
+	aside nav ul li:nth-child(1){background-color: #97d334;height:8%;text-align: left;background:none;}
+/* 	aside nav ul li{width: 100%;height: 8%;display: inline-block;list-style: none;font-size: 1rem;}
+aside nav ul li:nth-child(1){height:10%;border:none;background-color: #97d334;font-size: 1rem;}
+ */
+    aside nav ul li span{width: 30%;height: auto;display: inline-block;line-height: 42px;text-align: center;}
+    aside nav ul li span:nth-child(1){width: 30%;text-align: left;padding-left: 6%;}
+    aside nav ul li.title span:nth-child(1){text-align: center;padding-left: -5%;}
+    aside nav ul li span img{vertical-align: middle;}
+    aside nav ul li span.yellow{color:#ff9900;}
+    aside nav ul li span.red{color:red;}
+	
+
+</style>
+<body>
+
+
+<aside>
+	<nav  class="lists">
+	    <ul>
+	        <h3>机场离港航班</h3>
+	        <li class="title"><span>班次</span> <span>地点</span> <span>状态</span></li>
+	        {volist name="air_info" id="vo"}
+	        	 <li><span><i><img src="__PUBLIC__{$vo.ICON}" height="30px" />&nbsp;</i>
+                {$vo.FLIGHT_NO}</span> <span>{$vo.CITY}</span> <span>{$vo.REMARK_XML}</span></li>
+	        {/volist}
+
+	        </ul>
+    	</nav>
+</aside>
+</body>
+</html>

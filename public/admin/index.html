@@ -1,0 +1,83 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>PHP AJAX 实例</title>
+<head>
+<style type="text/css">
+ul{
+	margin-top:3px;
+	border:1px solid #000;
+	list-style:none;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+	background-color: #EEFFF9;
+	margin-left: 0px;
+}
+.select_li{
+    background:#36C;/*#FF0000 鼠标经过提示框时颜色*/
+	color:#FF0000;
+	line-height:16px;
+	font-size:12px;
+	padding:2px;
+	width:100px;
+	}
+
+</style>
+<script language="javascript" src="ajax.js"></script>
+</head>
+<body class="font14" ondragstart=window.event.returnValue=false onkeyup=window.event.returnValue=false topMargin=0 onkeydown="onkey_hc()">
+<form action="#" method="post" enctype="multipart/form-data" name="form" id="form">
+<table width="69%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse;">
+             <tr>
+               <td height="48" colspan="4"  align="center">PHP版后台 在“名称”文本框里输入“名称”字符或1，2，3....等等</td>
+             </tr>
+             <tr>
+                <td height="48"  align="right">名称:</td>
+               <td width="27%" height="48" align="left"><input type="text" name="mc" id="mc" style="height:24px;" onKeyDown="keydowndeal(event);" onKeyUp="topp(this,'div_id','ajax.php');keyupdeal(event);"/>
+            <div id="div_id" style="position:absolute;" align="center"></div></td>
+               <td width="18%" align="right">类型:</td>
+               <td width="37%" align="left">
+			   <select name="lx" id="lx" style="width:152px;">
+			     <option value=""></option>
+			     <option value="类型1">类型1</option>
+				 <option value="类型二">类型二</option>
+				 <option value="类型三">类型三</option>
+				 <option value="类型四">类型四</option>
+				 <option value="类型五">类型五</option>
+				 <option value="类型6">类型6</option>
+				 <option value="类型7">类型7</option>
+				 <option value="类型8">类型8</option>
+				 <option value="类型9">类型9</option>
+				 <option value="类型10">类型10</option>
+				 <option value="类型11">类型11</option>
+				 <option value="类型12">类型12</option>
+				 <option value="类型13">类型13</option>
+				 <option value="类型14">类型14</option>
+				 <option value="类型15">类型15</option>
+				 <option value="类型16">类型16</option>
+				 <option value="类型17">类型17</option>
+				 <option value="类型18">类型18</option>
+				 <option value="类型19">类型19</option>
+				 <option value="类型20">类型20</option>
+				 <option value="类型21">类型21</option>
+				 <option value="类型22">类型22</option>
+			   </select>			   </td>
+            </tr>
+            <tr>
+              <td width="18%" height="50"  align="right">标识:</td>
+                <td height="50" align="left"  >
+                <input type="text" name="bs" id="bs"/>
+                <label id="lx"></label></td>
+                <td align="right"  >备注:</td>
+                <td align="left"  ><input type="text" name="bz" id="bz" /></td>
+          </tr>
+          <tr>
+               <td height="50"  align="right">ID:</td>
+               <td height="50" align="left"> <label id="id"  style="font-size:14px; color:#FF0000"></label></td>
+               <td align="right"  >时间:</td>
+               <td align="left"  > <label id="time"  style="font-size:14px; color:#FF0000"></label></td>
+          </tr>
+  </table>
+</form>	
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div class="sy_weather">
+    <div class="sy_weather_left">
+        <div class="sy_weather_left">
+             <img src="__PUBLIC__/weather/{$weather.icon}">
+            <p>{$weather.tmp_min}℃</p>
+
+        </div>
+        <div class="sy_weather_right">
+            <p>{$weather.weather}</p>
+            <p>{$weather.tmp_min}℃ ~ {$weather.tmp_max}℃</p>
+            <p>PM2.5 :  {$weather.pm2_5}   {$weather.quality}</p>
+        </div>		
+    </div>
+    <div class="sy_weather_right">
+        <h1><span>{$variable}</span>{$now}</h1>
+        <pre>{$weather.date}</pre>
+        <pre>{$weather.week}</pre>
+    </div>
+</div>

@@ -1,0 +1,119 @@
+body {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+}
+html {
+	background-color: #F9F9F9;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+}
+body {
+
+	background-color: #F9F9F9;
+	font-family: Verdana, Arial,Vrinda,Tahoma;
+	line-height: 175%;
+	font-size:13px;
+	color:#666;
+}
+
+#man_zone {
+	/*width: 100%;
+	height: 100%;*/
+	border: 1px solid #B4C9C6;
+	margin: 6px 0 0 0;
+	background-color:#FFFFFF;
+	padding: 5px 0 5px 0;
+	overflow: auto; 
+}
+#man_zone table{
+    background-color:#F0F5F7;
+}
+#man_zone table tr{
+    background-color:#F0F5F7;
+  
+}
+#man_zone table td{
+	 border-left:1px dotted #C7C7C7;
+ 	border-bottom:1px dotted #C7C7C7;
+ 	
+}
+.left_title_1 {
+	background-color: #F0F5F7;
+	color:#73938E;
+	font-weight:bold;
+	line-height:30px;
+	text-align:right;
+}
+.left_title_2 {
+	background-color: #fff;
+	color:#73938E;
+	font-weight:bold;
+	line-height:30px;
+	text-align:right;
+}
+#order_id{
+	font-size:20px;
+}
+#Send{
+	float: right;
+	margin:0 69px 0 0;
+	padding:5px 20px;
+	font-size:20px; 
+	background-color:#FFF;
+	color:#000;
+	border-radius:5px;
+	
+	position: relative;
+	box-shadow: 1px 1px 4px rgba(0,0,0,0.5) inset;
+	-webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.5) inset;
+	-moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.5) inset;
+}
+#Send_ok{
+	float: right;
+	margin:0 69px 0 0;
+	padding:5px 15px;
+	font-size:20px; 
+	background-color:#FFF;
+	border-radius:5px;
+	cursor:pointer
+	position: relative;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.6),0 0 40px rgba(0,0,0,0.1) inset;
+	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.6),0 0 40px rgba(0,0,0,0.1) inset;
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.6),0 0 40px rgba(0,0,0,0.1) inset;
+}
+
+ #Send_ok:hover {
+  /*border:1px solid #FF9C00;*/
+  border-right:1px solid #FF9C00;
+  border-bottom:1px solid #FF9C00;
+  background-color:#FF9C00;
+  color:#fff;
+  text-decoration:none;
+}
+
+.tdproduct{
+	text-align: center;
+
+}
+
+.left_titlepridiuc{height:100px;font-size:18px;}
+.tdproduct input{width:80px;
+    height:40px;
+   background-color:#45B8EF;
+   color:white;
+   font-size:16px;
+}
+.tdproduct span{
+	float:left;font-size:18px;color:red; width:80px;height:50px;border: 1px solid red;line-height:50px;
+-moz-border-radius: 50px;
+  -webkit-border-radius: 50px; 
+   border-radius: 51px;
+}
+
+

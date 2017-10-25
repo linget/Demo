@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>管理员添加 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__ADMIN__/css/general.css" rel="stylesheet" type="text/css">
+<link href="__ADMIN__/css/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>
+<span class="action-span"><a href="{:url('user_list')}">管理员列表</a></span>
+<span class="action-span1"><a href="#">权限管理></a> </span><span id="search_id" class="action-span1"> 用户编辑</span>
+<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+<form method="post" action="{:url('user_edit')}" name="theForm">
+<table width="100%">
+  <tbody>
+  <tr>
+    <td class="label">登录名称:</td>
+    <td><input name="c_username" maxlength="60" type="text" value="{$info.c_username}"><span class="require-field" >*</span></td>
+  </tr>
+  <tr>
+    <td class="label">真实名称:</td>
+    <td><input name="c_fullname" maxlength="60" type="text"value="{$info.c_fullname}"><span class="require-field" >*</span></td>
+  </tr>
+      <tr>
+    <td class="label">所在地区:</td>
+    <td><input name="c_address" maxlength="60" type="text" value="{$info.c_address}"></td>
+  </tr>
+  <tr>
+    <td class="label">电话号码:</td>
+    <td><input name="c_phone" maxlength="60" type="text" value="{$info.c_phone}"></td>
+  </tr>
+  <tr>
+    <td class="label">邮箱地址:</td>
+    <td><input name="c_email" maxlength="60" type="text" value="{$info.c_email}"></td>
+  </tr>
+
+  <tr>
+    <td class="label">登录权限:</td>    
+    <td><select name="c_state">
+
+    {volist name="state" id="v"}
+     <option value="{$v.c_state}"{if condition="$info['c_state'] eq $v['c_state']"} selected="selected" {/if}>{$v.state_name}</option>      
+    {/volist}        
+    </select><span class="require-field">*</span></td>
+  </tr>
+  <tr>
+    <td class="label">角色分派:</td>    
+    <td><select name="c_roleid" >
+    {volist name="c_roleid" id="v"}
+      <option value="{$v.c_id}" {if condition="$info['c_roleid'] eq $v['c_id']"} selected="selected" {/if}>{$v.rolename}</option> 
+    
+    {/volist}
+   </select><span class="require-field">*</span></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" align="center">
+    
+      <input type="submit" value=" 确定 " class="button" />
+      <input type="reset" value=" 重置 " class="button" />
+      <input type="hidden" name="c_id" value="{$info['c_id']}" />
+   </td>
+  </tr>
+</tbody>
+</table>
+<p class="i">红色标记的内容必须填写</p>
+</form>
+</div>
+<div id="footer">
+共执行 2个查询，用时 0.006920 秒，Gzip 已禁用，内存占用 2.256 MB<br>
+版权所有 2014十月咨询策划有限公司</div>
+</body></html>

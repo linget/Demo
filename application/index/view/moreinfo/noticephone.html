@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>机场电话</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/weui.min.css" />
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/jquery-weui.css" />
+    </head>
+    <body>
+        <div class="weui_panel_bd">
+        <div class="weui_media_box weui_media_small_appmsg">
+          <div class="weui_cells weui_cells_access">
+            {volist name="info" id="vo" empty="暂时没有数据"}
+            <a class="weui_cell" href="tel:{$vo['phone']}">
+              <div class="weui_cell_hd"><img src="__PUBLIC__/weiwin/images/phone.png" alt="logo" style="width:20px;margin-right:15px;display:block"></div>
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>{$vo['name']}:&nbsp;&nbsp;&nbsp;&nbsp;{$vo['phone']}</p>
+              </div>
+              <span class="weui_cell_ft"></span>
+            </a>
+            {/volist}
+          </div>
+        </div>
+      </div>
+    </body>
+</html>

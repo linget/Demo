@@ -1,0 +1,35 @@
+//参数设置
+var systemConfig = {
+	'language':'zh_cn',
+	'zh_cn':{
+		'flightNo':'航班',
+		'trainNo':'车次',
+		'OfDeparture':'始发地',
+		'arrivalStation':'目的地',
+		'scheduledTime':'出发时间',
+		'actualTime':'到达时间',
+		'state':'状态',
+		'gate':'登机口',
+		'platform':'站台',
+		'runtype':{
+			'1':'出发',
+			'2':'到达'
+		}
+	},
+	'en':{
+		'flightNo':'FLIGHT',
+		'trainNo':"TRAIN",
+		'trainType':"TYPE",
+		'OfDeparture':'FROM',
+		'arrivalStation':'TO',
+		'scheduledTime':'SCHED',
+		'actualTime':'ACTUAL',
+		'state':'STATUS',
+		'gate':'GATE',
+		'platform':'PLATFROM',
+		'runtype':{
+			'1':'Set out',
+			'2':'Arrive'
+		}
+	}
+}

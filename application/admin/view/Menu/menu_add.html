@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>沃源OA.功能增加</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">权限管理</a></li>
+   <li><a href="#">{$title}</a></li>
+    <span style="cursor:pointer;float:right;margin:auto 25px;"><a id="back" >返回</a></span>
+    </ul>
+    </div>
+<div class="formbody">
+<div class="formtitle"><span>基本信息</span></div>
+    <form method="post" action="{:url($revise)}" name="theForm" >
+    <table>
+    <ul class="forminfo">
+    <li><label>功能名称</label><input type="text" class="dfinput" name="c_mname" value=""/></li>
+    <li><label>地址</label><input type="text" class="dfinput" name="c_murl" value=""/></li>
+    <li><label>&nbsp;</label>
+
+   <?php if (isset($id)) {?>
+    <input name="c_pid" type="hidden" value="{$id}"/>
+   <?php }?>
+
+    <input name="" type="submit" class="btn" value="确认添加"/>
+    <input name="" type="reset" class="btn" value="重置"/>
+    </li>
+    </ul>
+  </table>
+  </form> 
+</div>
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    $("#back").click(function(){
+            history.back(-1);
+    });
+</script>
+</body>
+</html>

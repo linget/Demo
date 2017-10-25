@@ -1,0 +1,18 @@
+ <div class="sy_market">
+    {volist name="sha" id="vo"}
+     <div class="sy_market_left">
+        <b>{$vo.name}</b>
+        {if condition="$vo.increase > 0"}
+        <p>最新指数:<span class="sy_red">{$vo.nowpri}</span></p>
+        <p>指数涨跌:<span class="sy_red">{$vo.increPer}%</span></p>
+        <p>涨跌幅度:<span class="sy_red">{$vo.increase}</span></p>
+         <p>总成交量:<span class="sy_red">{$vo.dealNum}</span></p>
+        {else/}
+        <p>最新指数:<span class="sy_green">{$vo.nowpri}</span></p>
+        <p>指数涨跌:<span class="sy_green">{$vo.increPer}%</span></p>
+        <p>涨跌幅度:<span class="sy_green">{$vo.increase}</span></p>
+         <p>总成交量:<span class="sy_green">{$vo.dealNum}</span></p>
+        {/if}
+    </div>
+   {/volist}
+</div>

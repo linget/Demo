@@ -1,0 +1,26 @@
+ <div id="container" class="sy_road_map_map"  style=" position: relative;" ></div>
+  <script>
+        var map = new AMap.Map('container', {
+            resizeEnable: true,
+            center: [121.318950,31.194022],
+            zoom: 13
+        });
+        //实时路况图层
+        var trafficLayer = new AMap.TileLayer.Traffic({
+            zIndex: 10
+        });
+        trafficLayer.setMap(map);
+        var isVisible = true;
+        
+        //标记
+//        marker = new AMap.Marker({
+//            position: [121.31296,31.194018],
+//            title: "虹桥商务中心",
+//            map: map
+//        });
+//        marker1 = new AMap.Marker({
+//            position: [121.302151,31.189984],
+//            title: "国家会展中心",
+//            map: map
+//        });
+    </script>

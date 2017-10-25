@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Map</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/cross.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.0.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/config.js"></script> 
+
+</head>
+<body >
+<!--Step:1 Prepare a dom for ECharts which (must) has size (width & hight)--> 
+<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+<div class="header" >
+		<div class="logo"><!--<img src="__PUBLIC__/images/logo.png" />--><h3>朗虹酒店</h3></div>
+		<div class="center">
+		<p>
+		{if condition="$isFromSha eq 1"}
+			<img src="__PUBLIC__/images/flight_out.png" class="variable" />
+			<h3>SHA 出发
+		{else/}
+			<img src="__PUBLIC__/images/flight_arrive.png" class="variable" />
+			<h3>SHA 到达
+		{/if}
+		<br/>
+		<a href="#">上海虹桥国际机场</a>
+		</h3>
+		</p>
+		</div>
+		<div class="weath">{$time}</div>
+</div>
+
+<div class="content">
+<div class="code">
+	<img src="__PUBLIC__/images/code.png"/>
+	<p>扫一扫<br/>查看更多</p>
+</div>
+	<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+	<div id="mainMap"></div>
+
+
+		<div class="list">
+			<table>
+{include file="./public/air_header"/}
+<tbody class="main">
+{volist name="info" key="ke" id="vo"}
+	<tr>
+	<td>
+	<div class="lunbo{$ke}">
+		<ul class="scroll">
+		{foreach name="vo.flight_info" item="v" key="k"}
+			<li><p><img src="__PUBLIC__/{$v.flight_logo}" />&nbsp;{$v.flight_no}</p></li>
+		{/foreach}
+		</ul>
+	</div>
+	</td>
+	
+	
+	<!--判断出发/到达-->
+	{if condition="$isFromSha eq '1'"}
+		<td>{$vo.STARTTIME}</td>
+		<td>{$vo.TOCITY}</td>
+	{else/}
+		<td>{$vo.ENDTIME}</td>
+		<td>{$vo.FROMCITY}</td>
+	{/if}
+	<!--判断结束-->
+	
+	
+	<td class="state{$ke}">
+	{$vo.REMARK_XML}
+	<?php 
+	if(strripos($vo['REMARK_XML'],'延误')||strripos($vo['REMARK_XML'],'Delayed'))
+	{
+		echo isset($vo['E_STARTTIME'])?$vo['E_STARTTIME']:'';
+	}?></td>
+	<input type="hidden" class="onece" value="{$vo['REMARK_XML']}" />
+	</tr>
+{/volist}
+</tbody>
+			</table>
+		</div>
+</div>
+
+{include file="./public/air_footer"/}
+
+<!--Step:2 Import echarts.js--> 
+<!--Step:2 引入echarts.js-->
+<script type="text/javascript" src="__PUBLIC__/js/map.js"></script> 
+<script src="__PUBLIC__/js/echarts.js" charset="UTF-8"></script>
+<script type="text/javascript" src="__PUBLIC__/js/public.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/getMore.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/foot.js"></script>  
+<script type="text/javascript">
+	/* 翻页 */
+	var language ="{$Think.cookie.language_index}";
+	var isFromSha ="{$Think.cookie.isFromSha_index}";
+	var name = "_index";
+
+	var current_Page = {$current_Page};
+	var countPage = {$count_Page};
+
+	//页面样式设置
+	var c_pagetime= {$temp['c_pagetime']};//IPS后台设置 -- 翻页时间
+	var c_roltime = {$temp['c_roltime']};//IPS后台设置-- 滚动速度
+	var c_language_type =  {$temp['c_language']};//IPS后台-- 设置语言
+	var c_isFromSha = {$temp['c_isfromsha']};//IPS后台-- 出发到达
+	var font_size =  {$temp['c_fontsize']};//IPS后台-- 字体大小
+	var font_color=  "{$temp['c_fontcolor']}";//IPS后台-- 字体颜色
+	$('.list table').css({"font-size":font_size+"px","color":font_color});
+	var guideIntervel = setInterval(autoLoad,c_pagetime);//300000
+
+	/* 走马灯数据 */
+	var round_page =  {$round_page};
+	var round_Page_count= {$round_Page_count};
+	var roundUrl = "{:url('Airs/round_more')}";
+
+	//走马灯样式设置
+	var roundfont = "{$round['c_font_family']}";//字体
+	var roundfontsize = "{$round['c_font_size']}";//大小
+	var roundfontcolor = "{$round['c_font_color']}";//颜色
+	$('.footer div.custom').css({"font-family":roundfont,"font-size":roundfontsize+"px","color":roundfontcolor});
+
+	var citys_data = {$citys};//态势图地点
+	var route_citys = {$route_citys};//态势图航线
+	var citys_effect = {$effect};//态势图特效
+	var loadMoreUrl = "{:url('Airs/getMore')}";
+
+</script>
+
+<script  type="text/javascript" src="__PUBLIC__/js/more-round.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/ajax.js"></script> 
+<script type="text/javascript">
+	
+	var set_time = setInterval(window.settime,30000);//系统时间
+	var roundIntervel = setInterval(window.autoround,60000);/* 走马灯数据翻页 */
+	var round_footer = setInterval(window.foot_auto,10000);//走马灯滚动效果加载
+
+	var MoreUrl,round_Url;
+	$("#document").ready(function()
+	{
+		place = {};all_city();getEcharts();autorun();foot_auto();
+		autocolor();
+	 });
+
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/scroll.js"></script> 
+
+
+</body>
+</html>

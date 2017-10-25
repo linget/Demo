@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>管理员添加 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__ADMIN__/css/general.css" rel="stylesheet" type="text/css">
+<link href="__ADMIN__/css/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>
+<span class="action-span"><a href="{:url('user_list')}">管理员列表</a></span>
+<span class="action-span1"><a href="#">系统管理></a> </span><span id="search_id" class="action-span1"> 添加用户</span>
+<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+<form method="post" action="{:url('user_add')}" name="theForm">
+<table width="100%">
+  <tbody>
+    <tr>
+    <td class="label">职员姓名:</td>
+    <td><input name="c_fullname" maxlength="60" type="text"value=""><span class="require-field" >*(中文)</span></td>
+  </tr>
+
+  <tr>
+    <td class="label">职员编号:</td>
+    <td><input name="c_username" maxlength="60" type="text" value="{$username}" readonly="readonly"><span class="require-field" ></span></td>
+  </tr>
+
+
+      <tr>
+    <td class="label">所在地区:</td>
+    <td><input name="c_address" maxlength="60" type="text" value=""></td>
+  </tr>
+  <tr>
+    <td class="label">电话号码:</td>
+    <td><input name="c_phone" maxlength="60" type="text" value=""></td>
+  </tr>
+  <tr>
+    <td class="label">邮箱地址:</td>
+    <td><input name="c_email" maxlength="60" type="text" value=""></td>
+  </tr>
+  <tr>
+    <td class="label">登录权限:</td>    
+    <td><select name="c_state">
+    {volist name="state" id="v"}
+      <option value="{$v.c_state}">{$v.state_name}</option>    
+    
+    {/volist}        
+    </select><span class="require-field">*</span></td>
+  </tr>
+
+  <tr>
+    <td class="label">角色分派:</td>    
+    <td><select name="c_roleid" >
+    {volist name="c_roleid" id="v"}
+      <option value="{$v.c_id}">{$v.rolename}</option>
+    {/volist}
+   </select><span class="require-field">*</span></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2" align="center">    
+      <input type="submit" value=" 确定 " class="button" />
+      <input type="reset" value=" 重置 " class="button" />
+        <input type="hidden" name="act" value="insert" />
+
+   </td>
+  </tr>
+</tbody>
+</table>
+<p class="i">红色标记的内容必须填写</p>
+</form>
+</div>
+<div id="footer">
+版权所有 xxxx有限公司</div>
+</body></html>

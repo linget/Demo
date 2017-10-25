@@ -1,0 +1,25 @@
+<div class="sy_road_list">
+    <h3>道路交通状态</h3>
+    <table class="sy_road_head" >
+        <tr style="height:10%;background-color:#97d334;">
+            <th class="sy_th_left">道路</th>
+            <th class="sy_th_right" >描述</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <marquee direction="up" scrollamount="4">
+            <table>
+                {volist name="roadList" id="vo" empty="道路畅通"}
+               <tr>
+                    <td class="sy_td_left">{$vo.road}</td>
+                    <td class="sy_td_right">{$vo.description}</td>
+                </tr>
+                {/volist}
+            </table>
+                </marquee>
+            </td>
+        </tr>
+    </table>
+    
+
+</div>

@@ -1,0 +1,73 @@
+/*全局样式*/
+*{padding:0;margin:0;}
+div,dl,dt,dd,form,h1,h2,h3,h4,h5,h6,img,ol,ul,li,table,th,td,p,span,a{border:none;}
+img,input{border:none;vertical-align:middle;}
+body{font-family:"Microsoft Yahei";width: 100%;height:100%;font-size:12px;background:#1B1B1B;position: relative;w}
+html{overflow-y:scroll;height: 100%}
+ul,ol{list-style-type:none;}
+h3{font-size:20px;}
+/* b{color:red;}
+ */
+html{overflow-x: hidden;overflow-y: hidden;width: 100%;height: 100%;}
+
+table{width: 100%;height: 100%;letter-spacing: 1.5px;color: #fff;text-align: center;background: none repeat scroll 0% 0% rgb(255, 250, 240);border:0px;border-collapse:collapse;border-spacing:0;overflow: hidden;}
+
+thead,tbody tr:nth-child(odd){background: none repeat scroll 0% 0% #1b1b1b;}/*rgb(105, 195, 250)*/
+thead,tbody tr:nth-child(even){background: none repeat scroll 0% 0% #1b1b1b;}/*rgb(255, 250, 240)*/
+tr{border-bottom:1px solid #6F7175;}
+tr p{text-align: left;}
+th{width: 24%;height: 48px;line-height: 48px;color: #FEDB00;letter-spacing: 3px;font-size: 14px}
+th.first{width: 20%;text-indent: -10%;}
+th.trainno{width: 20%;text-indent: -10%;}
+
+td{height: 40px;width: 24%;text-indent: 10px;line-height: 36px;overflow: hidden;}
+
+td div{ height:36px; overflow:hidden;}
+td div ul li{height: 36px;width: 100%;line-height:36px;display: inline;}
+td div ul li img{height: 25px;width: auto;}
+.toolen{line-height: 20px;}
+
+.header{width: 100%;height:15%;z-index: 9;color: #fff;position: absolute;letter-spacing: 2px;float: left;}
+.content{width: 100%;height: 75%;float: left;}
+.footer{width: 100%;height: 7%;position: absolute;bottom: 0;}
+
+/* 顶部 */
+.logo{width: 40%;height: 100%;float: left;background-color: #1B1B1B;z-index: 9;}
+.logo img{height: 77px;width: auto;float: left;padding-top:3%;padding-left:5%;}
+.logo h3{line-height: 110px;color: #FFF;font-size: 20px}
+
+.center{width: 40%;height: 100%;float: left;float: left;}
+
+.center img{width: 77px;height:auto;display: inline-block;float: left;padding-top: 4%;padding-right: 1%;padding-left: 10%;}
+.center h3{width: 50%;padding: 6%;color: #FEDB00;font-size: 18px;}
+.center h3 a{color: white;text-decoration: none;font-size: 12px;font-weight: 400;}
+.weath{width: 20%;line-height: 110px;float: right;text-align: center;font-size: 24px;text-indent: 8%;color: #fff;}
+
+/* 态势图及列表 */
+#mainMap{width: 100%;height:60%;float: left;padding-top: 5%;}
+.list{width: 100%;height: 40%;float: right;display: block;}
+
+.train-first{width:20%;text-indent: -10%;}
+
+/* 走马灯 */
+.footer div.custom{width: 100%;height: 100%;line-height: 60px;background:black;letter-spacing: 0.5;float: left;color:#FEDB00;font-size: 16px;overflow: hidden;}
+.footer div.custom ul{ width: 100%;}
+.footer div.custom ul li{width: 1200px;height: auto;float: left;text-align: center;/*background: url('/langhong/public/images/guanggao.jpg') 20px no-repeat;*/} 
+.footer div.custom ul li p{max-width: 100%;}
+
+/* 二维码 */
+.code{width: 120px;height: 28%;display: inline-block;position: absolute;background-color: #1B1B1B;left: 0;top: 27%;z-index: 9;text-align: center;}
+.code img{width: 100px;display: inline-block;margin-top: 50%;}
+.code p{color: white;font-size: 14px;letter-spacing: 1px; text-align: center;line-height: 22px}
+
+@media screen and (max-width: 1080px) {
+.header{height:10%;}
+.code{height: 20.8%;}
+.code img{width: 100px;display: inline-block;padding-top: 100%;}
+.footer{width: 100%;height: 5%;}
+.footer div.custom{line-height: 90px;}
+}
+/* 广告 */
+/* .footer div.ad{width: 100%;height: 122px;float: left;overflow: hidden;}
+.footer div.ad ul li{ width: 100%;}
+.ad img{width: 100%;height: 100%;} */

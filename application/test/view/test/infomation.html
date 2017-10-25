@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>框架样式1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/style_info.css">
+    </head>
+    <body><div class="left"><div class="sy_left_header"><div class="ys_col_4 ys_full" style="margin:0;padding:0;background-color:red;float:left">{include file="../application/test/view/test/header1.html" /}</div>
+
+
+                 <div class="ys_col_4 ys_full" style="background: #009cda;">
+                     {include file="../application/test/view/test/header2.html" /}
+                 </div>
+                 <div class="ys_col_4 ys_full">
+                     header 3
+                 </div>
+             </div>
+            <div class="sy_left_main">
+                {include file="../application/test/view/test/map.html" /}
+            </div>
+            <div class="sy_left_footer">
+               left footer
+            </div>
+        </div>
+        <div class="right">
+            <div class="sy_right_weather">
+                weather
+            </div>
+             <div class="sy_right_market">
+                market
+            </div>
+             <div class="sy_right_info">
+                {include file="../application/test/view/test/lists.html" /}
+            </div>
+        </div>
+    </body>
+</html>

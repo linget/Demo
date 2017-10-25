@@ -1,0 +1,129 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>xxx.添加权限</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__ADMIN__/css/general.css" rel="stylesheet" type="text/css">
+<link href="__ADMIN__/css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">  
+      $("document").ready(function(){
+        $("#select").click(function(){  
+          var inputs=$("input[name='c_functionid[]']");
+           if(this.checked){  
+             $(inputs).each(function(){this.checked=true;});
+           }else{  
+             $(inputs).each(function(){this.checked=false;});  
+            }  
+           });
+         
+       
+        
+      });
+      //全选子菜单下的功能
+      function optionalParts(obj){
+    	  var CheckBox=$("#portion"+obj+" input[name='c_functionid[]']");
+    	 /*  var val=$("#transform"+obj+"").val();
+    	  for(i=0;i<CheckBox.length;i++){
+    		  if(val == 1){
+    			  CheckBox[i].checked=true;
+    			  $("#transform"+obj+"").val('2');
+    		  }else{
+    			  CheckBox[i].checked=false;
+    			  $("#transform"+obj+"").val('1');
+    		  }
+    		  
+    	  }; */
+    	  for(i=0;i<CheckBox.length;i++){
+              if(CheckBox[i].checked==true){ CheckBox[i].checked=false;}
+              else{ CheckBox[i].checked=true}
+          }
+     }
+      
+      //显示隐藏
+      function modules(obj){
+    	  console.log(obj);
+    	  var val=$("#ensconce_"+obj+"").val();
+    	  if(val == 1){
+    		   $(".test"+obj+"").hide();  
+    		   $("#ensconce_"+obj+"").val(2);
+    	  }else if(val == 2){
+    		   $(".test"+obj+"").show();
+    		   $("#ensconce_"+obj+"").val(1);
+    	  }
+       }
+</script>
+<style type="text/css">
+*{margin: 0px;padding: 0px;font-family: '微软雅黑';}
+#test{list-style: none;}
+.main-div{height:auto;background: white;}
+.main-div p{width: 99%;height: auto;overflow: hidden;}
+.main-div p b{float:right;display:inline-block; line-height: 30px; font-size: 17px;}
+.main-div ul{overflow: hidden;width: 98%;border: 1px solid #BBDDE5; margin: 10px 10px 0 15px; background:#F0F9FD; }
+ul .son{font-size: 17px;margin: 5px 0 10px 13px; ;border: 1px solid #cccccc;padding: 0 60px;display:inline-block;float: left;background:#B2DFFF;border-radius:4px;text-align: left;}
+.main-div .span{width:100%;height:30px;display:inline-block;text-align: center;font-weight: 100;}
+.main-div li{height: 20px;width: 22%;text-align: center;border: 1px solid #cccccc;margin:3px 12 3px 12px;line-height: 20px; float: left;border-radius:4px;}
+.main-div   li span{margin-right: 10px;float:right;}
+.main-div  li input{float: left; margin: 4px 0 0 0;}
+.bottom{width: 99%;height: 50px;text-align: center;}
+.portion{float:left;margin-left:10px;}
+</style>
+</head>
+<body>
+<h1>
+<span class="action-span"><a href="{:url('Userole/role_list')}">角色列表</a></span>
+<span class="action-span1"><a href="{:url('Userole/role_list')}">系统管理</a> </span><span id="search_id" class="action-span1"> - 角色功能选择 </span><span id="search_id" style="color:red;"> - {$name} </span>
+<div style="clear:both"></div>
+</h1>
+<div class="main-div" >
+<p><b><input  type="checkbox" class="input_hide" id="select" />全选</b></p>
+<form method="post" action="{:url('affirm')}" name="theForm">
+
+{volist name="list" id="vo" key="k"}
+    <ul id="test"    >
+      
+      <input type="hidden"  value="1"  id="ensconce_{$k}"/>
+      <h2 class="span" onclick="modules({$k})" style="cursor:pointer;">{$vo.c_mname}</h2>
+       <!--主菜单 -->
+      
+      {volist name="vo['son']" id="v" key="k1" }
+        <div  id="portion{$k}_{$k1}"  class="test{$k}">
+        <h3 class="span"> 
+        <!-- 二级菜单 -->
+          <span class="son"><input  name="c_functionid[]" type="checkbox" value='{$v.c_id}' 
+          {volist name='default' id='de'}
+          {if condition="$de['c_functionid'] == $v['c_id']"}checked="checked"{/if} 
+          {/volist} />&nbsp;{$v["c_functionname"]}</span>
+          <input  type="checkbox"  class="portion"  value="1"  id="transform{$k}_{$k1}" onclick="optionalParts({$k}+'_'+{$k1});"/>  
+        </h3>
+
+        {foreach name="v['Grandson']" item="list_1"}
+        <li>
+          <span>{$list_1['c_functionname']}</span> 
+          <!-- 功能  -->
+            <input name="c_functionid[]" type="checkbox" value="{$list_1.c_id}" {foreach name="default" item="de_1"}
+            {if condition="$de_1['c_functionid'] == $list_1['c_id']"}
+            checked="checked"{/if} 
+            {/foreach}  />
+        </li>
+        {/foreach}
+       </div>
+      {/volist}
+     
+    </ul>
+
+{/volist} 
+     
+<div class="bottom">
+<input type="hidden" name ="c_roleid" value="{$Id}"/>
+<input type="submit" value="确定" class="button"/>
+</div>
+</form>
+</div>
+
+<div id="footer">
+版权所有 2016xxx公司</div>
+</body></html>
+
+
+<!-- <volist name="default" id="de"><if condition="$de['functionid'] == $v['id']">checked="checked"{/if} {/volist} -->

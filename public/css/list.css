@@ -1,0 +1,60 @@
+/*全局样式*/
+*{padding:0;margin:0;}
+html{overflow-x: hidden;overflow-y: hidden;width: 100%;height: 100%;}
+body{font-family:"Microsoft Yahei";width: 100%;height:100%;font-size:18px;background:#1B1B1B;}
+li{list-style-type: none;}
+/* b{color:red;}
+ */
+.header{width: 100%;height:10%;z-index: 9;color: #fff;letter-spacing: 2px;}
+.top{width: 100%;height: 5%;color: #FEDB00;text-align: center;line-height: 62px;}
+.content{width: 100%;height: 80%;}
+
+
+
+.top ul li{width: 30%;height: 100%;float: left;margin-left: 2.5%;border-bottom: 1px solid #6F7175;}
+.top ul li h3{width: 25%;height:100%;float: left;font-size:20px;}
+
+
+/* 顶部 */
+.logo{width: 20%;height: 100%;float: left;background-color: #1B1B1B;z-index: 99;}
+.logo img{height: 77px;width: auto;float: left;padding-top:8%;padding-left:10%;}
+.logo h3{line-height: 135px;color: #FFF;font-size: 20px}
+
+.center{width: 60%;height: 100%;float: left;background-color: #1B1B1B;z-index: 99;float: left;text-align: center;}
+
+.center img{width: 18%;height: auto;display: inline-block;float: left;padding-left: 10%;padding-right: 1%}
+.center h3{width: auto;font-size: 36px; font-weight: 500; padding-top: 3%;padding-left: 1%; color: white;}
+.center .hen{font-size: 30px;font-family: Georgia; }
+.center a{width: auto;color: white;text-decoration: none;font-size: 14px;font-weight: 400;line-height: 35px;}
+.center .aen{font-size: 16px; }
+.weath{width: 20%; height: 100%; line-height: 150px;float: right;text-align: center;font-size: 36px;color: #fff;}
+
+
+
+/* 内容 */
+.content ul.test{width: 100%;color: #fff;display: table;}
+.content ul li.variable{width: 30%;height: 8%;float: left;border-bottom: 1px solid #6F7175;line-height:62px;margin-left: 2.5%;float: left;display: table-cell;}
+#airlogo *{ vertical-align:middle;} 
+.content ul li.variable img{height: 26px;width: auto;}
+.content ul li.variable label{width: 25%;height: 100%;display: inline-block;float: left;text-align: center;}
+
+.content ul li.variable label div{height:62px; overflow:hidden;width: 100%;line-height: 62px;}
+.content ul li.variable label div.toolen{line-height: 30px;}
+.content ul li.variable label.toolen{line-height: 30px;}
+
+.content ul li.variable label div p{height: 62px;width: 100%;display: inline-block;padding-left:12%;text-align: left;}
+.content ul li.variable label div p img{height: 25px;width: auto;}
+
+.content ul li.variable:last-child{border-bottom: 1px solid #1b1b1b;}
+.content ul li.variable:nth-last-child(2){border-bottom: 1px solid #1b1b1b;}
+.content ul li.variable:nth-last-child(3){border-bottom: 1px solid #1b1b1b;}
+/* 走马灯 */
+.footer div.custom{width: 100%;height: 100%;line-height: 62px;background:black;float: left;color:#FEDB00;letter-spacing: 2px;font-size: 18px;overflow: hidden;}
+.footer div.custom ul{ width: 4800px;}
+.footer div.custom ul li{width: 1200px;height: auto;float: left;text-align: center;/*background: url('/langhong/public/images/guanggao.jpg') 20px no-repeat;*/} 
+.footer div.custom ul li p{max-width: 100%;}
+
+/* 颜色渲染 */
+.reds{color: red;}
+.greens{color: #4BEF05;}
+.yellows{color: #FEDB00;}

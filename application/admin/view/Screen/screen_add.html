@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>角色添加</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/tuo.js"></script><!-- 图片预览 -->
+<style>.cla a{margin-left:380px;} .show img{width:300px;height:200px;} .tdaa img{cursor:pointer;}</style> 
+<script type="text/javascript">
+    KE.show({
+        id : 'content7',
+        cssPath : './index.css'
+    });
+  </script>
+  
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $(".select1").uedSelect({
+    width : 345       
+  });
+  $(".select2").uedSelect({
+    width : 167  
+  });
+  $(".select3").uedSelect({
+    width : 100
+  });
+});
+</script>
+</head>
+<body>
+  <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">IPS管理</a></li>
+    <li><a href="#" >显示设置</a></li>
+    <li><a href="#" >添加设置</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div id="tab1" class="tabson">
+    <ul class="seachform"> 
+    <li style="float:right;"><a href="{:url('Screen/index')}"><input  type="button" name="Submit" class="scbtn"  value="返回"/></a></li>
+    </ul>
+    
+    <ul class="forminfo">
+    <form action="{:url($variable)}"  method="post" enctype="multipart/form-data" >
+    <li><label>显示类型<b>*</b></label>
+    <select name="c_type" class="dfinput" style="opacity:1"  onclick="clickData()" id="cype">
+        {volist name="c_type" id="v"}
+            <option value="{$v['c_state']}" {if condition="$v['c_state'] eq $info['c_type']"}selected="selected"
+            {/if}>{$v['c_name']}</option>
+        {/volist}
+    </select>
+    </li>
+
+    <li><label>轮播时间<b>*</b></label><input name="c_pagetime"  type="text" class="dfinput" value="{$info['c_pagetime']}" /></li>
+  <li><label>滚动速度<b>*</b></label><input name="c_roltime"  type="text" class="dfinput" value="{$info['c_roltime']}" /></li>
+     <li><label>字体大小<b>*</b></label><input name="c_fontsize"  type="text" class="dfinput" value="{$info['c_fontsize']}" /></li>
+    <li><label>字体颜色<b>*</b></label><input name="c_fontcolor"  type="text" class="dfinput" value="{$info['c_fontcolor']}" /></li> 
+   
+    <li>
+    <label>语言设置<b>*</b></label>
+
+    中文:<input name="c_language[chinaese]" maxlength="10" type="checkbox" value="1"{if condition="$info['c_language'] eq '1' or $info['c_language'] eq '3'"}checked="checked"{/if}/> 
+    英文:<input name="c_language[english]" maxlength="60" type="checkbox"  value="2"{if condition="$info['c_language'] eq '2' or $info['c_language'] eq '3'"}checked="checked"{/if} />
+    </li> 
+    <li>
+    <label>状态<b>*</b></label>
+    
+    出发:<input name="c_isfromsha[out]" maxlength="10" type="checkbox" value="1"{if condition="$info['c_isfromsha'] eq '1' or $info['c_isfromsha'] eq '2'"}checked="checked"{/if}/> 
+    到达:<input name="c_isfromsha[arrive]" maxlength="60" type="checkbox"  value="2"{if condition="$info['c_isfromsha'] eq '0' or $info['c_isfromsha'] eq '2'"}checked="checked"{/if} />
+    </li> 
+
+     <li><label>是否启用</label>
+     <input name="c_istrue" maxlength="10" type="checkbox" value="1"{if condition="$info['c_istrue'] eq '1'"}checked="checked"{/if}/> </li> 
+
+    <li><label>&nbsp;</label>
+    <input name="" type="submit" class="btn" value="确定"/>
+    <input name="" type="reset" class="btn" value="重置"/>
+    <input name="c_id" type="hidden" value="{$info['c_id']}"/>
+     </li>
+    </form>
+    </ul> 
+    </div>
+     
+  </div> 
+  
+    </div>
+</body>
+</html>

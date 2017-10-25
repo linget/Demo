@@ -1,0 +1,52 @@
+﻿<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>主页</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.0.js"></script> 
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+</head>
+<style type="text/css">
+	*{margin: 0;padding: 0;}
+	iframe{width: 100%;height: 100%;border:0;overflow:hidden;}
+	body{width: 100%;height: 100%;margin:0;padding: 0;}
+	#main{width: 100%;height: 100%;}
+</style>
+<body>
+<div id="main">
+<iframe  src="{$url[1]}" id="frame" name="view_frame" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"  width="100%;" height="100%" >
+</iframe>
+</div>
+<input type="hidden" id="jumptype" value="" />
+</body>
+</html>
+<script type="text/javascript">
+    var url =[];
+	url = {$variable_url};
+	//var iframes = document.getElementById('frame').src=url[1];//初始化地址
+	
+	var st = setInterval("get_change()",1000);
+	var run_time = function(res){
+		var result = JSON.parse(res);
+		var cah = result['cache'];
+		var type = result['result'];
+		if(type == 'ok')
+		{
+			window.location.href = window.location.href;
+		}else{
+			return false;
+		}
+		
+	}
+
+	//触发更新页面
+	function get_change(){
+		$.ajax({
+			url:'http://localhost/Demo/public/index.php/wap/release/findrefresh',
+			data:{refreshnow:1},
+			dataType:'json',
+			type:'POST',
+			success:run_time
+		});
+	}
+</script>

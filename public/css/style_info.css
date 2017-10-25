@@ -1,0 +1,511 @@
+/*
+页面分为上中下三主模块
+header:10%
+main:80%
+footer:10%
+*/
+* {margin: 0;padding: 0}
+html {
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    font-family: "Microsoft Yahei"; 
+    font-size: 14px;
+    width: 100%; 
+    height: 100%; 
+}
+.sy_content {
+    width: 100%;
+    height: 100%;
+}
+.sy_left {
+    background: #0099CC;
+    width: 70%;
+    height: 100%;
+}
+.sy_right {
+    background: #606;
+    width: 30%;
+    height: 100%;
+}
+.sy_left_header {
+    width: 100%;
+    height: 30%;
+    background: #00625A;
+}
+.sy_left_main {
+    width: 100%;
+    height: 66%;
+    background: #017ebc;
+}
+.sy_left_footer {
+    width: 100%;
+    height: 4%;
+    background: #fffdef;
+}
+.sy_right_weather {
+    width: 100%;
+    height: 17%;
+    background: #00c;
+}
+.sy_right_market {
+    width: 100%;
+    height: 22%;
+}
+.sy_right_news {
+    width: 100%;
+    height: 5%;
+    background: #0088cc;
+}
+.sy_right_info {
+    width: 100%;
+    height: 61%;
+    background: #aaa;
+}
+.sy_col_1, .sy_col_2, .sy_col_3, .sy_col_4, .sy_col_5, .sy_col_6, .sy_col_7, .sy_col_8, .sy_col_9, .sy_col_10, .sy_col_11, .sy_col_12, .sy_left, .sy_right {
+  float: left;
+}
+.sy_col_12 {
+  width: 100%;
+}
+.sy_col_11 {
+  width: 91.66666667%;
+}
+.sy_col_10 {
+  width: 83.33333333%;
+}
+.sy_col_9 {
+  width: 75%;
+}
+.sy_col_8 {
+  width: 66.66666667%;
+}
+.sy_col_7 {
+  width: 58.33333333%;
+}
+.sy_col_6 {
+  width: 50%;
+}
+.sy_col_5 {
+  width: 41.66666667%;
+}
+.sy_col_4 {
+  width: 33.33333333%;
+}
+.sy_col_3 {
+  width: 25%;
+}
+.sy_col_2 {
+  width: 16.66666667%;
+}
+.sy_col_1 {
+  width: 8.33333333%;
+}
+.sy_full {
+    height: 100%;
+}
+.sy_font_red {
+    color: red;
+}
+.sy_font_green {
+    color: green;
+}
+.sy_font_yellow {
+    color: #ff9900;
+}
+/*-----------道路模块-----------------*/
+.sy_road_info {
+    width: 100%;
+    height: 100%;
+    background: #d7edb5;
+    font-size: 24px;
+}
+.sy_road_info .sy_road_info_header {
+    height: 45px;
+    line-height: 45px;
+    background: #99cd66;
+    color: white;
+    text-align: center;
+}
+.sy_road_info .sy_road_info_map {
+    height: 42%;
+    text-align: center;
+}
+.sy_road_info_map img {
+    width: 30%;
+    padding: 5px;
+}
+.sy_road_info .sy_road_info_info {
+    padding-top: 1.5%;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 14px;
+    color: #000;
+    line-height: 22px;
+}
+.sy_road_info_info table,tr {
+    width: 100%;
+}
+.sy_road_info_info tr {
+    width: 100%;
+}
+.sy_road_info_info .sy_td_left {
+    width: 60%;
+    text-align: center;
+}
+.sy_road_info_info .sy_td_right {
+    width: 40%;
+}
+
+
+.sy_road_list {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    background: #fffdef;
+    overflow: hidden;
+}
+.sy_road_list table,tr {
+    width: 100%;
+}
+.sy_road_list .sy_road_head {
+     border-collapse:collapse;
+     border: 1px #99cd66 solid;
+     min-height: 90%;
+}
+.sy_road_list th {
+    background: #99cd66;
+    line-height: 40px;
+    height: 50px;
+}
+.sy_road_list .sy_th_left {
+    width: 20%;
+    color: #fff;
+}
+.sy_road_list .sy_th_right {
+    width: 80%;
+    color: #fff;
+}
+.sy_road_list .sy_td_left {
+    width: 20%;
+}
+.sy_road_list .sy_td_right {
+    width: 80%;
+}
+.sy_road_list td {
+    font-size: 16px;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.sy_road_list .sy_td_center {
+    text-align: center;
+}
+.sy_road_list .sy_jam {
+    color:#ff3300
+}
+.sy_road_list .sy_common {
+    color:#ff9900;
+}
+.sy_road_list .sy_normal {
+    color: #339900;
+}
+.sy_road_list h3 {
+    font-weight: normal;
+    line-height: 40px;
+    padding-left: 10px;
+}
+
+/*-----------视频模块-----------------*/
+ #video {  
+    position: fixed;  
+    right: 0px;  
+    bottom: 0px;  
+    min-width: 100%;  
+    min-height: 100%;  
+    height: auto;  
+    width: auto;
+}
+#imgModul {
+    position: fixed;  
+    right: 0px;  
+    bottom: 0px;  
+    min-width: 100%;  
+    min-height: 100%;  
+    height: auto;  
+    width: auto;
+}
+#imgModul img {
+    width: 100%;
+    height: 100%;
+}
+/*-----------天气模块-----------------*/
+.sy_weather {
+    width: 100%;
+    height: 100%;
+    background-color: #fffdef;
+}
+.sy_weather .sy_weather_left {
+    float: left;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+}
+.sy_weather .sy_weather_right {
+    float: left;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+}
+.sy_weather_left img {
+    padding-top: 2%;
+}
+.sy_weather_left p {
+    font-size: 20px;
+    line-height: 36px;
+}
+.sy_weather_right p:nth-child(1) {
+    padding-top: 10%;
+}
+.sy_weather_right h1 {
+    width: 100%;
+    height: 50%;
+    font-size: 46px;
+    padding-top: 5%;
+}
+.sy_weather_right h1 span {
+    font-size: 16px;
+}
+.sy_weather_right pre {
+    width: 50%;
+    height: 40%;
+    font-size: 18px;
+    float: left;
+    text-align: center;
+    line-height: 38px;
+}
+/*-----------股指模块-----------------*/
+.sy_market {
+    width: 100%;
+    height: 100%;
+    background-color: #fffdef;
+}
+.sy_market .sy_market_left {
+    float: left;
+    width: 49%;
+    height: 100%;
+    text-align: center;
+    border: 1px #dfdfdf solid;
+    margin-left: 1px;
+}
+.sy_market .sy_market_right {
+    float: left;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+}
+.sy_market_left p {
+    width: 100%;
+    font-size: 18px;
+    text-align: left;
+    line-height: 35px;
+    padding-left: 10%;
+}
+.sy_market_left p span {
+    padding-left: 5%;
+}
+.sy_market_left  b {
+    width: 100%;
+    height:16%;
+    font-size: 18px;
+    line-height: 30px;
+    background-color: #97d334;
+    display: inline-block;
+    padding-bottom: 1%;
+}
+.sy_market_left .sy_red {
+    color: red;
+}
+.sy_market_left .sy_green {
+    color: green;
+}
+/*-----------黄历模块-----------------*/
+.sy_almanac {
+    width: 98%;
+    height: 98%;
+    min-width: 123px;
+    min-height: 393px;
+    background-color: #f0fef6;
+    border: 1px solid #75d599;
+}
+.sy_almanac .sy_almanac_calendar {
+    height: 50%;
+    border-bottom: 1px solid #E0F6EA;
+}
+.sy_almanac .sy_almanac_action {
+    height: 49%;
+    font-size: 14px;
+}
+.sy_almanac_calendar .sy_almanc_date_panel {
+    height: 92px;
+    margin-top: 15px;
+    color: rgb(25,185,85);
+    text-align: center;
+    background: url(../images/almanac_bg.png) no-repeat center;
+    overflow: hidden;
+    font-size: 42px;
+}
+.sy_almanac_calendar .sy_almanc_date_panel .sy_almanac_date_bar {
+    white-space: nowrap;
+    margin-top: 10px;
+    color: #fff;
+    font-size: 12px;
+}
+.sy_almanac_calendar .sy_almanc_date_panel .sy_almanac_date_day {
+    margin-top: 3px;
+}
+.sy_almanac_calendar .sy_almanac_dates {
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    line-height: 25px;
+}
+.sy_almanac_calendar .sy_almanac_dates p:nth-child(1) {
+    margin-top: 10px;
+}
+.sy_almanac .sy_almanac_action .sy_almanac_half {
+    float: left;
+    width: 50%;
+    height:92%;
+    text-align: center;
+}
+.sy_almanac .sy_almanac_action .sy_almanac_half h3 {
+    margin-top: 20px;
+}
+.sy_almanac .sy_almanac_action .sy_almanac_half ul {
+    list-style: none;
+}
+.sy_almanac .sy_almanac_action .sy_almanac_half li {
+    line-height: 20px;
+    list-style: none;
+    font-size: 12px;
+    color: #555;
+}
+.sy_almanac .sy_almanac_action .sy_almanac_half li:nth-child(1) {
+    margin-top: 5px;
+}
+
+/*-----------延误模块-----------------*/
+.sy_popup {
+    width: 415px;
+    height: 245px;
+    background: #E0F6EA;
+    border-radius: 6px;
+    font-size: 14px;
+    z-index: 10;
+}
+.sy_popup .sy_popup_header {
+    width: 100%;
+    height: 31%;
+}
+.sy_popup .sy_popup_main {
+    width: 100%;
+    height: 69%;
+}
+.sy_popup_main .sy_popup_border_right {
+    width: 99%;
+    height: 100%;
+    border-right: 2px #97d334 dotted;
+} 
+.sy_popup_main h2 {
+    padding-left: 10px;
+}
+.sy_popup_main p {
+    line-height: 25px;
+    padding-left: 10px;
+}
+.sy_popup_main p:nth-child(2) {
+    margin-top: 5px;
+}
+.sy_popup_header .sy_popup_header_scroll {
+    width: 73%;
+    padding-left:  20%;
+    height: 15px;
+}
+.sy_popup_header .sy_popup_header_scroll .sy_popup_node_active {
+    background: url(../images/node_active.png) center no-repeat;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    z-index: 4;
+    padding-top: 25px;
+    display: inline-block;
+}
+.sy_popup_header .sy_popup_header_scroll .sy_popup_node {
+    background: url(../images/node.png) center no-repeat;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    z-index: 4;
+    padding-top: 25px;
+    display: inline-block;
+}
+.sy_popup_header .sy_popup_header_scroll .sy_popup_line {
+    width: 70%;
+    height: 5px;
+    position: absolute;
+    top:25px;
+    z-index: 2;
+    background: #ddd;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #fff;
+}
+.sy_popup_header .sy_popup_header_scroll .sy_popup_line_active {
+    position: absolute;
+    top: 26px;
+    left: 95px;
+    height: 4px;
+    z-index: 3;
+    background: #cf3300;
+    overflow: hidden;
+}
+.sy_popup_header .sy_popup_header_scroll .sy_popup_tip {
+    position: absolute;
+    top: 8px;
+    height: 15px;
+    font-size: 8px;
+    color: #777;
+}
+.sy_popup_header .sy_popup_header_scroll .sy_popup_node_time {
+    position: absolute;
+    top: 38px;
+    height: 15px;
+    font-size: 8px;
+    color: #777;
+}
+.sy_popup_header .sy_popup_header_scroll .sy_popup_node_tip {
+    position: absolute;
+    top: 52px;
+    height: 15px;
+    font-size: 10px;
+    color: #333;
+}
+.sy_popup_header .sy_popup_header_scroll .sy_popup_logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 60px;
+    height: 60px;
+}
+/*-----------走马灯模块-----------------*/
+.sy_left_footer marquee {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    font-size: 16px;
+}
+.sy_left_footer marquee .sy_marquee_info {
+    line-height: 35px;
+    display: inline-block;
+}

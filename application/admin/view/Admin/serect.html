@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改密码</title>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<link href="__ADMIN__/css/select.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/select-ui.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/tuo.js"></script><!-- 图片预览 -->
+<style>.cla a{margin-left:380px;} .show img{width:300px;height:200px;} .tdaa img{cursor:pointer;}</style> 
+<script type="text/javascript">
+    KE.show({
+        id : 'content7',
+        cssPath : './index.css'
+    });
+  </script>
+  
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $(".select1").uedSelect({
+    width : 345       
+  });
+  $(".select2").uedSelect({
+    width : 167  
+  });
+  $(".select3").uedSelect({
+    width : 100
+  });
+});
+</script>
+</head>
+<body>
+
+  <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">修改密码</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <div id="usual1" class="usual"> 
+    <div id="tab1" class="tabson">
+    <ul class="seachform"> 
+    </ul>
+    
+    <ul class="forminfo">
+    <form action="{:url('Admin/serectedit')}"  method="post" enctype="multipart/form-data" >
+  
+    <li><label>用户名<b>*</b></label><input name="c_username"  type="text" class="dfinput" value="{$c_username}" readonly="readonly" /></li>
+    <li><label>真实姓名<b>*</b></label><input name="c_fullname"  type="text" class="dfinput" value="{$c_fullname}" readonly="readonly" /></li>
+    <input name="c_id"  type="hidden" class="dfinput" value="{$c_id}" />
+    <input name="c_password1"  type="hidden" class="dfinput" value="{$c_password}" />
+    <li><label>原密码<b>*</b></label><input name="c_password2"  type="password" class="dfinput"/></li>
+    <li><label>新密码<b>*</b></label><input name="c_password"  type="password" class="dfinput"/></li>
+    <li><label>确认密码<b>*</b></label><input name="c_password4"  type="password" class="dfinput"/></li>
+    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确定修改"/>
+    </li>
+    </form>
+    </ul> 
+    </div>
+     
+  </div> 
+  <script type="text/javascript"> 
+      $("#usual1 ul").idTabs(); 
+    </script>
+    <script type="text/javascript">
+  $('.tablelist tbody tr:odd').addClass('odd');
+  </script>
+    </div>
+</body>
+</html>

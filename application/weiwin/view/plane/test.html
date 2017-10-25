@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>我是测试页面</div>
+      
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" ></script>
+       <script>
+		function getcookie(val)
+      {
+          var cookarr=document.cookie.split(";");
+        var len=cookarr.length;
+        var strkind="";
+         for(var i=0;i<len;i++)
+         {
+             if(cookarr[i].indexOf(val)!=-1){
+                 strkind=cookarr[i];
+                 break;
+             }
+         }
+		var kind=strkind.split('=')[1];
+                return kind ;
+      }
+        wx.config({
+        debug: true,
+        appId: '{$jspackage["appid"]}',
+        nonceStr: '{$jspackage["nonceStr"]}',
+        timestamp:'{$jspackage["timestamp"]}',
+        signature: '{$jspackage["signature"]}',
+        jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ'
+        ]
+      });
+      wx.ready(function(){
+          //判断当前客户端是否支持指定JS接口
+          wx.checkJsApi({
+          jsApiList: [
+            'getNetworkType',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ'
+          ],
+          success: function (res) {
+            alert(JSON.stringify(res));
+          }
+        });
+       //分享到朋友圈
+       var mydata="北京北京";
+	   document.cookie="test=myceshi11";
+       var mycd=getcookie('test');
+	   console.log(mycd);
+	    console.log('11');
+       wx.onMenuShareTimeline({
+            title: mydata, // 分享标题
+            link: 'http://localhost/svn/Demo/public/index.php/index/plane/planelist.html?'+getcookie('test'), // 分享链接
+            imgUrl: 'http://zhihuijingang.com__PUBLIC__/weiwin/images/fximg.png', // 分享图标
+            success: function () { 
+               alert("成功");
+            },
+            cancel: function () { 
+               alert("失败");
+            }
+        });
+    
+    
+      });
+      wx.error(function(){
+         alert("验证失败请重试！"); 
+      });
+      
+        </script>
+    </body>
+</html>

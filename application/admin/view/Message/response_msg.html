@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>功能新增</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/laydate.js"></script>
+<!-- <script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+ -->
+</head>
+<body>
+    <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">消息管理</a></li>
+    <li><a href="#">客服消息</a></li>
+    <span style="cursor:pointer;float:right;margin:auto 25px;"><a id="back" >返回</a></span>
+    </ul>
+    </div>
+<div class="formbody">
+<div class="formtitle"><span>基本信息</span></div>
+    <form method="post" action="{:url('response_msg')}" name="theForm" enctype="multipart/form-data">
+    <table>
+    <ul class="forminfo">
+    <li><label>类型</label>
+     <select name="msgtype" class="dfinput" style="opacity:1">
+           {volist name="typeinfo" id="v"}
+             <option value="{$v['type']}">{$v['name']}</option>
+           {/volist}  
+        </select>
+    </li>
+    <div id="content">
+    <li ><label>内容</label><textarea name="content" onfocus="if(value=='您的房间预订成功，请带好相关证件到前台办理入住。') {value=''}" onblur="if(value=='') {value='您的房间预订成功，请带好相关证件到前台办理入住。'}"  rows="4" cols="35" placeholder="输入消息内容" style="resize: none;">您的房间预订成功，请带好相关证件到前台办理入住。</textarea></li>
+    </div>
+    <li><label>&nbsp;</label>
+    <input type="hidden" name ="openid" value="{$openid}" />
+    <input name="" type="submit" class="btn" value="发送"/>
+    <input name="" type="reset" class="btn" value="重置"/>
+    </li>
+    </ul>
+  </table>
+  </form> 
+</div>
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    $("#back").click(function(){
+            history.back(-1);
+    });
+/*
+    $(document).on('focus',"textarea[name='content']",function(){
+        var valu = $(this).text();
+        console.log(valu);
+        if(valu=='您的房间预订成功，请带好相关证件到前台办理入住。')
+        {
+            $(this).text() = '';
+        }
+    })*/
+
+      $("select[name='msgtype']").change(function() {
+        var selteced_value = $(this).val();
+        var html = '';
+            if(selteced_value == 'text')
+            {
+                html += '<li><label>内容</label><textarea name="content" onfocus="if(value==\'您的房间预订成功，请带好相关证件到前台办理入住。\') {value=\'\'}" rows="4" cols="35" placeholder="输入消息内容" onblur="if(value==\'\') {value=\'您的房间预订成功，请带好相关证件到前台办理入住。\'}">您的房间预订成功，请带好相关证件到前台办理入住。</textarea></li>';
+            }else if(selteced_value == 'news')
+            {
+                html += '<li><label>图文标题</label><input type="text" class="dfinput" name="article_title" value=""/></li>';
+                html += '<li><label>图文描述</label><input type="text" class="dfinput" name="article_desciption" value=""/></li>';
+                html += '<li><label>图文图片</label><input type="file" name="article_picurl" value=""/></li>';
+                html += '<li><label>图文地址</label><input type="text" class="dfinput" name="article_url" value=""/></li>';
+                
+            }
+            document.getElementById('content').innerHTML = html;
+      })
+</script>
+</body>
+</html>

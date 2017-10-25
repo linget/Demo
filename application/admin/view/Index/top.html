@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title>无标题文档</title>
+
+<script language="JavaScript" src="__ADMIN__/js/jquery.js"></script>
+
+<script type="text/javascript">
+/*$(function(){	
+	//顶部导航切换
+	$(".nav li a").click(function(){
+		$(".nav li a.selected").removeClass("selected")
+		$(this).addClass("selected");
+	})	
+})	style="background:url(__ADMIN__/images/topbg.gif) repeat-x;"*/
+</script>
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="background:url(__ADMIN__/images/topbg.png) repeat-x;">
+   
+    <div class="topleft">
+ <a href="main.html" target="_parent"><img src="__ADMIN__/images/logo.png" title="系统首页" style="height:78px" /></a>
+         </div>
+            
+    <div class="topright">    
+    <ul>
+    <li><span><img src="__ADMIN__/images/help.png" title="关于"  class="helpimg"/></span><a href="#">关于</a></li>
+    <li ><a href="{:url('Admin/serect')}" target="rightFrame">修改密码</a></li>
+    
+    <li><a href="{:url('signout')}" target="_parent">退出</a></li>
+    </ul> 
+        
+     
+    <div class="user">
+    <span>{$Think.session.ADMIN_NAME}</span>
+   <!--  <i>消息</i>
+    <b>0</b> -->
+    </div>    
+    
+    </div>
+
+</body>
+</html>

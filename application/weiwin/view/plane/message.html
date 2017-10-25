@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>定制成功</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/weui.min.css" />
+        <link rel="stylesheet" href="__PUBLIC__/weiwin/css/jquery-weui.css" />
+        <style>
+        .weui_icon_success:before{color: #08A9F8;}
+        #mac{width: 100%;height: 80px;color: #888; border:none;text-align: center;}
+        input[type='submit']{background-color: #08A9F8;width: 42px;height: 32px;border-radius: 8px;color: #fff;border: none;}
+
+        </style>
+    </head>
+
+    <body>
+    {eq name="kind" value="dx"}
+        <div class="weui_msg">
+       <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+       <div class="weui_text_area">
+ <h2 class="weui_msg_title">成功定制短信提醒！</h2>
+       </div>
+                   <form action="{:url('plane/insertmac')}" method="post">
+          <div   id="mac">
+            <input type="text" name="mac" value="" placeholder="请输入手机mac地址" />            <a>例:683e3477cd43</a>
+  <br/>
+            <input type="submit" value="提交" />
+          </div>
+        </form>
+ 
+       <div class="weui_opr_area">
+ <p class="weui_btn_area">
+     <a href="{:url('plane/index')}" class="weui_btn weui_btn_primary" style="background-color: #08A9F8;">完成</a>
+ </p>
+       </div>
+       <div class="weui_text_area">
+       <p class="weui_msg_desc" >长按二维码，关注公众号！</p>
+ <p class="weui_msg_desc" style="color:red;">请务必关注公众号，否则无法收到动态提醒信息！</p>
+ <img src="__PUBLIC__/weiwin/images/code01.jpg" alt="二维码" style=" margin-top: 10px;width: 165px; height: 165px;" />
+       </div>
+      </div>
+{else/}
+        <div class="weui_msg">
+      <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+      <div class="weui_text_area">
+        <h2 class="weui_msg_title">成功定制微信提醒！</h2>
+      </div>
+            <form action="{:url('plane/insertmac')}" method="post">
+          <div  id="mac">
+            <input type="text" name="mac" value="" placeholder="请输入手机mac地址" />
+            <a>例:683e3477cd43</a>
+  <br/>
+            <input type="submit" value="提交" />
+            
+          </div>
+        </form>
+      <div class="weui_text_area">
+       <p class="weui_msg_desc" >长按二维码，关注公众号！</p>
+        <p class="weui_msg_desc" style="color:red;">请务必关注公众号，否则无法收到动态提醒信息！</p>
+        <img src="__PUBLIC__/weiwin/images/code01.jpg" alt="二维码" style=" margin-top: 10px;width: 165px; height: 165px;" />
+      </div>
+    </div>
+      {/eq}
+    </body>
+</html>

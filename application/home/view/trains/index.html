@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>康得思酒店·列车实时提醒</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/index.css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.0.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/config.js"></script> 
+</head>
+<style type="text/css">
+	header{width: 100%;height: 100%;padding:1%;
+	/*颜色渐变*/
+	/* background-image:linear-gradient(to top,white,gray); */font-size:14px;}
+	hgroup{height:100%;width:30%;display: inline-block;float: left;}
+	hgroup img{display: inline-block;vertical-align:middle;}
+
+	nav{width: 60%;height: 100%;float: right;padding-top: 10px;}
+	a{text-decoration: none;}
+
+	hgroup h2{width: 100%;height: auto;text-align: center;color: #009ACD;}
+	hgroup h2 a{font-size: 14px;width: 100%;height: 24px;display: inline-block;} 
+	nav ul li{list-style: none;width: 100%;height:  10%;line-height: 26px;text-align: center;color: #009ACD;text-align: left;} 
+</style>
+
+<body>
+<!--Step:1 Prepare a dom for ECharts which (must) has size (width & hight)--> 
+<!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
+<div class="header">
+		<div class="logo"><!--<img src="__PUBLIC__/images/logo.png" />-->
+
+	<header>  
+    <hgroup>  
+    <img src="__PUBLIC__/weather/{$weather.icon}" /> 
+    <h2>{$weather.weather} <a>{$weather.week}</a></h2>
+    </hgroup>  
+    <nav>  
+        <ul>  
+            <li>气温:{$weather.tmp_min}℃ ~ {$weather.tmp_max}℃</li>
+            <li>湿度: {$weather.humidity}</li>
+            <li>气压: {$weather.pressure}</li>
+            <li>PM2.5: {$weather.pm2_5}</li>       	
+        	<li>空气质量: {$weather.quality}</li> 
+        </ul>  
+    </nav>  
+</header> 
+
+		</div>
+		<div class="center">
+		{if condition="$language eq 'zh_cn'"}
+                      <p>
+                    {if condition="$isFromSha eq 1"}
+                    <h3>虹桥火车站始发车次</h3>
+                    <a>HongQiao Train Station Starting Trip</a>
+                    {else/}
+                    <h3>虹桥火车站到达车次</h3>
+                    <a>HongQiao Train Station Arrival Trip</a>
+                    {/if}
+                     </p>
+                    {else/}
+                      <p>
+                    {if condition="$isFromSha eq 1"}
+                      <h3 class="hen">HongQiao Train Station Starting Trip</h3>
+                    <a claa="aen">虹桥火车站始发车次</a>
+                    {else/}
+                    <h3 class="hen">HongQiao Train Station Starting Trip</h3>
+                    <a class="aen">虹桥火车站到达车次</a>
+                    {/if}
+                  </p>
+                    {/if}
+		</div>
+		<div class="weath" id="time"></div>
+</div>
+
+<div class="content">
+	<div class="code">
+	<img src="__PUBLIC__/images/1500603322.png" />
+	<p>扫一扫<br/>查看更多</p>
+	<!-- <img src="__PUBLIC__/images/code.png"/> 
+	<p>扫一扫<br/>查看更多</p>-->
+	</div>
+	
+	<div id="mainMap"></div>
+		
+	<div class="list">
+			<table cellpadding="0" cellspacing="0">
+
+{include file="./public/train_header"/}
+<tbody class="main">
+{volist name="info" key="ke" id="vo"}
+	<tr>
+	<td class="train-first">{$vo.FLIGHT_NO}</td>
+	
+	<!--判断出发/到达-->
+	{if condition="$isFromSha eq '1'"}
+		<td>{$vo.STARTTIME}</td>
+	{else/}
+		<td>{$vo.ENDTIME}</td>
+	{/if}
+	<!--判断结束-->
+	<td>
+	{if condition="$isFromSha eq 1 "}
+	<?php echo isset($vo['TOCITY'])?$vo['TOCITY']:""; ?>
+	{else/}
+	<?php echo isset($vo['FROMCITY'])?$vo['FROMCITY']:""; ?>
+	{/if}
+	</td>
+    {if condition="stristr($vo['REMARK'],'late') neq '' or stristr($vo['REMARK'],'晚点') neq ''"}
+			<td  class="state{$ke} yellows">{$vo.REMARK}</td>
+	{else/}
+			<td  class="state{$ke} greens">{$vo.REMARK}</td>
+	{/if}
+	</tr>
+{/volist}
+</tbody>
+			</table>
+		</div>
+</div>
+
+{include file="./public/train_footer"/}
+
+
+<!--Step:2 Import echarts.js--> 
+<!--Step:2 引入echarts.js-->
+<script type="text/javascript" src="__PUBLIC__/js/public.js"></script> 
+<script src="__PUBLIC__/js/echarts.js" charset="UTF-8"></script>
+<script type="text/javascript" src="__PUBLIC__/js/map.js"></script> 
+<script id="Js" type="text/javascript" src="__PUBLIC__/js/getMore.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/foot.js"></script> 
+<script src="__PUBLIC__/js/more-round.js"  type="text/javascript"></script> 
+
+<script type="text/javascript">
+	/* 翻页 */
+	var language ="{$Think.cookie.language_trainindex}";
+	var isFromSha ="{$Think.cookie.isFromSha_trainindex}";
+	var name = "_trainindex";
+
+	var current_Page = "{$current_Page}";
+	var countPage = "{$count_Page}";
+
+	/* 走马灯数据 */
+	var round_page =  {$round_page};
+	var round_Page_count= {$round_Page_count};
+	var round_Url = "{:url('Trains/round_more')}";
+
+	//页面设置
+	var c_pagetime= {$temp['c_pagetime']};//IPS后台设置 -- 翻页时间
+	var c_roltime = {$temp['c_roltime']};//IPS后台设置-- 滚动速度
+	var c_language_type =  {$temp['c_language']};//IPS后台-- 设置语言
+	var c_isFromSha = {$temp['c_isfromsha']};//IPS后台-- 出发到达
+
+
+	var guideIntervel = setInterval(autoLoad,c_pagetime);
+
+
+	var citys_data = {$citys};//态势图地点
+	var route_citys = {$route_citys};//态势图航线
+
+	var MoreUrl = "{:url('Trains/getMore')}";
+
+	
+	
+	var roundIntervel = setInterval(window.autoround,600000);/* 走马灯数据翻页 */
+
+	var round_footer = setInterval(window.foot_auto,15000);//走马灯滚动效果
+	var loadMoreUrl,roundUrl;
+    place = {};
+</script>
+<script type="text/javascript">
+	$('#document').ready(function()
+	{
+		
+		train_city(language);getEcharts(null,citys_data,route_citys);foot_auto();nowtime();
+	 });
+	var releasemsg = getCookie('releasemsg');
+	
+	if(releasemsg != undefined){
+		var msg = "<li><p>"+decodeURI(releasemsg)+"</p></li>";
+		$(".run1").children("li:first-child").prepend(msg);
+	}
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/ajax.js"></script> 
+</body>
+</html>

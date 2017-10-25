@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>功能新增</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__ADMIN__/js/laydate.js"></script>
+<!-- <script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+ -->
+</head>
+<body>
+    <div class="place">
+    <span><img src="__ADMIN__/images/address.png" style="height:20px;vertical-align:middle;"/> 位置: </span>
+    <ul class="placeul">
+    <li><a href="#">权限管理</a></li>
+    <li><a href="#">预约新增</a></li>
+    <span style="cursor:pointer;float:right;margin:auto 25px;"><a id="back" >返回</a></span>
+    </ul>
+    </div>
+<div class="formbody">
+<div class="formtitle"><span>基本信息</span></div>
+    <form method="post" action="{:url('msg_add')}" name="theForm" enctype="multipart/form-data">
+    <table>
+    <ul class="forminfo">
+
+    <li><label>标题</label><input type="text" class="dfinput" name="title" value=""/></li>
+    <li><label>描述</label><input type="text" class="dfinput" name="description" value=""/></li>
+    <li><label>类型</label>
+     <select name="msgtype" class="dfinput" style="opacity:1">
+           {volist name="typeinfo" id="v"}
+             <option value="{$v['type']}">{$v['name']}</option>
+           {/volist}  
+        </select>
+    </li>
+    <div id="content">
+    <li ><label>内容</label><textarea name="content" rows="4" cols="35" ></textarea></li>
+    </div>
+    <li><label>&nbsp;</label>
+
+    <input name="" type="submit" class="btn" value="确认保存"/>
+    <input name="" type="reset" class="btn" value="重置"/>
+    </li>
+    </ul>
+  </table>
+  </form> 
+</div>
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    $("#back").click(function(){
+            history.back(-1);
+    });
+      $("select[name='msgtype']").change(function() {
+        var selteced_value = $(this).val();
+        var html = '';
+            if(selteced_value == 'text')
+            {
+                html += '<li><label>内容</label><textarea name="c_content" rows="4" cols="35" ></textarea></li>';
+            }else if(selteced_value == 'news')
+            {
+                html += '<li><label>图文标题</label><input type="text" class="dfinput" name="article_title" value=""/></li>';
+                html += '<li><label>图文描述</label><input type="text" class="dfinput" name="article_desciption" value=""/></li>';
+                html += '<li><label>图文图片</label><input type="file" name="article_picurl" value=""/></li>';
+                html += '<li><label>图文地址</label><input type="text" class="dfinput" name="article_url" value=""/></li>';
+                
+            }
+            document.getElementById('content').innerHTML = html;
+      })
+</script>
+</body>
+</html>
