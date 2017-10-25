@@ -10,3 +10,8 @@
 #	new file:   123.txt
 #
 
+
+git pull
+git add.
+git commit -m 'ckj'
+git push
