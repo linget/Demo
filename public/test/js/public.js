@@ -13,9 +13,9 @@ var judge = {
 			//到达
 			case '0':
 				isFromSha = '1';
-				var change_from = 'isFromSha_end';
+
+				document.cookie="change_from=isFromSha_end";
 				document.cookie="isFromSha=1";
-				
 			break;
 			//出发
 			case '1':
@@ -24,7 +24,8 @@ var judge = {
 			break;
 		}
 
-		if(change_from == 'isFromSha_end')
+		var change = getCookie('change_from');
+		if(change == 'isFromSha_end')
 		{
 			document.cookie="change_from=1";
 			switch(type)
@@ -44,10 +45,7 @@ var judge = {
 					type = 'air';
 					document.cookie="changetype="+type;
 				break;
-				// default:
-				// 	type = 'air';
-				// 	document.cookie="changetype="+type;
-				// break;
+
 			}
 
 		}
@@ -58,49 +56,48 @@ var judge = {
 
 		type = getCookie('changetype');
 		isFromSha = getCookie('isFromSha');
+		statis_air = localStorage.getItem('statis_air');
+		statis_train = localStorage.getItem('statis_train');
+		countpage = 1;
 
 		if (type == 'air') 
 		{
 			data = localStorage.getItem('airmaplists');
-			statis_air = localStorage.getItem('statis_air');
+			
 		}else if (type == 'train') 
 		{
 			data = localStorage.getItem('trainmaplists');
-			statis_train = localStorage.getItem('statis_train');
 		}else{
 			data = '';
 		}
 
 		if(data){ 
 			nowdata = JSON.parse(data);
-			if(!nowdata['info'][isFromSha]||nowdata['info'][isFromSha]==undefined){
-				countpage = 1;
-
-			}else{
-				countpage = Math.ceil(nowdata['info'][isFromSha].length/10);
-				
+			if(nowdata['info'][isFromSha]!=undefined)
+			{
+				countpage = Math.ceil(nowdata['info'][isFromSha].length/8);
 			}
-		}else{
-			countpage = 1;
 		}
-		
-		//console.log('isFromSha: '+isFromSha+' type:'+type);
 
-		if (page>=countpage) 
+		
+		if (page>countpage) 
 		{
-			page = 0;
-			judge.main(type,isFromSha);//状态判断
-			//if(countpage <1){ return false;}//数据不存在
+			judge.main(type,isFromSha);//状态判断与更新
+			page = 1;return
 		};
 		
-		if(type == 'air')
+		isFromSha = getCookie('isFromSha');
+		type = getCookie('changetype');
+
+//console.log("countpage:"+countpage+"current_Page:"+page+'isFromSha: '+isFromSha+' type:'+type);
+		if(type== 'air')
 		{
 			//更新页面
-			loadhtml.airmaplists(data,++page,isFromSha);
+			loadhtml.airmaplists(data,page++,isFromSha);
 			loadhtml.header1(statis_air,isFromSha);
 		}else if(type == 'train'){
 
-			loadhtml.trainmaplists(data,++page,isFromSha);
+			loadhtml.trainmaplists(data,page++,isFromSha);
 			loadhtml.header2(statis_train,isFromSha);
 		}
 	}

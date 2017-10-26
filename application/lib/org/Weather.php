@@ -11,7 +11,8 @@ class Weather
         $sql = "select w.*,c.icon,c.code from weather as w left join weather_code as c on w.img_id=c.id where w.date='".$date."'  limit 1";
         $result = Db::connect('db_config4')->query($sql);
 
-        if ($result) { return $result[0];}//有数据直接返回
+
+        if ($result['0']['pm2_5']) { return $result[0];}//有数据直接返回
         //无数据-判断网络
         if(self::internet())
         {
@@ -33,6 +34,8 @@ class Weather
                 }
             }
 
+        }else{
+          return $result[0];
         }
         
         if (!$result) 

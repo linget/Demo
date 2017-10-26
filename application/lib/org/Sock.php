@@ -273,11 +273,11 @@ class Sock
 	//保存文件名到指定路径 
 	function saveFile($filename)
 	{	
-		if (!is_dir('./Demo/uploads/')) 
+		if (!is_dir('./test/uploads/')) 
 		{
-			mkdir('./Demo/uploads/');
+			mkdir('./test/uploads/');
 		}
-		$update_path = './Demo/uploads/';
+		$update_path = './test/uploads/';
 		$exe = substr($filename, strrpos($filename, '.'));
 		$exe = $exe == '.jpeg' ? '.jpg' : $exe;  
 		$fileNewName = $this->uuid() . $exe;  

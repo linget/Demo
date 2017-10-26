@@ -95,7 +95,7 @@ class Test extends Base
     //获取当天天气信息
     public function weather()
     {
-        $model = new \app\home\model\Weather();
+        $model = new \app\lib\org\Weather();
         $info = $model->index();
         return $info;
     }

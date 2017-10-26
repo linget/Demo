@@ -10,7 +10,17 @@ var  send_error=function(XMLHttpRequest, textStatus, errorThrown){
 var loadhtml = {
 	header1:function(data,isFromSha){
 		var html = '',auth = $('#echarts-pie');
+		var hgroup = document.getElementsByTagName('hgroup');
+
+		if (!data||data==undefined) 
+		{
+			hgroup['0'].classList.add("current");
+			hgroup['1'].classList.remove("current");
+			return;
+		};
 		var datas = JSON.parse(data);
+
+
 
 		$.each(datas['info'],function(k,v){
 			html += "<dl><dt>"+v['name']+"</dt><dd>"+v['value']+"</dd></dl>";
@@ -20,14 +30,25 @@ var loadhtml = {
 		getEcharts_pie(datas['json']);
 
 		auth.siblings('div').html(html);
-		var hgroup = document.getElementsByTagName('hgroup');
+		
 		hgroup['0'].classList.add("current");
 		hgroup['1'].classList.remove("current");
 
 	},
 	header2:function(data,isFromSha){
 		var html = '',auth = $('#echarts-rose');
+		var hgroup = document.getElementsByTagName('hgroup');
+
+		if (!data||data==undefined) 
+		{
+			var hgroup = document.getElementsByTagName('hgroup');
+			hgroup['1'].classList.add("current");
+			hgroup['0'].classList.remove("current");
+			return;
+		};
 		var datas = JSON.parse(data);
+
+
 
 		$.each(datas['info'],function(k,v){
 			html += "<dl><dt>"+v['name']+"</dt><dd>"+v['value']+"</dd></dl>";
@@ -37,7 +58,6 @@ var loadhtml = {
 		getEcharts_rose(datas['json']);
 
 		auth.siblings('div').html(html);
-		var hgroup = document.getElementsByTagName('hgroup');
 
 		hgroup['1'].classList.add("current");
 		hgroup['0'].classList.remove("current");
@@ -59,7 +79,8 @@ var loadhtml = {
 			auth.html(html);
 			return false;
 		}
-//console.log(' page:'+page);
+//console.log('isFromSha: '+isFromSha+' type:air');
+//console.log(' page:'+page+" length:"+datas['info'][isFromSha].length);
 
 		var start = (page-1)*8;
 		var end = page*8;
@@ -104,7 +125,8 @@ var loadhtml = {
 			auth.html(html);
 			return false;
 		}
-//console.log(' page:'+page);
+//console.log('isFromSha: '+isFromSha+' type:train');
+//console.log(' page:'+page+" length:"+datas['info'][isFromSha].length);
 
 		var start = (page-1)*8;
 		var end = page*8;

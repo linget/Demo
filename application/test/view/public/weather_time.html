@@ -12,8 +12,12 @@
         </div>		
     </div>
     <div class="sy_weather_right">
-        <h1><span>{$variable}</span>{$now}</h1>
+        <h1 id="time"><!-- <span>{$variable}</span> -->{$now}</h1>
         <pre>{$weather.date}</pre>
         <pre>{$weather.week}</pre>
     </div>
 </div>
+<script type="text/javascript" src="__PUBLIC__/test/js/time.js"></script>
+<script type="text/javascript">
+    nowtime();//客户端自动校时
+</script>

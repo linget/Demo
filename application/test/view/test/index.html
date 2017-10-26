@@ -98,7 +98,7 @@
 					<p>PM2.5 :  {$weather.pm2_5}   {$weather.quality}</p>
 	            </li>
 	            <li>
-	            <h1><a>{$variable}</a>{$now}</h1>
+	            <h1 id="time"><a>{$variable}</a>{$now}</h1>
 	            <pre>{$weather.date}</pre>
 	            <pre>{$weather.week}</pre>
 					</li>
@@ -177,6 +177,7 @@
 </script>
 
 <!--循环加载-->
+<script type="text/javascript" src="__PUBLIC__/test/js/time.js"></script>
 <script type="text/javascript" src="__PUBLIC__/test/js/public.js"></script>
 <script type="text/javascript" src="__PUBLIC__/test/js/ajax.js"></script>
 <script type="text/javascript" src="__PUBLIC__/test/js/index.js"></script>
@@ -190,7 +191,8 @@
 	 //数据更新--高铁与地图
 	 moredata.trainmaplists();
 
-	
+	nowtime();//客户端自动校时
+
 	//每10秒更新一次缓存数据
 	var page = 1;
 	var refreshpage = setInterval(judge.refresh,5000);
