@@ -1,0 +1,2768 @@
+[ 2017-10-30T09:56:45+08:00 ] ::1 ::1 GET /Demo/public/index.php/test/index/infomation
+[ log ] localhost/Demo/public/index.php/test/index/infomation [运行时间：2.814311s][吞吐率：0.36req/s] [内存消耗：2,685.84kb] [文件加载：49]
+[ info ] [ LANG ] D:\wamp\www\Demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'test',
+    1 => 'index',
+    2 => 'infomation',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept-language' => 'zh,zh-CN;q=0.8',
+  'cookie' => 'isFromSha=1; change_from=1; changetype=train; PHPSESSID=c6ghimv0buhdjt9j2m70focti0; vedio_to_list=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] Class [ <user> class app\test\controller\Index extends app\test\controller\Base ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Index.php 4-558
+
+  - Constants [0] {
+  }
+
+  - Static properties [0] {
+  }
+
+  - Static methods [0] {
+  }
+
+  - Properties [5] {
+    Property [ <default> protected $view ]
+    Property [ <default> protected $request ]
+    Property [ <default> protected $failException ]
+    Property [ <default> protected $batchValidate ]
+    Property [ <default> protected $beforeActionList ]
+  }
+
+  - Methods [41] {
+    Method [ <user, overwrites app\test\controller\Base, ctor> public method __construct ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 6 - 13
+    }
+
+    Method [ <user, overwrites app\test\controller\Base, prototype app\test\controller\Base> public method index ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 15 - 88
+    }
+
+    Method [ <user> public method test ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 89 - 105
+    }
+
+    Method [ <user> public method websocket ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 106 - 108
+    }
+
+    Method [ <user> public method getsocket ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 109 - 111
+    }
+
+    Method [ <user> public method style_1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 112 - 114
+    }
+
+    Method [ <user> public method style_2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 115 - 117
+    }
+
+    Method [ <user> public method style_3 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 118 - 120
+    }
+
+    Method [ <user> public method style_4 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 121 - 123
+    }
+
+    Method [ <user> public method infomation ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 124 - 267
+    }
+
+    /**
+         * 市内交通信息
+         */
+    Method [ <user> public method getMapInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 271 - 283
+    }
+
+    /**
+         * 交通数据解析，获取道路评价
+         * @param type $arr 多条数据数组
+         * @return string 交通评级汇总数组
+         */
+    Method [ <user> public method getMapEvalute ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 289 - 300
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 道路状况
+         * @param type $arr
+         */
+    Method [ <user> public method getRoadDes ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 306 - 318
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 获得直线图道路拥堵数据
+         * @return type
+         */
+    Method [ <user> public method getRoadChart ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 324 - 375
+    }
+
+    /**
+         * 一维转二维
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method makeDimension ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 381 - 393
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 计算拥堵指数
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method getBlocked ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 400 - 415
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 获取全歼参数起点
+         * @param type $hour
+         * @return int
+         */
+    Method [ <user> public method change24 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 422 - 434
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $hour ]
+      }
+    }
+
+    /**
+         * 折线图拥堵指标转换后输出数据
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method changeBlock ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 441 - 451
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    Method [ <user> public method weather ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 454 - 459
+    }
+
+    Method [ <user> public method explodeInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 462 - 476
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $info ]
+      }
+    }
+
+    Method [ <user> public method set_post ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 478 - 485
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $url ]
+      }
+    }
+
+    Method [ <user> public method get_airInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 499 - 505
+    }
+
+    Method [ <user> public method get_trainInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 508 - 514
+    }
+
+    Method [ <user> public method header1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 518 - 525
+    }
+
+    Method [ <user> public method header2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 527 - 534
+    }
+
+    Method [ <user> public method map ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 536 - 548
+    }
+
+    Method [ <user> public method lists ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 550 - 557
+    }
+
+    /**
+     * [index 网络测试]
+     */
+    Method [ <user, inherits app\test\controller\Base> public method verify_url ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Base.php 20 - 29
+    }
+
+    Method [ <user, inherits think\Controller> protected method _initialize ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 66 - 68
+    }
+
+    /**
+     * 前置操作
+     * @access protected
+     * @param string $method  前置操作方法名
+     * @param array  $options 调用参数 ['only'=>[...]] 或者['except'=>[...]]
+     */
+    Method [ <user, inherits think\Controller> protected method beforeAction ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 76 - 95
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $method ]
+        Parameter #1 [ <optional> $options = Array ]
+      }
+    }
+
+    /**
+     * 加载模板输出
+     * @access protected
+     * @param string $template 模板文件名
+     * @param array  $vars     模板输出变量
+     * @param array  $replace  模板替换
+     * @param array  $config   模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method fetch ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 106 - 109
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $template = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 渲染内容输出
+     * @access protected
+     * @param string $content 模板内容
+     * @param array  $vars    模板输出变量
+     * @param array  $replace 替换内容
+     * @param array  $config  模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method display ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 120 - 123
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $content = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 模板变量赋值
+     * @access protected
+     * @param mixed $name  要显示的模板变量
+     * @param mixed $value 变量的值
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method assign ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 132 - 135
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $name ]
+        Parameter #1 [ <optional> $value = '' ]
+      }
+    }
+
+    /**
+     * 初始化模板引擎
+     * @access protected
+     * @param array|string $engine 引擎参数
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method engine ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 143 - 146
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $engine ]
+      }
+    }
+
+    /**
+     * 设置验证失败后是否抛出异常
+     * @access protected
+     * @param bool $fail 是否抛出异常
+     * @return $this
+     */
+    Method [ <user, inherits think\Controller> protected method validateFailException ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 154 - 158
+
+      - Parameters [1] {
+        Parameter #0 [ <optional> $fail = true ]
+      }
+    }
+
+    /**
+     * 验证数据
+     * @access protected
+     * @param array        $data     数据
+     * @param string|array $validate 验证器名或者验证规则数组
+     * @param array        $message  提示信息
+     * @param bool         $batch    是否批量验证
+     * @param mixed        $callback 回调方法（闭包）
+     * @return array|string|true
+     * @throws ValidateException
+     */
+    Method [ <user, inherits think\Controller> protected method validate ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 171 - 208
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <required> $validate ]
+        Parameter #2 [ <optional> $message = Array ]
+        Parameter #3 [ <optional> $batch = false ]
+        Parameter #4 [ <optional> $callback = NULL ]
+      }
+    }
+
+    /**
+     * 操作成功跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method success ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 37 - 64
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 操作错误跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method error ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 76 - 103
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 返回封装后的API数据到客户端
+     * @access protected
+     * @param mixed     $data 要返回的数据
+     * @param integer   $code 返回的code
+     * @param mixed     $msg 提示信息
+     * @param string    $type 返回数据格式
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method result ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 115 - 126
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <optional> $code = 0 ]
+        Parameter #2 [ <optional> $msg = '' ]
+        Parameter #3 [ <optional> $type = '' ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * URL重定向
+     * @access protected
+     * @param string         $url 跳转的URL表达式
+     * @param array|integer  $params 其它URL参数
+     * @param integer        $code http code
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method redirect ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 136 - 145
+
+      - Parameters [3] {
+        Parameter #0 [ <required> $url ]
+        Parameter #1 [ <optional> $params = Array ]
+        Parameter #2 [ <optional> $code = 302 ]
+      }
+    }
+
+    /**
+     * 获取当前的response 输出类型
+     * @access protected
+     * @return string
+     */
+    Method [ <user, inherits think\Controller> protected method getResponseType ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 152 - 156
+    }
+  }
+}
+
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] Method [ <user> public method infomation ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Index.php 124 - 267
+}
+
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: calendar[D:\wamp\www\Demo\application\test\controller\Index.php:139]
+
+---------------------------------------------------------------
+[ 2017-10-30T09:57:44+08:00 ] ::1 ::1 GET /Demo/public/index.php/test/index/infomation
+[ log ] localhost/Demo/public/index.php/test/index/infomation [运行时间：2.671433s][吞吐率：0.37req/s] [内存消耗：2,964.24kb] [文件加载：56]
+[ info ] [ LANG ] D:\wamp\www\Demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'test',
+    1 => 'index',
+    2 => 'infomation',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept-language' => 'zh,zh-CN;q=0.8',
+  'cookie' => 'isFromSha=1; change_from=1; changetype=train; PHPSESSID=c6ghimv0buhdjt9j2m70focti0; vedio_to_list=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] Class [ <user> class app\test\controller\Index extends app\test\controller\Base ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Index.php 4-558
+
+  - Constants [0] {
+  }
+
+  - Static properties [0] {
+  }
+
+  - Static methods [0] {
+  }
+
+  - Properties [5] {
+    Property [ <default> protected $view ]
+    Property [ <default> protected $request ]
+    Property [ <default> protected $failException ]
+    Property [ <default> protected $batchValidate ]
+    Property [ <default> protected $beforeActionList ]
+  }
+
+  - Methods [41] {
+    Method [ <user, overwrites app\test\controller\Base, ctor> public method __construct ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 6 - 13
+    }
+
+    Method [ <user, overwrites app\test\controller\Base, prototype app\test\controller\Base> public method index ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 15 - 88
+    }
+
+    Method [ <user> public method test ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 89 - 105
+    }
+
+    Method [ <user> public method websocket ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 106 - 108
+    }
+
+    Method [ <user> public method getsocket ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 109 - 111
+    }
+
+    Method [ <user> public method style_1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 112 - 114
+    }
+
+    Method [ <user> public method style_2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 115 - 117
+    }
+
+    Method [ <user> public method style_3 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 118 - 120
+    }
+
+    Method [ <user> public method style_4 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 121 - 123
+    }
+
+    Method [ <user> public method infomation ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 124 - 267
+    }
+
+    /**
+         * 市内交通信息
+         */
+    Method [ <user> public method getMapInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 271 - 283
+    }
+
+    /**
+         * 交通数据解析，获取道路评价
+         * @param type $arr 多条数据数组
+         * @return string 交通评级汇总数组
+         */
+    Method [ <user> public method getMapEvalute ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 289 - 300
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 道路状况
+         * @param type $arr
+         */
+    Method [ <user> public method getRoadDes ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 306 - 318
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 获得直线图道路拥堵数据
+         * @return type
+         */
+    Method [ <user> public method getRoadChart ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 324 - 375
+    }
+
+    /**
+         * 一维转二维
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method makeDimension ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 381 - 393
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 计算拥堵指数
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method getBlocked ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 400 - 415
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 获取全歼参数起点
+         * @param type $hour
+         * @return int
+         */
+    Method [ <user> public method change24 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 422 - 434
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $hour ]
+      }
+    }
+
+    /**
+         * 折线图拥堵指标转换后输出数据
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method changeBlock ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 441 - 451
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    Method [ <user> public method weather ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 454 - 459
+    }
+
+    Method [ <user> public method explodeInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 462 - 476
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $info ]
+      }
+    }
+
+    Method [ <user> public method set_post ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 478 - 485
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $url ]
+      }
+    }
+
+    Method [ <user> public method get_airInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 499 - 505
+    }
+
+    Method [ <user> public method get_trainInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 508 - 514
+    }
+
+    Method [ <user> public method header1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 518 - 525
+    }
+
+    Method [ <user> public method header2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 527 - 534
+    }
+
+    Method [ <user> public method map ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 536 - 548
+    }
+
+    Method [ <user> public method lists ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 550 - 557
+    }
+
+    /**
+     * [index 网络测试]
+     */
+    Method [ <user, inherits app\test\controller\Base> public method verify_url ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Base.php 20 - 29
+    }
+
+    Method [ <user, inherits think\Controller> protected method _initialize ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 66 - 68
+    }
+
+    /**
+     * 前置操作
+     * @access protected
+     * @param string $method  前置操作方法名
+     * @param array  $options 调用参数 ['only'=>[...]] 或者['except'=>[...]]
+     */
+    Method [ <user, inherits think\Controller> protected method beforeAction ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 76 - 95
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $method ]
+        Parameter #1 [ <optional> $options = Array ]
+      }
+    }
+
+    /**
+     * 加载模板输出
+     * @access protected
+     * @param string $template 模板文件名
+     * @param array  $vars     模板输出变量
+     * @param array  $replace  模板替换
+     * @param array  $config   模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method fetch ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 106 - 109
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $template = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 渲染内容输出
+     * @access protected
+     * @param string $content 模板内容
+     * @param array  $vars    模板输出变量
+     * @param array  $replace 替换内容
+     * @param array  $config  模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method display ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 120 - 123
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $content = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 模板变量赋值
+     * @access protected
+     * @param mixed $name  要显示的模板变量
+     * @param mixed $value 变量的值
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method assign ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 132 - 135
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $name ]
+        Parameter #1 [ <optional> $value = '' ]
+      }
+    }
+
+    /**
+     * 初始化模板引擎
+     * @access protected
+     * @param array|string $engine 引擎参数
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method engine ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 143 - 146
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $engine ]
+      }
+    }
+
+    /**
+     * 设置验证失败后是否抛出异常
+     * @access protected
+     * @param bool $fail 是否抛出异常
+     * @return $this
+     */
+    Method [ <user, inherits think\Controller> protected method validateFailException ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 154 - 158
+
+      - Parameters [1] {
+        Parameter #0 [ <optional> $fail = true ]
+      }
+    }
+
+    /**
+     * 验证数据
+     * @access protected
+     * @param array        $data     数据
+     * @param string|array $validate 验证器名或者验证规则数组
+     * @param array        $message  提示信息
+     * @param bool         $batch    是否批量验证
+     * @param mixed        $callback 回调方法（闭包）
+     * @return array|string|true
+     * @throws ValidateException
+     */
+    Method [ <user, inherits think\Controller> protected method validate ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 171 - 208
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <required> $validate ]
+        Parameter #2 [ <optional> $message = Array ]
+        Parameter #3 [ <optional> $batch = false ]
+        Parameter #4 [ <optional> $callback = NULL ]
+      }
+    }
+
+    /**
+     * 操作成功跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method success ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 37 - 64
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 操作错误跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method error ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 76 - 103
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 返回封装后的API数据到客户端
+     * @access protected
+     * @param mixed     $data 要返回的数据
+     * @param integer   $code 返回的code
+     * @param mixed     $msg 提示信息
+     * @param string    $type 返回数据格式
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method result ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 115 - 126
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <optional> $code = 0 ]
+        Parameter #2 [ <optional> $msg = '' ]
+        Parameter #3 [ <optional> $type = '' ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * URL重定向
+     * @access protected
+     * @param string         $url 跳转的URL表达式
+     * @param array|integer  $params 其它URL参数
+     * @param integer        $code http code
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method redirect ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 136 - 145
+
+      - Parameters [3] {
+        Parameter #0 [ <required> $url ]
+        Parameter #1 [ <optional> $params = Array ]
+        Parameter #2 [ <optional> $code = 302 ]
+      }
+    }
+
+    /**
+     * 获取当前的response 输出类型
+     * @access protected
+     * @return string
+     */
+    Method [ <user, inherits think\Controller> protected method getResponseType ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 152 - 156
+    }
+  }
+}
+
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] Method [ <user> public method infomation ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Index.php 124 - 267
+}
+
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp\www\Demo\public/../application/test\view\index\infomation.html [ array (
+  0 => 'variable',
+  1 => 'now',
+  2 => 'sha',
+  3 => 'weather',
+  4 => 'topcity',
+  5 => 'air_info',
+  6 => 'statis_air',
+  7 => 'statis_airjson',
+  8 => 'statis_train',
+  9 => 'statis_trainjson',
+  10 => 'eveArr',
+  11 => 'roadList',
+  12 => 'roadChart',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001444s ] mysql:dbname=langhong;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_road_evalute` [ RunTime:0.000957s ]
+[ sql ] [ SQL ] SELECT * FROM `t_road_evalute` ORDER BY c_month  [ RunTime:0.000327s ]
+[ error ] [8]未定义变量: almanceInfo[D:\wamp\www\Demo\runtime\temp\efc5a79f94424e70c4bf2dbf9f28470f.php:438]
+
+---------------------------------------------------------------
+[ 2017-10-30T09:57:57+08:00 ] ::1 ::1 GET /Demo/public/index.php/test/index/infomation
+[ log ] localhost/Demo/public/index.php/test/index/infomation [运行时间：1.943311s][吞吐率：0.51req/s] [内存消耗：2,721.93kb] [文件加载：50]
+[ info ] [ LANG ] D:\wamp\www\Demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'test',
+    1 => 'index',
+    2 => 'infomation',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept-language' => 'zh,zh-CN;q=0.8',
+  'cookie' => 'isFromSha=1; change_from=1; changetype=train; PHPSESSID=c6ghimv0buhdjt9j2m70focti0; vedio_to_list=1; changetype=air; isFromSha=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] Class [ <user> class app\test\controller\Index extends app\test\controller\Base ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Index.php 4-558
+
+  - Constants [0] {
+  }
+
+  - Static properties [0] {
+  }
+
+  - Static methods [0] {
+  }
+
+  - Properties [5] {
+    Property [ <default> protected $view ]
+    Property [ <default> protected $request ]
+    Property [ <default> protected $failException ]
+    Property [ <default> protected $batchValidate ]
+    Property [ <default> protected $beforeActionList ]
+  }
+
+  - Methods [41] {
+    Method [ <user, overwrites app\test\controller\Base, ctor> public method __construct ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 6 - 13
+    }
+
+    Method [ <user, overwrites app\test\controller\Base, prototype app\test\controller\Base> public method index ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 15 - 88
+    }
+
+    Method [ <user> public method test ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 89 - 105
+    }
+
+    Method [ <user> public method websocket ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 106 - 108
+    }
+
+    Method [ <user> public method getsocket ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 109 - 111
+    }
+
+    Method [ <user> public method style_1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 112 - 114
+    }
+
+    Method [ <user> public method style_2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 115 - 117
+    }
+
+    Method [ <user> public method style_3 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 118 - 120
+    }
+
+    Method [ <user> public method style_4 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 121 - 123
+    }
+
+    Method [ <user> public method infomation ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 124 - 267
+    }
+
+    /**
+         * 市内交通信息
+         */
+    Method [ <user> public method getMapInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 271 - 283
+    }
+
+    /**
+         * 交通数据解析，获取道路评价
+         * @param type $arr 多条数据数组
+         * @return string 交通评级汇总数组
+         */
+    Method [ <user> public method getMapEvalute ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 289 - 300
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 道路状况
+         * @param type $arr
+         */
+    Method [ <user> public method getRoadDes ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 306 - 318
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 获得直线图道路拥堵数据
+         * @return type
+         */
+    Method [ <user> public method getRoadChart ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 324 - 375
+    }
+
+    /**
+         * 一维转二维
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method makeDimension ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 381 - 393
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 计算拥堵指数
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method getBlocked ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 400 - 415
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    /**
+         * 获取全歼参数起点
+         * @param type $hour
+         * @return int
+         */
+    Method [ <user> public method change24 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 422 - 434
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $hour ]
+      }
+    }
+
+    /**
+         * 折线图拥堵指标转换后输出数据
+         * @param type $arr
+         * @return type
+         */
+    Method [ <user> public method changeBlock ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 441 - 451
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $arr ]
+      }
+    }
+
+    Method [ <user> public method weather ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 454 - 459
+    }
+
+    Method [ <user> public method explodeInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 462 - 476
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $info ]
+      }
+    }
+
+    Method [ <user> public method set_post ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 478 - 485
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $url ]
+      }
+    }
+
+    Method [ <user> public method get_airInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 499 - 505
+    }
+
+    Method [ <user> public method get_trainInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 508 - 514
+    }
+
+    Method [ <user> public method header1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 518 - 525
+    }
+
+    Method [ <user> public method header2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 527 - 534
+    }
+
+    Method [ <user> public method map ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 536 - 548
+    }
+
+    Method [ <user> public method lists ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Index.php 550 - 557
+    }
+
+    /**
+     * [index 网络测试]
+     */
+    Method [ <user, inherits app\test\controller\Base> public method verify_url ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Base.php 20 - 29
+    }
+
+    Method [ <user, inherits think\Controller> protected method _initialize ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 66 - 68
+    }
+
+    /**
+     * 前置操作
+     * @access protected
+     * @param string $method  前置操作方法名
+     * @param array  $options 调用参数 ['only'=>[...]] 或者['except'=>[...]]
+     */
+    Method [ <user, inherits think\Controller> protected method beforeAction ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 76 - 95
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $method ]
+        Parameter #1 [ <optional> $options = Array ]
+      }
+    }
+
+    /**
+     * 加载模板输出
+     * @access protected
+     * @param string $template 模板文件名
+     * @param array  $vars     模板输出变量
+     * @param array  $replace  模板替换
+     * @param array  $config   模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method fetch ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 106 - 109
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $template = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 渲染内容输出
+     * @access protected
+     * @param string $content 模板内容
+     * @param array  $vars    模板输出变量
+     * @param array  $replace 替换内容
+     * @param array  $config  模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method display ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 120 - 123
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $content = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 模板变量赋值
+     * @access protected
+     * @param mixed $name  要显示的模板变量
+     * @param mixed $value 变量的值
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method assign ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 132 - 135
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $name ]
+        Parameter #1 [ <optional> $value = '' ]
+      }
+    }
+
+    /**
+     * 初始化模板引擎
+     * @access protected
+     * @param array|string $engine 引擎参数
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method engine ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 143 - 146
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $engine ]
+      }
+    }
+
+    /**
+     * 设置验证失败后是否抛出异常
+     * @access protected
+     * @param bool $fail 是否抛出异常
+     * @return $this
+     */
+    Method [ <user, inherits think\Controller> protected method validateFailException ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 154 - 158
+
+      - Parameters [1] {
+        Parameter #0 [ <optional> $fail = true ]
+      }
+    }
+
+    /**
+     * 验证数据
+     * @access protected
+     * @param array        $data     数据
+     * @param string|array $validate 验证器名或者验证规则数组
+     * @param array        $message  提示信息
+     * @param bool         $batch    是否批量验证
+     * @param mixed        $callback 回调方法（闭包）
+     * @return array|string|true
+     * @throws ValidateException
+     */
+    Method [ <user, inherits think\Controller> protected method validate ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 171 - 208
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <required> $validate ]
+        Parameter #2 [ <optional> $message = Array ]
+        Parameter #3 [ <optional> $batch = false ]
+        Parameter #4 [ <optional> $callback = NULL ]
+      }
+    }
+
+    /**
+     * 操作成功跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method success ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 37 - 64
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 操作错误跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method error ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 76 - 103
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 返回封装后的API数据到客户端
+     * @access protected
+     * @param mixed     $data 要返回的数据
+     * @param integer   $code 返回的code
+     * @param mixed     $msg 提示信息
+     * @param string    $type 返回数据格式
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method result ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 115 - 126
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <optional> $code = 0 ]
+        Parameter #2 [ <optional> $msg = '' ]
+        Parameter #3 [ <optional> $type = '' ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * URL重定向
+     * @access protected
+     * @param string         $url 跳转的URL表达式
+     * @param array|integer  $params 其它URL参数
+     * @param integer        $code http code
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method redirect ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 136 - 145
+
+      - Parameters [3] {
+        Parameter #0 [ <required> $url ]
+        Parameter #1 [ <optional> $params = Array ]
+        Parameter #2 [ <optional> $code = 302 ]
+      }
+    }
+
+    /**
+     * 获取当前的response 输出类型
+     * @access protected
+     * @return string
+     */
+    Method [ <user, inherits think\Controller> protected method getResponseType ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 152 - 156
+    }
+  }
+}
+
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] Method [ <user> public method infomation ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Index.php 124 - 267
+}
+
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\wamp\www\Demo\public/../application/test\view\index\infomation.html [ array (
+  0 => 'almanceInfo',
+  1 => 'variable',
+  2 => 'now',
+  3 => 'sha',
+  4 => 'weather',
+  5 => 'topcity',
+  6 => 'air_info',
+  7 => 'statis_air',
+  8 => 'statis_airjson',
+  9 => 'statis_train',
+  10 => 'statis_trainjson',
+  11 => 'eveArr',
+  12 => 'roadList',
+  13 => 'roadChart',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001868s ] mysql:dbname=langhong;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `t_road_evalute` [ RunTime:0.001665s ]
+[ sql ] [ SQL ] SELECT * FROM `t_road_evalute` ORDER BY c_month  [ RunTime:0.000927s ]
+
+---------------------------------------------------------------
+[ 2017-10-30T09:58:00+08:00 ] ::1 ::1 POST /Demo/public/index.php/test/test/get_trainInfo
+[ log ] localhost/Demo/public/index.php/test/test/get_trainInfo [运行时间：0.268930s][吞吐率：3.72req/s] [内存消耗：1,452.94kb] [文件加载：35]
+[ info ] [ LANG ] D:\wamp\www\Demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'test',
+    1 => 'test',
+    2 => 'get_trainInfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/plain, */*; q=0.01',
+  'origin' => 'http://localhost',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+  'referer' => 'http://localhost/Demo/public/index.php/test/index/infomation',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh,zh-CN;q=0.8',
+  'cookie' => 'isFromSha=1; change_from=1; changetype=road; PHPSESSID=c6ghimv0buhdjt9j2m70focti0; vedio_to_list=1; changetype=air; isFromSha=1',
+  'content-length' => '0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] Class [ <user> class app\test\controller\Test extends app\test\controller\Base ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Test.php 5-260
+
+  - Constants [0] {
+  }
+
+  - Static properties [0] {
+  }
+
+  - Static methods [0] {
+  }
+
+  - Properties [8] {
+    Property [ <default> private $language ]
+    Property [ <default> private $Air ]
+    Property [ <default> private $isFromSha ]
+    Property [ <default> protected $view ]
+    Property [ <default> protected $request ]
+    Property [ <default> protected $failException ]
+    Property [ <default> protected $batchValidate ]
+    Property [ <default> protected $beforeActionList ]
+  }
+
+  - Methods [26] {
+    Method [ <user, overwrites app\test\controller\Base, ctor> public method __construct ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 10 - 16
+    }
+
+    Method [ <user, overwrites app\test\controller\Base, prototype app\test\controller\Base> public method index ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 19 - 92
+    }
+
+    Method [ <user> public method weather ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 95 - 100
+    }
+
+    Method [ <user> public method get_airInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 103 - 109
+    }
+
+    Method [ <user> public method get_trainInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 110 - 116
+    }
+
+    Method [ <user> public method statis_air ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 119 - 122
+    }
+
+    Method [ <user> public method statis_train ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 124 - 127
+    }
+
+    Method [ <user> public method header1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 149 - 157
+    }
+
+    Method [ <user> public method header2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 159 - 168
+    }
+
+    Method [ <user> public method map ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 170 - 182
+    }
+
+    Method [ <user> public method lists ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 184 - 191
+    }
+
+    Method [ <user> public method infomation ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 193 - 259
+    }
+
+    /**
+     * [index 网络测试]
+     */
+    Method [ <user, inherits app\test\controller\Base> public method verify_url ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Base.php 20 - 29
+    }
+
+    Method [ <user, inherits think\Controller> protected method _initialize ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 66 - 68
+    }
+
+    /**
+     * 前置操作
+     * @access protected
+     * @param string $method  前置操作方法名
+     * @param array  $options 调用参数 ['only'=>[...]] 或者['except'=>[...]]
+     */
+    Method [ <user, inherits think\Controller> protected method beforeAction ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 76 - 95
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $method ]
+        Parameter #1 [ <optional> $options = Array ]
+      }
+    }
+
+    /**
+     * 加载模板输出
+     * @access protected
+     * @param string $template 模板文件名
+     * @param array  $vars     模板输出变量
+     * @param array  $replace  模板替换
+     * @param array  $config   模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method fetch ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 106 - 109
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $template = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 渲染内容输出
+     * @access protected
+     * @param string $content 模板内容
+     * @param array  $vars    模板输出变量
+     * @param array  $replace 替换内容
+     * @param array  $config  模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method display ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 120 - 123
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $content = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 模板变量赋值
+     * @access protected
+     * @param mixed $name  要显示的模板变量
+     * @param mixed $value 变量的值
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method assign ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 132 - 135
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $name ]
+        Parameter #1 [ <optional> $value = '' ]
+      }
+    }
+
+    /**
+     * 初始化模板引擎
+     * @access protected
+     * @param array|string $engine 引擎参数
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method engine ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 143 - 146
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $engine ]
+      }
+    }
+
+    /**
+     * 设置验证失败后是否抛出异常
+     * @access protected
+     * @param bool $fail 是否抛出异常
+     * @return $this
+     */
+    Method [ <user, inherits think\Controller> protected method validateFailException ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 154 - 158
+
+      - Parameters [1] {
+        Parameter #0 [ <optional> $fail = true ]
+      }
+    }
+
+    /**
+     * 验证数据
+     * @access protected
+     * @param array        $data     数据
+     * @param string|array $validate 验证器名或者验证规则数组
+     * @param array        $message  提示信息
+     * @param bool         $batch    是否批量验证
+     * @param mixed        $callback 回调方法（闭包）
+     * @return array|string|true
+     * @throws ValidateException
+     */
+    Method [ <user, inherits think\Controller> protected method validate ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 171 - 208
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <required> $validate ]
+        Parameter #2 [ <optional> $message = Array ]
+        Parameter #3 [ <optional> $batch = false ]
+        Parameter #4 [ <optional> $callback = NULL ]
+      }
+    }
+
+    /**
+     * 操作成功跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method success ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 37 - 64
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 操作错误跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method error ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 76 - 103
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 返回封装后的API数据到客户端
+     * @access protected
+     * @param mixed     $data 要返回的数据
+     * @param integer   $code 返回的code
+     * @param mixed     $msg 提示信息
+     * @param string    $type 返回数据格式
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method result ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 115 - 126
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <optional> $code = 0 ]
+        Parameter #2 [ <optional> $msg = '' ]
+        Parameter #3 [ <optional> $type = '' ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * URL重定向
+     * @access protected
+     * @param string         $url 跳转的URL表达式
+     * @param array|integer  $params 其它URL参数
+     * @param integer        $code http code
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method redirect ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 136 - 145
+
+      - Parameters [3] {
+        Parameter #0 [ <required> $url ]
+        Parameter #1 [ <optional> $params = Array ]
+        Parameter #2 [ <optional> $code = 302 ]
+      }
+    }
+
+    /**
+     * 获取当前的response 输出类型
+     * @access protected
+     * @return string
+     */
+    Method [ <user, inherits think\Controller> protected method getResponseType ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 152 - 156
+    }
+  }
+}
+
+[ info ] [ RUN ] Method [ <user> public method get_trainInfo ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Test.php 110 - 116
+}
+
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2017-10-30T09:58:00+08:00 ] ::1 ::1 POST /Demo/public/index.php/test/test/statis_air
+[ log ] localhost/Demo/public/index.php/test/test/statis_air [运行时间：0.270138s][吞吐率：3.70req/s] [内存消耗：1,452.83kb] [文件加载：35]
+[ info ] [ LANG ] D:\wamp\www\Demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'test',
+    1 => 'test',
+    2 => 'statis_air',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/plain, */*; q=0.01',
+  'origin' => 'http://localhost',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+  'referer' => 'http://localhost/Demo/public/index.php/test/index/infomation',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh,zh-CN;q=0.8',
+  'cookie' => 'isFromSha=1; change_from=1; changetype=road; PHPSESSID=c6ghimv0buhdjt9j2m70focti0; vedio_to_list=1; changetype=air; isFromSha=1',
+  'content-length' => '0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] Class [ <user> class app\test\controller\Test extends app\test\controller\Base ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Test.php 5-260
+
+  - Constants [0] {
+  }
+
+  - Static properties [0] {
+  }
+
+  - Static methods [0] {
+  }
+
+  - Properties [8] {
+    Property [ <default> private $language ]
+    Property [ <default> private $Air ]
+    Property [ <default> private $isFromSha ]
+    Property [ <default> protected $view ]
+    Property [ <default> protected $request ]
+    Property [ <default> protected $failException ]
+    Property [ <default> protected $batchValidate ]
+    Property [ <default> protected $beforeActionList ]
+  }
+
+  - Methods [26] {
+    Method [ <user, overwrites app\test\controller\Base, ctor> public method __construct ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 10 - 16
+    }
+
+    Method [ <user, overwrites app\test\controller\Base, prototype app\test\controller\Base> public method index ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 19 - 92
+    }
+
+    Method [ <user> public method weather ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 95 - 100
+    }
+
+    Method [ <user> public method get_airInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 103 - 109
+    }
+
+    Method [ <user> public method get_trainInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 110 - 116
+    }
+
+    Method [ <user> public method statis_air ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 119 - 122
+    }
+
+    Method [ <user> public method statis_train ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 124 - 127
+    }
+
+    Method [ <user> public method header1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 149 - 157
+    }
+
+    Method [ <user> public method header2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 159 - 168
+    }
+
+    Method [ <user> public method map ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 170 - 182
+    }
+
+    Method [ <user> public method lists ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 184 - 191
+    }
+
+    Method [ <user> public method infomation ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 193 - 259
+    }
+
+    /**
+     * [index 网络测试]
+     */
+    Method [ <user, inherits app\test\controller\Base> public method verify_url ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Base.php 20 - 29
+    }
+
+    Method [ <user, inherits think\Controller> protected method _initialize ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 66 - 68
+    }
+
+    /**
+     * 前置操作
+     * @access protected
+     * @param string $method  前置操作方法名
+     * @param array  $options 调用参数 ['only'=>[...]] 或者['except'=>[...]]
+     */
+    Method [ <user, inherits think\Controller> protected method beforeAction ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 76 - 95
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $method ]
+        Parameter #1 [ <optional> $options = Array ]
+      }
+    }
+
+    /**
+     * 加载模板输出
+     * @access protected
+     * @param string $template 模板文件名
+     * @param array  $vars     模板输出变量
+     * @param array  $replace  模板替换
+     * @param array  $config   模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method fetch ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 106 - 109
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $template = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 渲染内容输出
+     * @access protected
+     * @param string $content 模板内容
+     * @param array  $vars    模板输出变量
+     * @param array  $replace 替换内容
+     * @param array  $config  模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method display ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 120 - 123
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $content = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 模板变量赋值
+     * @access protected
+     * @param mixed $name  要显示的模板变量
+     * @param mixed $value 变量的值
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method assign ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 132 - 135
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $name ]
+        Parameter #1 [ <optional> $value = '' ]
+      }
+    }
+
+    /**
+     * 初始化模板引擎
+     * @access protected
+     * @param array|string $engine 引擎参数
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method engine ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 143 - 146
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $engine ]
+      }
+    }
+
+    /**
+     * 设置验证失败后是否抛出异常
+     * @access protected
+     * @param bool $fail 是否抛出异常
+     * @return $this
+     */
+    Method [ <user, inherits think\Controller> protected method validateFailException ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 154 - 158
+
+      - Parameters [1] {
+        Parameter #0 [ <optional> $fail = true ]
+      }
+    }
+
+    /**
+     * 验证数据
+     * @access protected
+     * @param array        $data     数据
+     * @param string|array $validate 验证器名或者验证规则数组
+     * @param array        $message  提示信息
+     * @param bool         $batch    是否批量验证
+     * @param mixed        $callback 回调方法（闭包）
+     * @return array|string|true
+     * @throws ValidateException
+     */
+    Method [ <user, inherits think\Controller> protected method validate ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 171 - 208
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <required> $validate ]
+        Parameter #2 [ <optional> $message = Array ]
+        Parameter #3 [ <optional> $batch = false ]
+        Parameter #4 [ <optional> $callback = NULL ]
+      }
+    }
+
+    /**
+     * 操作成功跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method success ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 37 - 64
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 操作错误跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method error ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 76 - 103
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 返回封装后的API数据到客户端
+     * @access protected
+     * @param mixed     $data 要返回的数据
+     * @param integer   $code 返回的code
+     * @param mixed     $msg 提示信息
+     * @param string    $type 返回数据格式
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method result ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 115 - 126
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <optional> $code = 0 ]
+        Parameter #2 [ <optional> $msg = '' ]
+        Parameter #3 [ <optional> $type = '' ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * URL重定向
+     * @access protected
+     * @param string         $url 跳转的URL表达式
+     * @param array|integer  $params 其它URL参数
+     * @param integer        $code http code
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method redirect ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 136 - 145
+
+      - Parameters [3] {
+        Parameter #0 [ <required> $url ]
+        Parameter #1 [ <optional> $params = Array ]
+        Parameter #2 [ <optional> $code = 302 ]
+      }
+    }
+
+    /**
+     * 获取当前的response 输出类型
+     * @access protected
+     * @return string
+     */
+    Method [ <user, inherits think\Controller> protected method getResponseType ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 152 - 156
+    }
+  }
+}
+
+[ info ] [ RUN ] Method [ <user> public method statis_air ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Test.php 119 - 122
+}
+
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2017-10-30T09:58:00+08:00 ] ::1 ::1 POST /Demo/public/index.php/test/test/statis_train
+[ log ] localhost/Demo/public/index.php/test/test/statis_train [运行时间：0.276270s][吞吐率：3.62req/s] [内存消耗：1,452.77kb] [文件加载：35]
+[ info ] [ LANG ] D:\wamp\www\Demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'test',
+    1 => 'test',
+    2 => 'statis_train',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/plain, */*; q=0.01',
+  'origin' => 'http://localhost',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+  'referer' => 'http://localhost/Demo/public/index.php/test/index/infomation',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh,zh-CN;q=0.8',
+  'cookie' => 'isFromSha=1; change_from=1; changetype=road; PHPSESSID=c6ghimv0buhdjt9j2m70focti0; vedio_to_list=1; changetype=air; isFromSha=1',
+  'content-length' => '0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] Class [ <user> class app\test\controller\Test extends app\test\controller\Base ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Test.php 5-260
+
+  - Constants [0] {
+  }
+
+  - Static properties [0] {
+  }
+
+  - Static methods [0] {
+  }
+
+  - Properties [8] {
+    Property [ <default> private $language ]
+    Property [ <default> private $Air ]
+    Property [ <default> private $isFromSha ]
+    Property [ <default> protected $view ]
+    Property [ <default> protected $request ]
+    Property [ <default> protected $failException ]
+    Property [ <default> protected $batchValidate ]
+    Property [ <default> protected $beforeActionList ]
+  }
+
+  - Methods [26] {
+    Method [ <user, overwrites app\test\controller\Base, ctor> public method __construct ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 10 - 16
+    }
+
+    Method [ <user, overwrites app\test\controller\Base, prototype app\test\controller\Base> public method index ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 19 - 92
+    }
+
+    Method [ <user> public method weather ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 95 - 100
+    }
+
+    Method [ <user> public method get_airInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 103 - 109
+    }
+
+    Method [ <user> public method get_trainInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 110 - 116
+    }
+
+    Method [ <user> public method statis_air ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 119 - 122
+    }
+
+    Method [ <user> public method statis_train ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 124 - 127
+    }
+
+    Method [ <user> public method header1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 149 - 157
+    }
+
+    Method [ <user> public method header2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 159 - 168
+    }
+
+    Method [ <user> public method map ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 170 - 182
+    }
+
+    Method [ <user> public method lists ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 184 - 191
+    }
+
+    Method [ <user> public method infomation ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 193 - 259
+    }
+
+    /**
+     * [index 网络测试]
+     */
+    Method [ <user, inherits app\test\controller\Base> public method verify_url ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Base.php 20 - 29
+    }
+
+    Method [ <user, inherits think\Controller> protected method _initialize ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 66 - 68
+    }
+
+    /**
+     * 前置操作
+     * @access protected
+     * @param string $method  前置操作方法名
+     * @param array  $options 调用参数 ['only'=>[...]] 或者['except'=>[...]]
+     */
+    Method [ <user, inherits think\Controller> protected method beforeAction ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 76 - 95
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $method ]
+        Parameter #1 [ <optional> $options = Array ]
+      }
+    }
+
+    /**
+     * 加载模板输出
+     * @access protected
+     * @param string $template 模板文件名
+     * @param array  $vars     模板输出变量
+     * @param array  $replace  模板替换
+     * @param array  $config   模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method fetch ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 106 - 109
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $template = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 渲染内容输出
+     * @access protected
+     * @param string $content 模板内容
+     * @param array  $vars    模板输出变量
+     * @param array  $replace 替换内容
+     * @param array  $config  模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method display ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 120 - 123
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $content = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 模板变量赋值
+     * @access protected
+     * @param mixed $name  要显示的模板变量
+     * @param mixed $value 变量的值
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method assign ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 132 - 135
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $name ]
+        Parameter #1 [ <optional> $value = '' ]
+      }
+    }
+
+    /**
+     * 初始化模板引擎
+     * @access protected
+     * @param array|string $engine 引擎参数
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method engine ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 143 - 146
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $engine ]
+      }
+    }
+
+    /**
+     * 设置验证失败后是否抛出异常
+     * @access protected
+     * @param bool $fail 是否抛出异常
+     * @return $this
+     */
+    Method [ <user, inherits think\Controller> protected method validateFailException ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 154 - 158
+
+      - Parameters [1] {
+        Parameter #0 [ <optional> $fail = true ]
+      }
+    }
+
+    /**
+     * 验证数据
+     * @access protected
+     * @param array        $data     数据
+     * @param string|array $validate 验证器名或者验证规则数组
+     * @param array        $message  提示信息
+     * @param bool         $batch    是否批量验证
+     * @param mixed        $callback 回调方法（闭包）
+     * @return array|string|true
+     * @throws ValidateException
+     */
+    Method [ <user, inherits think\Controller> protected method validate ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 171 - 208
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <required> $validate ]
+        Parameter #2 [ <optional> $message = Array ]
+        Parameter #3 [ <optional> $batch = false ]
+        Parameter #4 [ <optional> $callback = NULL ]
+      }
+    }
+
+    /**
+     * 操作成功跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method success ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 37 - 64
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 操作错误跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method error ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 76 - 103
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 返回封装后的API数据到客户端
+     * @access protected
+     * @param mixed     $data 要返回的数据
+     * @param integer   $code 返回的code
+     * @param mixed     $msg 提示信息
+     * @param string    $type 返回数据格式
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method result ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 115 - 126
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <optional> $code = 0 ]
+        Parameter #2 [ <optional> $msg = '' ]
+        Parameter #3 [ <optional> $type = '' ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * URL重定向
+     * @access protected
+     * @param string         $url 跳转的URL表达式
+     * @param array|integer  $params 其它URL参数
+     * @param integer        $code http code
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method redirect ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 136 - 145
+
+      - Parameters [3] {
+        Parameter #0 [ <required> $url ]
+        Parameter #1 [ <optional> $params = Array ]
+        Parameter #2 [ <optional> $code = 302 ]
+      }
+    }
+
+    /**
+     * 获取当前的response 输出类型
+     * @access protected
+     * @return string
+     */
+    Method [ <user, inherits think\Controller> protected method getResponseType ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 152 - 156
+    }
+  }
+}
+
+[ info ] [ RUN ] Method [ <user> public method statis_train ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Test.php 124 - 127
+}
+
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2017-10-30T09:58:00+08:00 ] ::1 ::1 POST /Demo/public/index.php/test/test/get_airInfo
+[ log ] localhost/Demo/public/index.php/test/test/get_airInfo [运行时间：0.299162s][吞吐率：3.34req/s] [内存消耗：1,452.88kb] [文件加载：35]
+[ info ] [ LANG ] D:\wamp\www\Demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'test',
+    1 => 'test',
+    2 => 'get_airInfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/plain, */*; q=0.01',
+  'origin' => 'http://localhost',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
+  'referer' => 'http://localhost/Demo/public/index.php/test/index/infomation',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh,zh-CN;q=0.8',
+  'cookie' => 'isFromSha=1; change_from=1; changetype=road; PHPSESSID=c6ghimv0buhdjt9j2m70focti0; vedio_to_list=1; changetype=air; isFromSha=1',
+  'content-length' => '0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] Class [ <user> class app\test\controller\Test extends app\test\controller\Base ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Test.php 5-260
+
+  - Constants [0] {
+  }
+
+  - Static properties [0] {
+  }
+
+  - Static methods [0] {
+  }
+
+  - Properties [8] {
+    Property [ <default> private $language ]
+    Property [ <default> private $Air ]
+    Property [ <default> private $isFromSha ]
+    Property [ <default> protected $view ]
+    Property [ <default> protected $request ]
+    Property [ <default> protected $failException ]
+    Property [ <default> protected $batchValidate ]
+    Property [ <default> protected $beforeActionList ]
+  }
+
+  - Methods [26] {
+    Method [ <user, overwrites app\test\controller\Base, ctor> public method __construct ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 10 - 16
+    }
+
+    Method [ <user, overwrites app\test\controller\Base, prototype app\test\controller\Base> public method index ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 19 - 92
+    }
+
+    Method [ <user> public method weather ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 95 - 100
+    }
+
+    Method [ <user> public method get_airInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 103 - 109
+    }
+
+    Method [ <user> public method get_trainInfo ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 110 - 116
+    }
+
+    Method [ <user> public method statis_air ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 119 - 122
+    }
+
+    Method [ <user> public method statis_train ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 124 - 127
+    }
+
+    Method [ <user> public method header1 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 149 - 157
+    }
+
+    Method [ <user> public method header2 ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 159 - 168
+    }
+
+    Method [ <user> public method map ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 170 - 182
+    }
+
+    Method [ <user> public method lists ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 184 - 191
+    }
+
+    Method [ <user> public method infomation ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Test.php 193 - 259
+    }
+
+    /**
+     * [index 网络测试]
+     */
+    Method [ <user, inherits app\test\controller\Base> public method verify_url ] {
+      @@ D:\wamp\www\Demo\application\test\controller\Base.php 20 - 29
+    }
+
+    Method [ <user, inherits think\Controller> protected method _initialize ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 66 - 68
+    }
+
+    /**
+     * 前置操作
+     * @access protected
+     * @param string $method  前置操作方法名
+     * @param array  $options 调用参数 ['only'=>[...]] 或者['except'=>[...]]
+     */
+    Method [ <user, inherits think\Controller> protected method beforeAction ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 76 - 95
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $method ]
+        Parameter #1 [ <optional> $options = Array ]
+      }
+    }
+
+    /**
+     * 加载模板输出
+     * @access protected
+     * @param string $template 模板文件名
+     * @param array  $vars     模板输出变量
+     * @param array  $replace  模板替换
+     * @param array  $config   模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method fetch ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 106 - 109
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $template = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 渲染内容输出
+     * @access protected
+     * @param string $content 模板内容
+     * @param array  $vars    模板输出变量
+     * @param array  $replace 替换内容
+     * @param array  $config  模板参数
+     * @return mixed
+     */
+    Method [ <user, inherits think\Controller> protected method display ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 120 - 123
+
+      - Parameters [4] {
+        Parameter #0 [ <optional> $content = '' ]
+        Parameter #1 [ <optional> $vars = Array ]
+        Parameter #2 [ <optional> $replace = Array ]
+        Parameter #3 [ <optional> $config = Array ]
+      }
+    }
+
+    /**
+     * 模板变量赋值
+     * @access protected
+     * @param mixed $name  要显示的模板变量
+     * @param mixed $value 变量的值
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method assign ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 132 - 135
+
+      - Parameters [2] {
+        Parameter #0 [ <required> $name ]
+        Parameter #1 [ <optional> $value = '' ]
+      }
+    }
+
+    /**
+     * 初始化模板引擎
+     * @access protected
+     * @param array|string $engine 引擎参数
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method engine ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 143 - 146
+
+      - Parameters [1] {
+        Parameter #0 [ <required> $engine ]
+      }
+    }
+
+    /**
+     * 设置验证失败后是否抛出异常
+     * @access protected
+     * @param bool $fail 是否抛出异常
+     * @return $this
+     */
+    Method [ <user, inherits think\Controller> protected method validateFailException ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 154 - 158
+
+      - Parameters [1] {
+        Parameter #0 [ <optional> $fail = true ]
+      }
+    }
+
+    /**
+     * 验证数据
+     * @access protected
+     * @param array        $data     数据
+     * @param string|array $validate 验证器名或者验证规则数组
+     * @param array        $message  提示信息
+     * @param bool         $batch    是否批量验证
+     * @param mixed        $callback 回调方法（闭包）
+     * @return array|string|true
+     * @throws ValidateException
+     */
+    Method [ <user, inherits think\Controller> protected method validate ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\think\Controller.php 171 - 208
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <required> $validate ]
+        Parameter #2 [ <optional> $message = Array ]
+        Parameter #3 [ <optional> $batch = false ]
+        Parameter #4 [ <optional> $callback = NULL ]
+      }
+    }
+
+    /**
+     * 操作成功跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method success ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 37 - 64
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 操作错误跳转的快捷方法
+     * @access protected
+     * @param mixed     $msg 提示信息
+     * @param string    $url 跳转的URL地址
+     * @param mixed     $data 返回的数据
+     * @param integer   $wait 跳转等待时间
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method error ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 76 - 103
+
+      - Parameters [5] {
+        Parameter #0 [ <optional> $msg = '' ]
+        Parameter #1 [ <optional> $url = NULL ]
+        Parameter #2 [ <optional> $data = '' ]
+        Parameter #3 [ <optional> $wait = 3 ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * 返回封装后的API数据到客户端
+     * @access protected
+     * @param mixed     $data 要返回的数据
+     * @param integer   $code 返回的code
+     * @param mixed     $msg 提示信息
+     * @param string    $type 返回数据格式
+     * @param array     $header 发送的Header信息
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method result ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 115 - 126
+
+      - Parameters [5] {
+        Parameter #0 [ <required> $data ]
+        Parameter #1 [ <optional> $code = 0 ]
+        Parameter #2 [ <optional> $msg = '' ]
+        Parameter #3 [ <optional> $type = '' ]
+        Parameter #4 [ <optional> array $header = Array ]
+      }
+    }
+
+    /**
+     * URL重定向
+     * @access protected
+     * @param string         $url 跳转的URL表达式
+     * @param array|integer  $params 其它URL参数
+     * @param integer        $code http code
+     * @return void
+     */
+    Method [ <user, inherits think\Controller> protected method redirect ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 136 - 145
+
+      - Parameters [3] {
+        Parameter #0 [ <required> $url ]
+        Parameter #1 [ <optional> $params = Array ]
+        Parameter #2 [ <optional> $code = 302 ]
+      }
+    }
+
+    /**
+     * 获取当前的response 输出类型
+     * @access protected
+     * @return string
+     */
+    Method [ <user, inherits think\Controller> protected method getResponseType ] {
+      @@ D:\wamp\www\Demo\thinkphp\library\traits\controller\Jump.php 152 - 156
+    }
+  }
+}
+
+[ info ] [ RUN ] Method [ <user> public method get_airInfo ] {
+  @@ D:\wamp\www\Demo\application\test\controller\Test.php 103 - 109
+}
+
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------

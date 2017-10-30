@@ -21,6 +21,7 @@ class Air
     $url = "http://10.210.11.11/hp/public/index.php/Api/Air/Statis";
     $result = $this->send->curl_request2($url,$param,$this->header);
 
+
     return self::pares($result['result']);
   }
 
@@ -34,17 +35,25 @@ class Air
   	'3'=>['name'=>'取消航班数量','value'=>'0']
   	];//统计图
 
+    $new = [];
   	foreach ($arr as $key => $value) 
   	{
-  		if(!isset($value['REMARK'])){ continue;}
+      $isFromSha = '';
+  		if(!isset($value['REMARK'])||!$value['FROMCITY']||!$value['TOCITY']){ continue;}
+      if ($value['FROMCITY']['zh_cn'] == '上海虹桥'||$value['FROMCITY']['en']=='Shanghai Hongqiao') {
+        $isFromSha = '1';
+      }elseif ($value['TOCITY']['zh_cn']=='上海虹桥'||$value['TOCITY']['en']=='Shanghai Hongqiao') {
+        $isFromSha = '0';
+      }
+      
   		switch ($value['REMARK']) 
   		{
         //正常
   			case 'REG':
-              if ($value['FROMCITY']['zh_cn']=='上海虹桥'||$value['FROMCITY']['en']=='Shanghai Hongqiao') 
+              if ($isFromSha =='1') 
               {
                 $json_info['0']['value'] += $value['COUNTS'];
-              }elseif ($value['TOCITY']['zh_cn']=='上海虹桥'||$value['TOCITY']['en']=='Shanghai Hongqiao') {
+              }elseif ($isFromSha=='0') {
                 $json_info['1']['value'] += $value['COUNTS'];
               }
   			
@@ -65,9 +74,11 @@ class Air
   				continue;
   				break;
   		}
+      $new[$isFromSha] = $json_info;
   	}
   	ksort($json_info);
   	$json = array_values($json_info);//js统计图数据
+
   	return ['info'=>$json_info,'json'=>$json];
   }
 

@@ -26,7 +26,6 @@ class Test extends Base
         $info = $this->air->getInfo();
         $air_info = isset($info['info'][$isFromSha])?$info['info'][$isFromSha]:'';
         
-
          //态势数据
         $topcity = isset($info['topcity'][$isFromSha])?$info['topcity'][$isFromSha]:'';
 

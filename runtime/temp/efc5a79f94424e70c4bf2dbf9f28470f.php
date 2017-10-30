@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:13:{s:70:"D:\wamp\www\Demo\public/../application/test\view\index\infomation.html";i:1509328601;s:42:"../application/test/view/test/header1.html";i:1508736253;s:42:"../application/test/view/test/header2.html";i:1508735922;s:72:"D:\wamp\www\Demo\public/../application/test\view\.\public\road_info.html";i:1508839784;s:71:"D:\wamp\www\Demo\public/../application/test\view\.\public\road_map.html";i:1508295429;s:38:"../application/test/view/test/map.html";i:1508492177;s:74:"D:\wamp\www\Demo\public/../application/test\view\.\public\air_scoller.html";i:1508489216;s:75:"D:\wamp\www\Demo\public/../application/test\view\.\public\weather_time.html";i:1508926168;s:69:"D:\wamp\www\Demo\public/../application/test\view\.\public\market.html";i:1508326758;s:72:"D:\wamp\www\Demo\public/../application/test\view\.\public\road_list.html";i:1508899945;s:40:"../application/test/view/test/lists.html";i:1508909949;s:68:"D:\wamp\www\Demo\public/../application/test\view\.\public\video.html";i:1508307979;s:66:"D:\wamp\www\Demo\public/../application/test\view\.\public\img.html";i:1508391220;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,33 +27,387 @@
         <div class="sy_left">
              <div class="sy_left_header">
                  <div class="sy_col_4 sy_full">
-                     {include file="../application/test/view/test/header1.html" /}
+                     <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>新界面</title>
+	<script src="__PUBLIC__/js/jquery-1.8.0.js"></script>
+</head>
+<style type="text/css">
+/* 	*{margin: 0;padding:0;font-family: 'microsoft Yahei';font-size: 18px;font-size: 1.2rem;}
+html,body{width: 100%;height: 100%;display: inline-block;background-color: #fffdef;} */
+	header{width: 100%;height: 100%;overflow: hidden;display: inline-block;}
+	
+	hgroup{width: 100%;height: 100%;display: inline-block;float: left;background-color: #d7edb5;border-right: 1px solid white;text-align: center;box-sizing:border-box;}
+	hgroup.current{background-color: #fffdef;}
+	
+	hgroup h1{width: 100%;height:10%;display: inline-block;background-color: #97d334;color: #fff;letter-spacing: 0.2rem;font-size: 1rem;}
+
+	hgroup dl{width: 100%;height: 8%;float: left;display: inline-block;font-size: 1rem;}
+	hgroup dl dt{width: 40%;height: 100%;display: inline-block;float: left;text-align: left;padding-left: 10%;}
+
+    #echarts-pie,#echarts-rose{width: 100%;height: 55%;}
+
+</style>
+<body>
+<header>  
+<hgroup class="current">
+	<h1>航班</h1>
+	<div id="echarts-pie"></div>
+	
+	<?php if(is_array($statis_air) || $statis_air instanceof \think\Collection): $ko = 0; $__LIST__ = $statis_air;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ko % 2 );++$ko;?>
+	<dl><dt><?php echo $vo['name']; ?></dt><dd><?php echo $vo['value']; ?></dd></dl>
+	<?php endforeach; endif; else: echo "" ;endif; ?>
+
+    </hgroup>
+</header>
+<script src="__PUBLIC__/test/js/echarts/echarts.js"></script>
+<script src="__PUBLIC__/test/js/echarts/Statistics-pie.js"></script>
+<script type="text/javascript">
+	/* 参数初始化 */
+	var statis_airjson= {};
+    //统计数据
+	statis_airjson = <?php echo $statis_airjson; ?>;
+
+
+    var myChart1 = echarts.init(document.getElementById('echarts-pie'));
+    myChart1.setOption(getEcharts_pie(statis_airjson));
+</script>
+</body>
+</html>
                  </div>
                  <div class="sy_col_4 sy_full" style="background: #009cda;">
-                     {include file="../application/test/view/test/header2.html" /}
+                     <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>新界面</title>
+	<script src="__PUBLIC__/js/jquery-1.8.0.js"></script>
+
+</head>
+<style type="text/css">
+	*{margin: 0;padding:0;font-family: 'microsoft Yahei';font-size: 18px;font-size: 1rem;}
+	html,body{width: 100%;height: 100%;display: block;background-color: #fffdef;}
+	header{width: 100%;height: 100%;overflow: hidden;}
+	
+	hgroup{width: 100%;height: 100%;display: inline-block;float: left;background-color: #d7edb5;border-right: 1px solid white;text-align: center;box-sizing:border-box;}
+	hgroup.current{background-color: #fffdef;}
+	
+	hgroup h1{width: 100%;height:10%;display: inline-block;background-color: #97d334;color: #fff;letter-spacing: 0.2rem;font-size: 1rem;}
+
+	hgroup dl{width: 100%;height: 8%;float: left;display: inline-block;font-size: 1rem;}
+	hgroup dl dt{width: 40%;height: 100%;display: inline-block;float: left;text-align: left;padding-left: 10%;}
+
+    #echarts-pie,#echarts-rose{width: 100%;height: 55%;}
+</style>
+<body>
+	<header>
+
+		  <hgroup>
+			<h1>火车</h1>
+			<div id="echarts-rose"></div>	
+			<?php if(is_array($statis_train) || $statis_train instanceof \think\Collection): $ko = 0; $__LIST__ = $statis_train;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ko % 2 );++$ko;?>
+			<dl><dt><?php echo $vo['name']; ?></dt><dd><?php echo $vo['value']; ?></dd></dl>
+			<?php endforeach; endif; else: echo "" ;endif; ?>
+
+		    </hgroup>
+	</header>
+
+<script src="__PUBLIC__/test/js/echarts/echarts.js"></script>
+<script src="__PUBLIC__/test/js/echarts/Statistics-pie.js"></script>
+<script type="text/javascript">
+	/* 参数初始化 */
+	var statis_trainjson={};
+
+	statis_trainjson= <?php echo $statis_trainjson; ?>;
+
+    var myChart2 = echarts.init(document.getElementById('echarts-rose'));
+    myChart2.setOption(getEcharts_rose(statis_trainjson));
+</script>
+
+</body>
+</html>
                  </div>
                  <div class="sy_col_4 sy_full">
-                     {include file="./public/road_info" /}
+                     <div class="sy_road_info">
+    <div class="sy_road_info_header" style="height:10%;font-size:18px;font-weight:600;line-height:25px;">
+        道路
+    </div>
+    <div class="sy_road_info_map">
+        <div id="road_info" style="width: 100%;height:100%;text-align: center;"></div>
+        <script type="text/javascript">
+            var roadChart =<?php echo $roadChart; ?>;
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('road_info'));
+
+        // 指定图表的配置项和数据
+        var option = {
+    tooltip: {
+        trigger: 'axis',
+         position: ['50%', '50%']
+    },
+    grid: {
+            bottom: '20',
+            top: '19',
+            left:'20%',
+            right:'20%'
+	},
+    xAxis:  {
+        type: 'category',
+         name:'时间',
+        boundaryGap: false,
+        data: roadChart[0]
+    },
+    yAxis: {
+        type: 'value',
+        name:'拥堵指标',
+        left:'10',
+        nameGap:'5',
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    series: [
+        {
+            name:'拥堵',
+            type:'line',
+            itemStyle:{
+                    normal:{
+                        label:{position: "right",
+                                show: true
+                        }
+                    }
+                },
+            data:roadChart[1]
+        }
+    ]
+};
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    </div>
+    <div class="sy_road_info_info">
+        <table>
+            <tr>
+                <td class="sy_td_left">虹桥商务区</td>
+                <td class="sy_td_right"><?php echo $eveArr[0]; ?></td>
+            </tr>
+            <tr>
+                <td class="sy_td_left">国家会展中心</td>
+                <td><?php echo $eveArr[1]; ?></td>
+            </tr>
+            <tr>
+                <td class="sy_td_left">上海虹桥机场</td>
+                <td><?php echo $eveArr[2]; ?></td>
+            </tr>
+            <tr>
+                <td class="sy_td_left">虹桥火车站</td>
+                <td><?php echo $eveArr[3]; ?></td>
+            </tr>
+        </table>
+    </div>
+</div>
                  </div>
              </div>
             <div class="sy_left_main">
-               {include file="./public/road_map" /}
-               {include file="../application/test/view/test/map.html" /}
+                <div id="container" class="sy_road_map_map"  style=" position: relative;" ></div>
+  <script>
+        var map = new AMap.Map('container', {
+            resizeEnable: true,
+            center: [121.318950,31.194022],
+            zoom: 13
+        });
+        //实时路况图层
+        var trafficLayer = new AMap.TileLayer.Traffic({
+            zIndex: 10
+        });
+        trafficLayer.setMap(map);
+        var isVisible = true;
+        
+        //标记
+//        marker = new AMap.Marker({
+//            position: [121.31296,31.194018],
+//            title: "虹桥商务中心",
+//            map: map
+//        });
+//        marker1 = new AMap.Marker({
+//            position: [121.302151,31.189984],
+//            title: "国家会展中心",
+//            map: map
+//        });
+    </script>
+               <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>新界面</title>
+	<script src="__PUBLIC__/js/jquery-1.8.0.js"></script>
+
+</head>
+<style type="text/css">
+	*{margin: 0;padding:0;font-family: 'microsoft Yahei';font-size: 18px;}
+	html,body{width: 100%;height: 100%;display: block;background-color: #fffdef;}
+	section{width: 100%;height: 100%;background-color: #fffdef;float: left;}
+	#china-map{width: 98%;height: 98%;display: inline-block;float: left;}
+</style>
+<body>
+
+<section>
+   	<div id="china-map" ></div>
+</section>
+
+<script src="__PUBLIC__/test/js/echarts/china.json"></script>
+<script type="text/javascript">
+	/* 参数初始化 */
+	var city={};
+
+    //态势数据
+    city= <?php echo $topcity; ?>; 
+</script>
+<script src="__PUBLIC__/test/js/echarts-2.2.7/echarts.js"></script>
+<script src="__PUBLIC__/test/js/map.js"></script>
+<script type="text/javascript">
+    geoCoord();//加载中国地图
+    china_map(city);
+</script>
+
+
+</body>
+</html>
             </div>
             <div class="sy_left_footer">
-                 {include file="./public/air_scoller" /}
+                 <marquee direction="left" scrollamount="4">
+    <div class="sy_marquee_info sy_font_yellow">
+        CA9856航班延误，请各位旅客合理安排时间！
+    </div>
+</marquee>
             </div>
         </div>
         <div class="sy_right">
             <div class="sy_right_weather">
-                {include file="./public/weather_time" /}
+                <div class="sy_weather">
+    <div class="sy_weather_left">
+        <div class="sy_weather_left">
+             <img src="__PUBLIC__/weather/<?php echo $weather['icon']; ?>">
+            <p><?php echo $weather['tmp_min']; ?>℃</p>
+
+        </div>
+        <div class="sy_weather_right">
+            <p><?php echo $weather['weather']; ?></p>
+            <p><?php echo $weather['tmp_min']; ?>℃ ~ <?php echo $weather['tmp_max']; ?>℃</p>
+            <p>PM2.5 :  <?php echo $weather['pm2_5']; ?>   <?php echo $weather['quality']; ?></p>
+        </div>		
+    </div>
+    <div class="sy_weather_right">
+        <h1 id="time"><!-- <span><?php echo $variable; ?></span> --><?php echo $now; ?></h1>
+        <pre><?php echo $weather['date']; ?></pre>
+        <pre><?php echo $weather['week']; ?></pre>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/test/js/time.js"></script>
+<script type="text/javascript">
+    nowtime();//客户端自动校时
+</script>
             </div>
              <div class="sy_right_market">
-                {include file="./public/market" /}
+                 <div class="sy_market">
+    <?php if(is_array($sha) || $sha instanceof \think\Collection): $i = 0; $__LIST__ = $sha;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+     <div class="sy_market_left">
+        <b><?php echo $vo['name']; ?></b>
+        <?php if($vo['increase'] > 0): ?>
+        <p>最新指数:<span class="sy_red"><?php echo $vo['nowpri']; ?></span></p>
+        <p>指数涨跌:<span class="sy_red"><?php echo $vo['increPer']; ?>%</span></p>
+        <p>涨跌幅度:<span class="sy_red"><?php echo $vo['increase']; ?></span></p>
+         <p>总成交量:<span class="sy_red"><?php echo $vo['dealNum']; ?></span></p>
+        <?php else: ?>
+        <p>最新指数:<span class="sy_green"><?php echo $vo['nowpri']; ?></span></p>
+        <p>指数涨跌:<span class="sy_green"><?php echo $vo['increPer']; ?>%</span></p>
+        <p>涨跌幅度:<span class="sy_green"><?php echo $vo['increase']; ?></span></p>
+         <p>总成交量:<span class="sy_green"><?php echo $vo['dealNum']; ?></span></p>
+        <?php endif; ?>
+    </div>
+   <?php endforeach; endif; else: echo "" ;endif; ?>
+</div>
             </div>
              <div class="sy_right_info">
-                 {include file="./public/road_list" /}
-                 {include file="../application/test/view/test/lists.html" /}
+                 <div class="sy_road_list">
+    <h3>道路交通状态</h3>
+    <table class="sy_road_head" >
+        <tr style="height:10%;background-color:#97d334;">
+            <th class="sy_th_left">道路</th>
+            <th class="sy_th_right" >描述</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <marquee direction="up" scrollamount="4">
+            <table>
+                <?php if(is_array($roadList) || $roadList instanceof \think\Collection): $i = 0; $__LIST__ = $roadList;if( count($__LIST__)==0 ) : echo "道路畅通" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+               <tr>
+                    <td class="sy_td_left"><?php echo $vo['road']; ?></td>
+                    <td class="sy_td_right"><?php echo $vo['description']; ?></td>
+                </tr>
+                <?php endforeach; endif; else: echo "道路畅通" ;endif; ?>
+            </table>
+                </marquee>
+            </td>
+        </tr>
+    </table>
+    
+
+</div>
+                 <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>新界面</title>
+</head>
+<style type="text/css">
+	*{margin: 0;padding:0;font-family: 'microsoft Yahei';font-size: 18px;}
+	html,body{width: 100%;height: 100%;display: block;background-color: #fffdef;}
+
+
+	aside{width: 100%;height: 100%;background-color: #fffdef;float: right;}
+	
+	aside nav{width: 100%;height:100%;display: inline-block;box-sizing:border-box;}
+
+
+	aside h3{width: 100%;height: 10%;text-align: left;}
+	aside nav ul{width: 100%;height: 100%;border-left: 1px solid #97d334;}
+	aside nav ul li{width: 100%;height: 10%;display: inline-block;list-style: none;}
+	aside nav ul li:nth-child(1){background-color: #97d334;height:8%;text-align: left;background:none;}
+/* 	aside nav ul li{width: 100%;height: 8%;display: inline-block;list-style: none;font-size: 1rem;}
+aside nav ul li:nth-child(1){height:10%;border:none;background-color: #97d334;font-size: 1rem;}
+ */
+    aside nav ul li span{width: 30%;height: auto;display: inline-block;line-height: 42px;text-align: center;}
+    aside nav ul li span:nth-child(1){width: 30%;text-align: left;padding-left: 6%;}
+    aside nav ul li.title span:nth-child(1){text-align: center;padding-left: -5%;}
+    aside nav ul li span img{vertical-align: middle;}
+    aside nav ul li span.yellow{color:#ff9900;}
+    aside nav ul li span.red{color:red;}
+	
+
+</style>
+<body>
+
+
+<aside>
+	<nav  class="lists">
+	    <ul>
+	        <h3>机场离港航班</h3>
+	        <li class="title"><span>班次</span> <span>地点</span> <span>状态</span></li>
+	        <?php if(is_array($air_info) || $air_info instanceof \think\Collection): $i = 0; $__LIST__ = $air_info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+	        	 <li><span><i><img src="__PUBLIC__<?php echo $vo['ICON']; ?>" height="30px" />&nbsp;</i>
+                <?php echo $vo['FLIGHT_NO']; ?></span> <span><?php echo $vo['CITY']; ?></span> <span><?php echo $vo['REMARK_XML']; ?></span></li>
+	        <?php endforeach; endif; else: echo "" ;endif; ?>
+
+	        </ul>
+    	</nav>
+</aside>
+</body>
+</html>
             </div>
         </div>
         </div>
@@ -63,9 +418,15 @@
         <div id="delay_2" style="display:none;"></div>
         <div id="delay_3" style="display:none;"></div>
         <!-- 视频模块  -->
-        {include file="./public/video" /}
+        <div id="video" style="display:none;">
+    <video  id="videoPlay"   autoplay="autoplay" loop="loop" >
+        your browser does not support the video tag
+     </video>
+</div>
         <!-- 图片模块  -->
-        {include file="./public/img" /}
+        <div id="imgModul" style="display: none;">
+    <img src="__PUBLIC__/images/cdshh-dining-chinese-restaurant-table-1680-945.jpg" />
+</div>
         <script>
             $(document).ready(function() {
                // $('.sy_road_info').css('background','#fff');
@@ -74,7 +435,7 @@
         <script>
             //黄历框数据
              var almanac = '';
-             var almanacInfo = {$almanceInfo};
+             var almanacInfo = <?php echo $almanceInfo; ?>;
              console.log(almanacInfo);
              almanac += '<div class="sy_almanac"><div class="sy_almanac_calendar"><div class="sy_almanc_date_panel">';
              almanac += '<div class="sy_almanac_date_bar"> '+almanacInfo['month']+'</div>';

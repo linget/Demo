@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\wamp\www\Demo\public/../application/test\view\test\index.html";i:1509009328;}*/ ?>
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,9 +68,9 @@
 			<h1>航班</h1>
 			<div id="echarts-pie"></div>
 			<div>
-				{volist name="statis_air" key="ko" id="vo"}
-				<dl><dt>{$vo.name}</dt><dd>{$vo.value}</dd></dl>
-				{/volist}
+				<?php if(is_array($statis_air) || $statis_air instanceof \think\Collection): $ko = 0; $__LIST__ = $statis_air;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ko % 2 );++$ko;?>
+				<dl><dt><?php echo $vo['name']; ?></dt><dd><?php echo $vo['value']; ?></dd></dl>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
 			</div>
 
 		    </hgroup>
@@ -77,9 +78,9 @@
 			<h1>火车</h1>
 			<div id="echarts-rose"></div>	
 			<div>
-			{volist name="statis_train" key="ko" id="vo"}
-			<dl><dt>{$vo.name}</dt><dd>{$vo.value}</dd></dl>
-			{/volist}
+			<?php if(is_array($statis_train) || $statis_train instanceof \think\Collection): $ko = 0; $__LIST__ = $statis_train;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ko % 2 );++$ko;?>
+			<dl><dt><?php echo $vo['name']; ?></dt><dd><?php echo $vo['value']; ?></dd></dl>
+			<?php endforeach; endif; else: echo "" ;endif; ?>
 			</div>
 		  </hgroup>
 		  <hgroup>
@@ -90,34 +91,34 @@
 		<nav>
 	        <ul>
 	            <li>
-					<p><img src="__PUBLIC__/weather/{$weather.icon}">
-						<span>{$weather.tmp_min}℃</span>
+					<p><img src="__PUBLIC__/weather/<?php echo $weather['icon']; ?>">
+						<span><?php echo $weather['tmp_min']; ?>℃</span>
 					</p>
-					<p>{$weather.weather}</p>
-					<p>{$weather.tmp_min}℃ ~ {$weather.tmp_max}℃</p>
-					<p>PM2.5 :  {$weather.pm2_5}   {$weather.quality}</p>
+					<p><?php echo $weather['weather']; ?></p>
+					<p><?php echo $weather['tmp_min']; ?>℃ ~ <?php echo $weather['tmp_max']; ?>℃</p>
+					<p>PM2.5 :  <?php echo $weather['pm2_5']; ?>   <?php echo $weather['quality']; ?></p>
 	            </li>
 	            <li>
-	            <h1 id="time"><a>{$variable}</a>{$now}</h1>
-	            <pre>{$weather.date}</pre>
-	            <pre>{$weather.week}</pre>
+	            <h1 id="time"><a><?php echo $variable; ?></a><?php echo $now; ?></h1>
+	            <pre><?php echo $weather['date']; ?></pre>
+	            <pre><?php echo $weather['week']; ?></pre>
 					</li>
-				{volist name="sha" id="vo"}	
-	            <li><b>{$vo.name}</b>
+				<?php if(is_array($sha) || $sha instanceof \think\Collection): $i = 0; $__LIST__ = $sha;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>	
+	            <li><b><?php echo $vo['name']; ?></b>
 					<article>
-						{if condition="$vo.increase > 0"}
-						最新指数:  <a class="red">{$vo.nowpri}</a><br />
-						指数涨跌:  <a class="red">{$vo.increPer}%</a><br />
-						涨跌幅度:  <a class="red">{$vo.increase}</a><br />
-						{else/}
-						最新指数:  <a class="green">{$vo.nowpri}</a><br />
-						指数涨跌:  <a class="green">{$vo.increPer}%</a><br />
-						涨跌幅度:  <a class="green">{$vo.increase}</a><br />
-						{/if}
-						总成交量:  <a class="red">{$vo.dealNum}</a>
+						<?php if($vo['increase'] > 0): ?>
+						最新指数:  <a class="red"><?php echo $vo['nowpri']; ?></a><br />
+						指数涨跌:  <a class="red"><?php echo $vo['increPer']; ?>%</a><br />
+						涨跌幅度:  <a class="red"><?php echo $vo['increase']; ?></a><br />
+						<?php else: ?>
+						最新指数:  <a class="green"><?php echo $vo['nowpri']; ?></a><br />
+						指数涨跌:  <a class="green"><?php echo $vo['increPer']; ?>%</a><br />
+						涨跌幅度:  <a class="green"><?php echo $vo['increase']; ?></a><br />
+						<?php endif; ?>
+						总成交量:  <a class="red"><?php echo $vo['dealNum']; ?></a>
 					</article>
 	            </li>
-	            {/volist}
+	            <?php endforeach; endif; else: echo "" ;endif; ?>
 	            <li class="news">新闻资讯</li> 
 	        </ul>
     	</nav>
@@ -138,10 +139,10 @@
 	    <ul>
 	        <h3>机场离港航班</h3>
 	        <li class="title"><span>班次</span> <span>地点</span> <span>状态</span></li>
-	        {volist name="air_info" id="vo"}
-	        	 <li><span><i><img src="__PUBLIC__{$vo.ICON}" height="30px" />&nbsp;</i>
-                {$vo.FLIGHT_NO}</span> <span>{$vo.CITY}</span> <span>{$vo.REMARK_XML}</span></li>
-	        {/volist}
+	        <?php if(is_array($air_info) || $air_info instanceof \think\Collection): $i = 0; $__LIST__ = $air_info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+	        	 <li><span><i><img src="__PUBLIC__<?php echo $vo['ICON']; ?>" height="30px" />&nbsp;</i>
+                <?php echo $vo['FLIGHT_NO']; ?></span> <span><?php echo $vo['CITY']; ?></span> <span><?php echo $vo['REMARK_XML']; ?></span></li>
+	        <?php endforeach; endif; else: echo "" ;endif; ?>
 
 	        </ul>
     	</nav>
@@ -155,11 +156,11 @@
 	/* 参数初始化 */
 	var statis_airjson= {},statis_trainjson={},air_from = [],air_to = [],city={};
     //统计数据
-	statis_airjson = {$statis_airjson};
-	statis_trainjson= {$statis_trainjson};
+	statis_airjson = <?php echo $statis_airjson; ?>;
+	statis_trainjson= <?php echo $statis_trainjson; ?>;
 
     //态势数据
-    city = {$topcity}; 
+    city = <?php echo $topcity; ?>; 
 
     var myChart1 = echarts.init(document.getElementById('echarts-pie'));
     myChart1.setOption(getEcharts_pie(statis_airjson));
